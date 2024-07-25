@@ -1,8 +1,8 @@
 [phases.setup]
-nixPkgs = ["...", "prisma", "pnpm-8_x", "nodejs_20"]
+nixPkgs = ['...', 'prisma', 'pnpm-8_x', 'nodejs_20']
 
 [phases.build]
 cmds = [
-    "...",
-    "npx prisma migrate deploy"
+    '...',
+    'npx prisma migrate deploy'
 ]
