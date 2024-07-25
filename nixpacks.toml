@@ -1,5 +1,5 @@
 [phases.setup]
-nixPkgs = ['...', 'prisma', 'pnpm-8_x', 'nodejs_20']
+nixPkgs = ['...', 'nodePackages_latest.prisma', 'pnpm-8_x', 'nodejs_20']
 
 [phases.build]
 cmds = [
