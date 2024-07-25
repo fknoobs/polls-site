@@ -5,6 +5,7 @@ declare global {
 		// interface Error {}
 		interface Locals {
             pocketbase: import('./pocketbase-types').TypedPocketBase
+            prisma: import('@prisma/client').PrismaClient
         }
 		// interface PageData {}
 		// interface PageState {}

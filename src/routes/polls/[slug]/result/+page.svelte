@@ -1,31 +1,45 @@
 <script lang="ts">
-    import { uniqBy } from 'lodash-es';
+    import { classNames } from '$lib/utils';
+    import { uniqBy } from 'lodash-es'
 
-    const { data } = $props()
+    let { data } = $props()
+    const {
+        title,
+        description,
+        options,
+        votes
+    } = data.poll
 
-    const getVotes = (id: string) => data.poll.votes.filter(vote => vote.poll_option === id)
-    const getPercentage = (id: string) => (getVotes(id).length / uniqBy(data.poll.votes, 'user_id').length * 100).toFixed(0)
+    const uniqueVotesCount = uniqBy(votes, 'fingerprint').length
 </script>
-<div class="bg-gray-200 h-screen w-screen flex justify-center items-center">
-    <div class="bg-white w-[450px] text-center shadow-md p-8 rounded-lg">
-        <h1 class="font-bold text-3xl mb-6">{data.poll.title}</h1>
-        <a href={`/polls/${data.poll.slug}`} class="relative inline-block font-bold transition-all left-0 mb-10 hover:-left-2">&#8592; Edit my vote</a>
-        <div class="flex flex-col gap-2 mb-6 overflow-clip">
-            {#each data.poll.options as option}
-                <div class="flex flex-col gap-2">
-                    <span class="text-start">{option.name}</span>
-                    <div class="relative text-end">
-                        <span class="opacity-0">{option.name}</span>
-                        <div 
-                            class="
-                                h-full top-0 absolute bg-progress bg-center bg-[length:140px]
-                                after:content-[attr(data-percentage)] after:absolute after:ms-2
-                            " 
-                            style="width: {getPercentage(option.id)}%"
-                            data-percentage="{getPercentage(option.id)}%"></div>
+<div class="flex h-screen w-screen justify-center items-center">
+    <div
+        class={classNames(
+            'bg-white w-[500px] p-6',
+            'shadow-drop'
+        )}
+    >
+        <header class="text-center mb-8">
+            <h1 class="font-bold text-3xl mb-6">{title}</h1>
+            {@html description}
+        </header>
+        <section class="flex flex-col gap-3">
+            {#each options as option}
+                <div class="flex flex-col">
+                    <span>{option.name}</span>
+                    <div class="flex relative gap-4 h-6">
+                        <div
+                            class={classNames(
+                                'relative h-full',
+                                'bg-progress bg-[length:200px] bg-center',
+                            )}
+                            style="width: {(option.votes.length / uniqueVotesCount * 100).toFixed(2)}%;"
+                            data-percentage={`${(option.votes.length / uniqueVotesCount * 100).toFixed(2)}%`}
+                        ></div>
+                        <span>{(option.votes.length / uniqueVotesCount * 100).toFixed(2)}%</span>
                     </div>
                 </div>
             {/each}
-        </div>
+        </section>
     </div>
 </div>
