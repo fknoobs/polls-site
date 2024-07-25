@@ -107,9 +107,11 @@
                         />
                     </label>
                 {/each}
-                <Button variant="primary" bind:loading={isSubmitting}>
-                    {didVote ? 'Update' : 'Send'}
-                </Button>
+                <div class="mt-8">
+                    <Button variant="primary" bind:loading={isSubmitting}>
+                        {didVote ? 'Update' : 'Submit'}
+                    </Button>
+                </div>
             {/if}
         </section>
     </form>

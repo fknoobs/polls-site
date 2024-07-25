@@ -20,7 +20,7 @@
 <button
     class={classNames(
         'flex justify-center items-center gap-2',
-        'p-3 mt-8 w-full font-bold transition-colors',
+        'p-3 w-full font-bold transition-colors',
         variant === 'primary' ? 
             'border-2 border-dashed border-black hover:bg-black hover:bg-opacity-20' : ''
     )}

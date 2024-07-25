@@ -11,19 +11,12 @@ export const actions = {
             return error(403, 'You are not allowed to vote, sorry.')
         }
 
-        const votes = ids.map(id => {
-            return {
-                pollId: parseInt(pollId),
-                optionId: parseInt(id),
-                fingerprint: fingerprint,
-            }
-        })
-
         try {
-            await locals.prisma.pollVotes.deleteMany({ where: { fingerprint } })
-            await locals.prisma.pollVotes.createMany({
-                data: votes
-            })
+            locals.services.pollService().voteOnPoll(
+                parseInt(pollId),
+                fingerprint,
+                ids.map(id => parseInt(id))
+            )
         } catch(_) {
             return error(500, 'Failed to cast your vote, try again. If it keeps failing, contact @fknoobs on discord.')
         }

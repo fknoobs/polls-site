@@ -4,7 +4,7 @@ declare global {
 	namespace App {
 		// interface Error {}
 		interface Locals {
-            pocketbase: import('./pocketbase-types').TypedPocketBase
+            services: import('./lib/server/services').Services
             prisma: import('@prisma/client').PrismaClient
         }
 		// interface PageData {}

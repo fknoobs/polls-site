@@ -6,7 +6,7 @@ export default {
     theme: {
         extend: {
             backgroundImage: {
-                'progress': 'url(/handdrawn-lines.svg)'
+                'progress': 'url(/handdrawn-line-4.svg)'
             },
             boxShadow: {
                 'drop': '20px 20px 0 0 rgba(0, 0, 0, 1)',

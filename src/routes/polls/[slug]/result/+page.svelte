@@ -26,12 +26,12 @@
         <section class="flex flex-col gap-3">
             {#each options as option}
                 <div class="flex flex-col">
-                    <span>{option.name}</span>
+                    <span class="font-bold">{option.name}</span>
                     <div class="flex items-center relative gap-4 h-6">
                         <div
                             class={classNames(
                                 'relative h-full',
-                                'bg-progress bg-[length:200px] bg-center',
+                                'bg-progress bg-[length:240px] bg-center',
                             )}
                             style="width: {(option.votes.length / uniqueVotesCount * 100).toFixed(2)}%;"
                             data-percentage={`${(option.votes.length / uniqueVotesCount * 100).toFixed(2)}%`}
@@ -40,6 +40,7 @@
                     </div>
                 </div>
             {/each}
+            <span class="block mt-8 mb-2 font-bold text-lg">{uniqueVotesCount} votes</span>
         </section>
     </div>
 </div>
