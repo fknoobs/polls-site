@@ -6,6 +6,7 @@ declare global {
 		interface Locals {
             services: import('./lib/server/services').Services
             prisma: import('@prisma/client').PrismaClient
+            elevenlabs: import('elevenlabs').ElevenLabsClient
         }
 		// interface PageData {}
 		// interface PageState {}

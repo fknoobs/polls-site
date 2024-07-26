@@ -40,3 +40,19 @@ model PollVotes {
     option      PollOptions     @relation(fields: [optionId], references: [id])
     optionId    Int
 }
+
+model TtsAudioFiles {
+    id          Int             @id @default(autoincrement())
+    rewardName  String
+    userName    String
+    input       String
+    filePath    String
+
+    TtsQueue TtsQueue[]
+}
+
+model TtsQueue {
+    id          Int             @id @default(autoincrement())
+    ttsFile     TtsAudioFiles   @relation(fields: [ttsFileId], references: [id], onDelete: Cascade)
+    ttsFileId   Int
+}

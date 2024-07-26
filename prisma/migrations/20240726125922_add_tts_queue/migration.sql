@@ -1,0 +1,6 @@
+-- CreateTable
+CREATE TABLE "TtsQueue" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "ttsFileId" INTEGER NOT NULL,
+    CONSTRAINT "TtsQueue_ttsFileId_fkey" FOREIGN KEY ("ttsFileId") REFERENCES "TtsAudioFiles" ("id") ON DELETE CASCADE ON UPDATE CASCADE
+);
