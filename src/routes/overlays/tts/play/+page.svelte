@@ -54,6 +54,8 @@
         }, 1000)
     })
 </script>
-{#each data as s}
-    <div>{s} {canPlay}</div>
-{/each}
+<div class="p-8">
+    {#each data as s}
+        <div class="text-white">{s}</div>
+    {/each}
+</div>

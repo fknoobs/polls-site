@@ -36,7 +36,7 @@
                             style="width: {(option.votes.length / uniqueVotesCount * 100).toFixed(2)}%;"
                             data-percentage={`${(option.votes.length / uniqueVotesCount * 100).toFixed(2)}%`}
                         ></div>
-                        <span>{(option.votes.length / uniqueVotesCount * 100).toFixed(2)}%</span>
+                        <span>{(option.votes.length / uniqueVotesCount * 100).toFixed(0)}%</span>
                     </div>
                 </div>
             {/each}
