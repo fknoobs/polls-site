@@ -51,7 +51,7 @@
 
             audio.setAttribute('src', URL.createObjectURL(next))
             audio.play()
-        }, 1000)
+        }, 100)
     })
 </script>
 <div class="p-8">

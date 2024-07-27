@@ -1,10 +1,14 @@
+import { dev } from '$app/environment'
+import { play } from 'elevenlabs'
 import { createWriteStream } from 'fs'
-import { createId } from '@paralleldrive/cuid2';
+import { createId } from '@paralleldrive/cuid2'
 
-export const GET = async ({ request, locals }) => {
-    const data = request.headers.get('x-data') as string
-    const [rewardName, userName, message, voice] = data.split(';')
-
+export const GET = async ({ request, locals, url }) => {
+    const userName = url.searchParams.get('username') as string
+    const voiceName = url.searchParams.get('voiceName') as string
+    const rewardName = url.searchParams.get('rewardName') as string
+    const message = url.searchParams.get('message') as string
+    
     /**
      * Ignore bots and !commands
      */
@@ -14,18 +18,33 @@ export const GET = async ({ request, locals }) => {
 
     try {
         const audioStream = await locals.elevenlabs.generate({
-            voice,
+            voice: voiceName,
             stream: true,
             text: message,
             model_id: 'eleven_multilingual_v2',
         }) as unknown as ReadableStream
         
+        if (dev) {
+            // @ts-ignore
+            play(audioStream)
+        }
+
         const filename = createId()
         const fileStream = createWriteStream(`static/tts-audio/${filename}.mp3`)
         const reader = audioStream.getReader()
     
         reader.read().then(function processAudio({ done, value }) {
             if (done) {
+                /**
+                 * Save TTS audio file
+                 * This will add new audio file to queue aswell
+                 */
+                locals.services.ttsService().addTtsAudioFile(
+                    rewardName,
+                    userName,
+                    message,
+                    `static/tts-audio/${filename}.mp3`
+                )
                 fileStream.close()
                 return
             }
@@ -33,13 +52,6 @@ export const GET = async ({ request, locals }) => {
             fileStream.write(value)
             reader.read().then(processAudio);
         })
-    
-        await locals.services.ttsService().addTtsAudioFile(
-            rewardName,
-            userName,
-            message,
-            `static/tts-audio/${filename}.mp3`
-        )
     } catch(_) {
         return new Response('FAIL')
     }
