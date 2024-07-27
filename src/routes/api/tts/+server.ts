@@ -3,16 +3,23 @@ import { createId } from '@paralleldrive/cuid2';
 
 export const GET = async ({ request, locals }) => {
     const data = request.headers.get('x-data') as string
-    const [rewardName, userName, message] = data.split(';')
+    const [rewardName, userName, message, voice] = data.split(';')
+
+    /**
+     * Ignore bots and !commands
+     */
+    if (userName.includes('bot') || message.startsWith('!')) {
+        return new Response('OK')
+    }
 
     try {
         const audioStream = await locals.elevenlabs.generate({
+            voice,
             stream: true,
-            voice: 'Adolf',
             text: message,
             model_id: 'eleven_multilingual_v2',
         }) as unknown as ReadableStream
-    
+        
         const filename = createId()
         const fileStream = createWriteStream(`static/tts-audio/${filename}.mp3`)
         const reader = audioStream.getReader()
