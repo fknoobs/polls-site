@@ -1,6 +1,8 @@
 import type { PrismaClient } from "@prisma/client";
 import { PollService } from "./poll";
 import { TtsService } from "./tts";
+import { Relic } from "./relic";
+import { Steam } from "./steam";
 
 export class Services {
     constructor( protected prisma: PrismaClient ) {}
@@ -11,5 +13,13 @@ export class Services {
 
     ttsService() {
         return new TtsService(this.prisma)
+    }
+
+    relic() {
+        return new Relic(this.prisma)
+    }
+
+    steam() {
+        return new Steam(this.prisma)
     }
 }

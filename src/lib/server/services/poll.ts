@@ -1,6 +1,5 @@
-import type { PrismaClient, Prisma } from "@prisma/client";
+import type { PrismaClient } from "@prisma/client";
 import slugify from "slugify";
-import { escape } from 'lodash-es'
 
 export class PollService {
     constructor(protected prisma: PrismaClient) {}

@@ -20,6 +20,7 @@
     class={classNames(
         'px-4 py-3 block w-full outline-none transition-colors',
         'border border-dashed border-black',
+        'focus:border-primary-500'
     )}
     id={name}
     {name}

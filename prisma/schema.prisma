@@ -56,3 +56,29 @@ model TtsQueue {
     ttsFile     TtsAudioFiles   @relation(fields: [ttsFileId], references: [id], onDelete: Cascade)
     ttsFileId   Int
 }
+
+model Tourneys {
+    id          Int             @id @default(autoincrement())
+    name        String          @unique
+    slug        String          @unique
+    description String?
+    startDate   DateTime
+    teams       TourneyTeams[]
+}
+
+model TourneyTeams {
+    id          Int             @id @default(autoincrement())
+    name        String
+    players     TourneyPlayers[]
+
+    tourney     Tourneys        @relation(fields: [tourneyId], references: [id])
+    tourneyId   Int
+}
+
+model TourneyPlayers {
+    id          Int             @id @default(autoincrement())
+    player      String          @default("{}")    // A JSON string
+
+    team        TourneyTeams    @relation(fields: [teamId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+    teamId      Int
+}

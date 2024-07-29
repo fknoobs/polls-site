@@ -3,12 +3,12 @@ import { play } from 'elevenlabs'
 import { createWriteStream } from 'fs'
 import { createId } from '@paralleldrive/cuid2'
 
-export const GET = async ({ request, locals, url }) => {
+export const GET = async ({ locals, url }) => {
     const userName = url.searchParams.get('username') as string
     const voiceName = url.searchParams.get('voiceName') as string
     const rewardName = url.searchParams.get('rewardName') as string
     const message = url.searchParams.get('message') as string
-    
+
     /**
      * Ignore bots and !commands
      */
@@ -22,11 +22,22 @@ export const GET = async ({ request, locals, url }) => {
             stream: true,
             text: message,
             model_id: 'eleven_multilingual_v2',
+            enable_logging: false,
+            output_format: 'mp3_44100_96',
+            voice_settings: {
+                stability: 0.2,
+                similarity_boost: 0.6,
+                style: 0.1
+            }
         }) as unknown as ReadableStream
         
         if (dev) {
             // @ts-ignore
-            play(audioStream)
+            await play(audioStream)
+            /**
+             * Ignore rest since we in development mode
+             */
+            return new Response('OK')
         }
 
         const filename = createId()
@@ -53,8 +64,9 @@ export const GET = async ({ request, locals, url }) => {
             reader.read().then(processAudio);
         })
     } catch(_) {
+        console.log(_)
         return new Response('FAIL')
     }
-
+    
     return new Response('OK')
 }
