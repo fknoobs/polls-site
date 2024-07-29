@@ -8,7 +8,7 @@
 
     const { children }:Props = $props() 
 </script>
-<div class="flex h-screen w-screen justify-center items-center">
+<div class="flex min-h-screen max-w-screen justify-center items-center">
     <div
         class={classNames(
             'bg-white w-[500px] p-8',

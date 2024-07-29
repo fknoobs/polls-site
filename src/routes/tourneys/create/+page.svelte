@@ -33,7 +33,7 @@
             </div>
             <div class="mb-3">
                 <span class="block mb-1 font-bold">Users can registrate here</span>
-                <a href={`${$page.url.origin}/tourneys/${createdTourney.slug}`}>{$page.url.origin}/tourneys/{createdTourney.slug}/registrate</a>
+                <a href={`${$page.url.origin}/tourneys/${createdTourney.slug}/apply`}>{$page.url.origin}/tourneys/{createdTourney.slug}/apply</a>
             </div>
         </section>
     {:else}

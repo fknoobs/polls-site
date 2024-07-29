@@ -1,5 +1,16 @@
-import { Prisma } from '@prisma/client'
-import { error, redirect, isRedirect } from '@sveltejs/kit'
+import { Prisma } from "@prisma/client"
+import { error } from "@sveltejs/kit"
+
+export const load = async ({ locals, params }) => {
+    const team = await locals.prisma.tourneyTeams.findFirstOrThrow({
+        where: { id: params.id },
+        include: { players: true }
+    })
+
+    return {
+        team
+    }
+}
 
 export const actions = {
 	default: async ({ locals, request, getClientAddress, params }) => {
@@ -28,8 +39,14 @@ export const actions = {
         }
 
         try {
-            const team = await locals.prisma.tourneyTeams.create({
+            await locals.prisma.tourneyTeams.delete({
+                where: {
+                    id: params.id
+                }
+            })
+            await locals.prisma.tourneyTeams.create({
                 data: {
+                    id: params.id,
                     name: teamName,
                     players: {
                         createMany: {
@@ -43,8 +60,6 @@ export const actions = {
                     tourney: true
                 }
             })
-
-            return redirect(301, `/tourneys/${params.slug}/teams/${team.id}`)
         } catch(e) {
             if ((e instanceof Prisma.PrismaClientKnownRequestError)) {
                 if (e.code === 'P2002') {
@@ -53,11 +68,7 @@ export const actions = {
                     })
                 }
             }
-
-            if (isRedirect(e)) {
-                return redirect(e.status, e.location)
-            }
-
+            console.log(e)
             return error(400, {
                 message: 'Sorry, something went wrong.'
             })
