@@ -34,8 +34,10 @@
     }
 </script>
 {#if player}
-    <PlayerCard {player} />
-    <input type="hidden" name="profile" value={JSON.stringify(player)} />
+    <div class="mb-4">
+        <PlayerCard {player} />
+        <input type="hidden" name="profile" value={JSON.stringify(player)} />
+    </div>
 {/if}
 <div class="mb-3">
     <Input

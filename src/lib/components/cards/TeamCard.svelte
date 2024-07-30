@@ -16,13 +16,13 @@
 </script>
 <div 
     class={classNames(
-        'bg-gray-300',
+        'bg-gray-200',
     )}
 >
-    <header class="px-4 py-3">
+    <header class="px-4 py-3 bg-gray-300">
         <h3 class="font-bold text-lg text-primary-900">{name}</h3>
     </header>
-    <section class="p-4 bg-gray-200">
+    <section class="p-4">
         <div class="flex flex-col gap-2">
             {#each players as player}
                 <PlayerCard player={getPlayer(player.player)} variant="tetriary" />
