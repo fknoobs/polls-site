@@ -58,12 +58,14 @@ model TtsQueue {
 }
 
 model Tourneys {
-    id          Int             @id @default(autoincrement())
-    name        String          @unique
-    slug        String          @unique
-    description String?
-    startDate   DateTime
-    teams       TourneyTeams[]
+    id                  Int         @id @default(autoincrement())
+    name                String      @unique
+    slug                String      @unique
+    description         String?
+    startDate           DateTime
+    endDate             DateTime?
+    registrationsOpen   Boolean     @default(false)
+    teams               TourneyTeams[]
 }
 
 model TourneyTeams {

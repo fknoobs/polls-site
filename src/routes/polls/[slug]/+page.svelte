@@ -1,10 +1,12 @@
 <script lang="ts">
     import { enhance } from "$app/forms";
     import { classNames } from "$lib/utils.js";
-    import { CircleCheck, CircleDashed } from "lucide-svelte";
+    import CircleCheck from "lucide-svelte/icons/circle-check";
+    import CircleDashed from "lucide-svelte/icons/circle-dashed";
     import { fingerprint } from "$lib/stores/user.js";
     import { goto } from "$app/navigation";
     import Button from "$lib/components/Button.svelte";
+    import Box from "$lib/components/Box.svelte";
 
     const { data } = $props()
     const {
@@ -20,12 +22,8 @@
     const userVotes = $derived(votes.filter(vote => vote.fingerprint === $fingerprint))
     const didVote = $derived(!!userVotes.length)
 </script>
-<div class="flex h-screen w-screen justify-center items-center">
+<Box {title} {description}>
     <form 
-        class={classNames(
-            'bg-white w-[450px] p-6',
-            'shadow-drop'
-        )}
         method="post"
         action="?/vote"
         use:enhance={({ formElement, formData, action, cancel, submitter }) => {
@@ -63,10 +61,6 @@
             }
         }}
     >
-        <header class="text-center mb-8">
-            <h1 class="font-bold text-3xl mb-6">{title}</h1>
-            {@html description}
-        </header>
         {#if errorMessage}
             <div class="px-4 py-3 mb-8 bg-primary-200">
                 {errorMessage}
@@ -115,4 +109,4 @@
             {/if}
         </section>
     </form>
-</div>
+</Box>

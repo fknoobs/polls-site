@@ -1,6 +1,7 @@
 <script lang="ts">
     import { classNames } from "$lib/utils";
-    import { CheckCircle2, LoaderCircle } from 'lucide-svelte'
+    import CheckCircle from 'lucide-svelte/icons/circle-check'
+    import LoaderCircle from 'lucide-svelte/icons/loader-circle'
     import type { HTMLInputAttributes } from "svelte/elements";
 
     type Props = {
@@ -41,7 +42,7 @@
         {...rest}
     />
     {#if valid}
-        <CheckCircle2 class="absolute right-4 text-green-600" />
+        <CheckCircle class="absolute right-4 text-green-600" />
     {/if}
     {#if processing}
         <LoaderCircle class="absolute right-4 text-gray-400 animate-spin" size="24" />

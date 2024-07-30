@@ -2,6 +2,7 @@ import { PrismaClient } from '@prisma/client'
 import { Services } from '$lib/server/services';
 import { ELEVENLABS_API_KEY } from '$env/static/private';
 import { ElevenLabsClient } from 'elevenlabs';
+import { parse, stringify } from 'superjson'
 
 export const handle = async ({ event, resolve }) => {
     event.locals.prisma = new PrismaClient()

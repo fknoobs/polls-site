@@ -5,6 +5,9 @@ export default {
 
     theme: {
         extend: {
+            container: {
+                center: true
+            },
             backgroundImage: {
                 'progress': 'url(/handdrawn-line-4.svg)'
             },
@@ -24,6 +27,19 @@ export default {
                     '800': '#905210',
                     '900': '#774310',
                     '950': '#442304',
+                },
+                'stone': {
+                    '50': '#f5f5f6',
+                    '100': '#e6e6e7',
+                    '200': '#d0d0d1',
+                    '300': '#b0aeb2',
+                    '400': '#87868a',
+                    '500': '#6c6b6f',
+                    '600': '#5d5b5f',
+                    '700': '#4f4e50',
+                    '800': '#444345',
+                    '900': '#3c3c3d',
+                    '950': '#272527',
                 },
             }
         }

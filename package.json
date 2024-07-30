@@ -29,6 +29,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@auth/sveltekit": "^1.4.2",
 		"@fingerprintjs/fingerprintjs": "^4.4.3",
 		"@paralleldrive/cuid2": "^2.2.2",
 		"@prisma/client": "^5.17.0",
@@ -38,11 +39,13 @@
 		"acebase-client": "^1.21.1",
 		"acebase-server": "^1.18.2",
 		"country-flag-icons": "^1.5.13",
+		"dayjs": "^1.11.12",
 		"elevenlabs": "^0.11.0",
 		"lodash-es": "^4.17.21",
 		"lucide-svelte": "^0.414.0",
 		"pocketbase": "^0.21.3",
 		"slugify": "^1.6.6",
+		"superjson": "^2.2.1",
 		"undici": "^6.19.4"
 	}
 }
