@@ -69,9 +69,9 @@ declare global {
         primaryclanid: string;
         timecreated: number;
         personastateflags: number;
-        loccountrycode: string;
-        locstatecode: string;
-        loccityid: number;
+        loccountrycode?: string;
+        locstatecode?: string;
+        loccityid?: number;
     }
 
     type Player = CoHPlayer & SteamPlayer

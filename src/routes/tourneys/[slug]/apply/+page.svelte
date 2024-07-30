@@ -5,6 +5,8 @@
     import { enhance } from "$app/forms";
     import Input from "$lib/components/Input.svelte";
     import { goto } from "$app/navigation";
+    import MoveLeft from "lucide-svelte/icons/move-left";
+    import Link from "$lib/components/Link.svelte";
     
     const { data } = $props()
     
@@ -13,11 +15,12 @@
     let isSubmitting = $state(false)
     let errorMessage = $state<string | null>(null)
 </script>
-<Box>
-    <header class="mb-8">
-        <h1 class="text-3xl font-bold mb-6">Register</h1>
-        <p>Fill in the form below to participate in the tourney.</p>
-    </header>
+<Box title="Register" description="Fill in the form below to participate in the tourney.">
+    {#snippet beforeTitle()}
+        <div class="mb-8">
+            <Link before={MoveLeft} href={`/tourneys/${data.tourney.slug}`} variant="black">Go back</Link>
+        </div>
+    {/snippet}
     {#if errorMessage}
         <div class="px-4 py-3 mb-8 bg-primary-200">
             {errorMessage}

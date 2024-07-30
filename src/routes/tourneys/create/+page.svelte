@@ -6,17 +6,21 @@
     import { enhance } from "$app/forms";
     import { page } from '$app/stores';
     import type { Prisma } from "@prisma/client";
+    import Link from "$lib/components/Link.svelte";
+    import MoveLeft from "lucide-svelte/icons/move-left";
 
     let isSubmitting = $state(false)
     let errorMessage = $state<string | null>(null)
     let createdTourney = $state<Prisma.TourneysSelect | null>(null)
 </script>
-<Box>
-    <header class="mb-8">
-        <h1 class="text-3xl font-bold mb-6">Create a tournament</h1>
-        <p>Fill out the fields below to create a new tournament.</p>
-    </header>
-    {#if errorMessage}
+<Box title="Create a tournament" size="lg">
+    {#snippet beforeTitle()}
+        <div class="mb-8">
+            <Link before={MoveLeft} href={`/tourneys`} variant="black">Go back</Link>
+        </div>
+    {/snippet}
+    <p>Coming soon...</p>
+    <!-- {#if errorMessage}
         <div class="px-4 py-3 mb-8 bg-primary-200">
             {errorMessage}
         </div>
@@ -87,5 +91,5 @@
                 </Button>
             </div>
         </form>
-    {/if}
+    {/if} -->
 </Box>

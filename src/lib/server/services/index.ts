@@ -3,6 +3,7 @@ import { PollService } from "./poll";
 import { TtsService } from "./tts";
 import { Relic } from "./relic";
 import { Steam } from "./steam";
+import { Tourneys } from "./tourneys";
 
 export class Services {
     constructor( protected prisma: PrismaClient ) {}
@@ -21,5 +22,9 @@ export class Services {
 
     steam() {
         return new Steam(this.prisma)
+    }
+
+    tourneys() {
+        return new Tourneys(this.prisma)
     }
 }

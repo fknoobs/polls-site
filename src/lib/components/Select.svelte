@@ -2,7 +2,8 @@
     import type { HTMLInputAttributes, HTMLSelectAttributes } from "svelte/elements";
     import { classNames } from "$lib/utils";
     import Input from "./Input.svelte";
-    import { ChevronDown, ChevronUp } from "lucide-svelte";
+    import ChevronDown from "lucide-svelte/icons/chevron-down";
+    import ChevronUp from "lucide-svelte/icons/chevron-up";
     import { onMount } from "svelte";
 
     type Props = {

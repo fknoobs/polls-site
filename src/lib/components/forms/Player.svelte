@@ -2,7 +2,7 @@
     import { getRelicProfileBySteamId } from "$lib/client/services/coh.js";
     import Input from "$lib/components/Input.svelte";
     import Select from "../Select.svelte";
-    import PlayerCard from "../PlayerCard.svelte";
+    import PlayerCard from "$lib/components/cards/PlayerCard.svelte";
 
     type Props = {
         player?: Player | null

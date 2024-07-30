@@ -1,10 +1,12 @@
 <script lang="ts">
-    import { Plus, Trash } from 'lucide-svelte'
+    import Plus from 'lucide-svelte/icons/plus'
+    import Trash from 'lucide-svelte/icons/trash'
     import { enhance } from "$app/forms";
     import { classNames } from "$lib/utils";
     import Input from "$lib/components/Input.svelte";
     import Textarea from "$lib/components/Textarea.svelte";
     import Button from "$lib/components/Button.svelte";
+    import Box from "$lib/components/Box.svelte";
     import { goto } from '$app/navigation';
 
     let errorMessage = $state<string | null>(null)
@@ -20,12 +22,8 @@
     ])
     let isSubmitting = $state(false)
 </script>
-<div class="flex h-screen w-screen justify-center items-center">
+<Box title="Create poll">
     <form 
-        class={classNames(
-            'bg-white w-[450px] p-8',
-            'shadow-drop'
-        )}
         method="post"
         use:enhance={({ cancel }) => {
             isSubmitting = true
@@ -44,9 +42,6 @@
             }
         }}
     >
-        <header class="text-center mb-8">
-            <h1 class="font-bold text-3xl mb-6">Create poll</h1>
-        </header>
         {#if errorMessage}
             <div class="px-4 py-3 mb-8 bg-primary-200">
                 {errorMessage}
@@ -104,6 +99,6 @@
             </div>
         </section>
     </form>
-</div>
+</Box>
 
 <!-- Please vote which maps you would like to see included in the tournament. -->
