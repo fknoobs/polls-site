@@ -6,6 +6,7 @@ export const actions = {
         const fingerprint = data.get('fingerprint') as string
         const pollId = data.get('pollId') as string
         const ids = data.getAll('ids') as string[]
+        const clientIP = request.headers.get('x-forwarded-for') || getClientAddress()
         
         if (!fingerprint) {
             return error(403, 'You are not allowed to vote, sorry.')
@@ -15,6 +16,7 @@ export const actions = {
             locals.services.pollService().voteOnPoll(
                 parseInt(pollId),
                 fingerprint,
+                clientIP,
                 ids.map(id => parseInt(id))
             )
         } catch(_) {

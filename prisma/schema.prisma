@@ -2,172 +2,176 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+    provider = "prisma-client-js"
 }
 
 generator yup {
-  provider = "zod-prisma-types"
-  output   = "../src/prisma"
-  useMultipleFiles = true
+    provider         = "zod-prisma-types"
+    output           = "../src/prisma"
+    useMultipleFiles = true
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = env("DATABASE_URL")
+    provider = "sqlite"
+    url      = env("DATABASE_URL")
 }
 
 model Polls {
-  id          Int     @id @default(autoincrement())
-  title       String
-  slug        String  @unique
-  description String?
+    id          Int     @id @default(autoincrement())
+    title       String
+    slug        String  @unique
+    description String?
+    multiple    Boolean @default(true)
+    minChoices  Int     @default(4)
+    maxChoices  Int     @default(4)
 
-  options PollOptions[]
-  votes   PollVotes[]
+    options PollOptions[]
+    votes   PollVotes[]
 }
 
 model PollOptions {
-  id   Int    @id @default(autoincrement())
-  name String
+    id   Int    @id @default(autoincrement())
+    name String
 
-  poll   Polls @relation(fields: [pollId], references: [id])
-  pollId Int
+    poll   Polls @relation(fields: [pollId], references: [id])
+    pollId Int
 
-  votes PollVotes[]
+    votes PollVotes[]
 }
 
 model PollVotes {
-  id          Int    @id @default(autoincrement())
-  fingerprint String
+    id          Int    @id @default(autoincrement())
+    fingerprint String
+    ipaddress   String @default("NULL")
 
-  poll   Polls @relation(fields: [pollId], references: [id])
-  pollId Int
+    poll   Polls @relation(fields: [pollId], references: [id])
+    pollId Int
 
-  option   PollOptions @relation(fields: [optionId], references: [id])
-  optionId Int
+    option   PollOptions @relation(fields: [optionId], references: [id])
+    optionId Int
 }
 
 model TtsAudioFiles {
-  id         Int    @id @default(autoincrement())
-  rewardName String
-  userName   String
-  input      String
-  filePath   String
+    id         Int    @id @default(autoincrement())
+    rewardName String
+    userName   String
+    input      String
+    filePath   String
 
-  TtsQueue TtsQueue[]
+    TtsQueue TtsQueue[]
 }
 
 model TtsQueue {
-  id        Int           @id @default(autoincrement())
-  ttsFile   TtsAudioFiles @relation(fields: [ttsFileId], references: [id], onDelete: Cascade)
-  ttsFileId Int
+    id        Int           @id @default(autoincrement())
+    ttsFile   TtsAudioFiles @relation(fields: [ttsFileId], references: [id], onDelete: Cascade)
+    ttsFileId Int
 }
 
 model Tourneys {
-  id                Int            @id @default(autoincrement())
-  name              String         @unique
-  slug              String         @unique
-  type              Int            @default(1) // 1 = 1v1, 2 = 2v2, 3 = 3v3, 4 = 4v4
-  description       String?
-  rules             String?
-  startDate         DateTime
-  endDate           DateTime?
-  registrationsOpen Boolean        @default(false)
-  teams             TourneyTeams[]
-  createdBy         User           @relation(name: "TourneysToUser", fields: [userId], references: [id])
-  createdAt         DateTime       @default(now())
-  updatedAt         DateTime       @updatedAt @default(now())
-  userId            String         @default("NULL")
+    id                Int            @id @default(autoincrement())
+    name              String         @unique
+    slug              String         @unique
+    type              Int            @default(1) // 1 = 1v1, 2 = 2v2, 3 = 3v3, 4 = 4v4
+    description       String?
+    rules             String?
+    startDate         DateTime
+    endDate           DateTime?
+    registrationsOpen Boolean        @default(false)
+    teams             TourneyTeams[]
+    createdBy         User           @relation(name: "TourneysToUser", fields: [userId], references: [id])
+    createdAt         DateTime       @default(now())
+    updatedAt         DateTime       @default(now()) @updatedAt
+    userId            String         @default("NULL")
 }
 
 model TourneyTeams {
-  id      String           @id @unique @default(cuid())
-  name    String           @unique
-  players TourneyPlayers[]
+    id      String           @id @unique @default(cuid())
+    name    String           @unique
+    players TourneyPlayers[]
 
-  tourney   Tourneys @relation(fields: [tourneyId], references: [id])
-  tourneyId Int
+    tourney   Tourneys @relation(fields: [tourneyId], references: [id])
+    tourneyId Int
 }
 
 model TourneyPlayers {
-  id     Int    @id @default(autoincrement())
-  player String @default("{}") // A JSON string
+    id     Int    @id @default(autoincrement())
+    player String @default("{}") // A JSON string
 
-  team   TourneyTeams @relation(fields: [teamId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  teamId String
+    team   TourneyTeams @relation(fields: [teamId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+    teamId String
 }
 
 // https://authjs.dev/getting-started/adapters/prisma
 model User {
-  id            String          @id @default(cuid())
-  name          String?
-  email         String?         @unique
-  emailVerified DateTime?
-  image         String?
-  accounts      Account[]
-  sessions      Session[]
-  // Optional for WebAuthn support
-  Authenticator Authenticator[]
+    id            String          @id @default(cuid())
+    name          String?
+    email         String?         @unique
+    emailVerified DateTime?
+    image         String?
+    accounts      Account[]
+    sessions      Session[]
+    // Optional for WebAuthn support
+    Authenticator Authenticator[]
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 
-  Tourneys Tourneys[] @relation(name: "TourneysToUser")
+    Tourneys Tourneys[] @relation(name: "TourneysToUser")
 }
 
 model Account {
-  id                String  @id @default(cuid())
-  userId            String
-  type              String
-  provider          String
-  providerAccountId String
-  refresh_token     String?
-  access_token      String?
-  expires_at        Int?
-  token_type        String?
-  scope             String?
-  id_token          String?
-  session_state     String?
+    id                String  @id @default(cuid())
+    userId            String
+    type              String
+    provider          String
+    providerAccountId String
+    refresh_token     String?
+    access_token      String?
+    expires_at        Int?
+    token_type        String?
+    scope             String?
+    id_token          String?
+    session_state     String?
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@unique([provider, providerAccountId])
+    @@unique([provider, providerAccountId])
 }
 
 model Session {
-  id           String   @id @default(cuid())
-  sessionToken String   @unique
-  userId       String
-  expires      DateTime
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+    id           String   @id @default(cuid())
+    sessionToken String   @unique
+    userId       String
+    expires      DateTime
+    user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 }
 
 model VerificationToken {
-  identifier String
-  token      String
-  expires    DateTime
+    identifier String
+    token      String
+    expires    DateTime
 
-  @@unique([identifier, token])
+    @@unique([identifier, token])
 }
 
 // Optional for WebAuthn support
 model Authenticator {
-  credentialID         String  @unique
-  userId               String
-  providerAccountId    String
-  credentialPublicKey  String
-  counter              Int
-  credentialDeviceType String
-  credentialBackedUp   Boolean
-  transports           String?
+    credentialID         String  @unique
+    userId               String
+    providerAccountId    String
+    credentialPublicKey  String
+    counter              Int
+    credentialDeviceType String
+    credentialBackedUp   Boolean
+    transports           String?
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@id([userId, credentialID])
+    @@id([userId, credentialID])
 }
