@@ -13,7 +13,10 @@
         title,
         description,
         options,
-        votes
+        votes,
+        multiple,
+        maxChoices,
+        minChoices
     } = data.poll
 
     let isSubmitting = $state(false)
@@ -26,7 +29,7 @@
     <form 
         method="post"
         action="?/vote"
-        use:enhance={({ formElement, formData, action, cancel, submitter }) => {
+        use:enhance={({ formData, cancel }) => {
             isSubmitting = true
 
             const ids = formData.getAll('ids')
@@ -39,8 +42,17 @@
                 cancel()
             }
 
-            if (ids.length < 4) {
-                errorMessage = 'Select atleast 4 maps'
+            if (multiple && ids.length < minChoices) {
+                errorMessage = `Select atleast ${minChoices}`
+                isSubmitting = false
+
+                cancel()
+            } else {
+                errorMessage = null
+            }
+
+            if (ids.length > maxChoices) {
+                errorMessage = `You cannot select more than ${minChoices} options`
                 isSubmitting = false
 
                 cancel()
@@ -94,7 +106,7 @@
                         <CircleCheck class="ms-auto" />
                         <input
                             class="peer hidden"
-                            type="checkbox" 
+                            type={multiple ? 'checkbox' : 'radio'}
                             name="ids"
                             value={option.id}
                             checked={!!userVotes.find(vote => vote.optionId === option.id)}

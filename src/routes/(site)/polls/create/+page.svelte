@@ -21,8 +21,9 @@
         'Semois (2v2)'
     ])
     let isSubmitting = $state(false)
+    let isMultiple = $state(false)
 </script>
-<Box title="Create poll">
+<Box title="Create poll" size="md">
     <form 
         method="post"
         use:enhance={({ cancel }) => {
@@ -54,6 +55,28 @@
             <div>
                 <Textarea label="Description" name="description" rows={5} placeholder="Give a brief description of the poll" />
             </div>
+            <div>
+                <input type="checkbox" id="multiple" name="multiple" bind:checked={isMultiple} />
+                <label for="multiple">Allow multiple choices</label>
+            </div>
+            {#if isMultiple}
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    <div>
+                        <Input 
+                            name="minChoices"
+                            label="Minimum choices"
+                            value="4"
+                        />
+                    </div>
+                    <div>
+                        <Input 
+                            name="maxChoices"
+                            label="Maximum choices"
+                            value="4"
+                        />
+                    </div>
+                </div>
+            {/if}
             <div>
                 <!-- svelte-ignore a11y_label_has_associated_control -->
                 <label class="inline-block font-medium mb-2">Options</label>
