@@ -15,6 +15,7 @@ export const actions = {
             locals.services.pollService().voteOnPoll(
                 parseInt(pollId),
                 fingerprint,
+                getClientAddress(),
                 ids.map(id => parseInt(id))
             )
         } catch(_) {

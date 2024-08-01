@@ -15,6 +15,9 @@ model Polls {
     title       String
     slug        String          @unique
     description String?
+    multiple    Boolean         @default(true)
+    minChoices  Int             @default(4)
+    maxChoices  Int             @default(4)
 
     options     PollOptions[]
     votes       PollVotes[]      
@@ -33,6 +36,7 @@ model PollOptions {
 model PollVotes {
     id          Int             @id @default(autoincrement())
     fingerprint String
+    ipaddress   String          @default("NULL")
 
     poll        Polls           @relation(fields: [pollId], references: [id])
     pollId      Int
