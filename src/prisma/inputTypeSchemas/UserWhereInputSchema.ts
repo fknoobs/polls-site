@@ -5,6 +5,8 @@ import { StringFilterSchema } from './StringFilterSchema';
 import { StringNullableFilterSchema } from './StringNullableFilterSchema';
 import { DateTimeNullableFilterSchema } from './DateTimeNullableFilterSchema';
 import { DateTimeFilterSchema } from './DateTimeFilterSchema';
+import { ProfileNullableRelationFilterSchema } from './ProfileNullableRelationFilterSchema';
+import { ProfileWhereInputSchema } from './ProfileWhereInputSchema';
 import { AccountListRelationFilterSchema } from './AccountListRelationFilterSchema';
 import { SessionListRelationFilterSchema } from './SessionListRelationFilterSchema';
 import { AuthenticatorListRelationFilterSchema } from './AuthenticatorListRelationFilterSchema';
@@ -21,6 +23,7 @@ export const UserWhereInputSchema: z.ZodType<Prisma.UserWhereInput> = z.object({
   image: z.union([ z.lazy(() => StringNullableFilterSchema),z.string() ]).optional().nullable(),
   createdAt: z.union([ z.lazy(() => DateTimeFilterSchema),z.coerce.date() ]).optional(),
   updatedAt: z.union([ z.lazy(() => DateTimeFilterSchema),z.coerce.date() ]).optional(),
+  profile: z.union([ z.lazy(() => ProfileNullableRelationFilterSchema),z.lazy(() => ProfileWhereInputSchema) ]).optional().nullable(),
   accounts: z.lazy(() => AccountListRelationFilterSchema).optional(),
   sessions: z.lazy(() => SessionListRelationFilterSchema).optional(),
   Authenticator: z.lazy(() => AuthenticatorListRelationFilterSchema).optional(),

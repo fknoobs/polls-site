@@ -4,9 +4,10 @@ import { TtsService } from "./tts";
 import { Relic } from "./relic";
 import { Steam } from "./steam";
 import { Tourneys } from "./tourneys";
+import { User } from "./user";
 
 export class Services {
-    constructor( protected prisma: PrismaClient ) {}
+    constructor( protected prisma: PrismaClient, protected session: Session | null ) {}
 
     pollService() {
         return new PollService(this.prisma)
@@ -25,6 +26,10 @@ export class Services {
     }
 
     tourneys() {
-        return new Tourneys(this.prisma)
+        return new Tourneys(this.prisma, this.session, this)
+    }
+
+    user() {
+        return new User(this.prisma, this.session, this)
     }
 }

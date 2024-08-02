@@ -8,7 +8,7 @@
     type Props = {
         name: string
         label?: string
-        value?: string
+        value?: string | Date | null
         error?: ZodIssue | null
     } & HTMLInputAttributes
 

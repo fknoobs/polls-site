@@ -8,7 +8,7 @@
     type Props = {
         label?: string
         name: string
-        value?: string
+        value?: string | null
         showPreview?: boolean
     } & HTMLTextareaAttributes
 
@@ -27,16 +27,16 @@
     $effect(() => {
         let text = value
         
-        if (text[text.length - 1] === '\n') {
+        if (text![text!.length - 1] === '\n') {
             text += ' '
         }
         
-        text
+        text!
             .replace(/&/g, '&amp')
             .replace(/</g, '&lt')
             
-        highlightedCode = hljs.highlight(text, { language: 'markdown' }).value
-        preview = markdownit().render(text)
+        highlightedCode = hljs.highlight(text!, { language: 'markdown' }).value
+        preview = markdownit().render(text!)
     })
 </script>
 <div class="flex items-center mb-4">

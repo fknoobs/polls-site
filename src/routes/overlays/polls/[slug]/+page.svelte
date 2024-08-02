@@ -16,7 +16,7 @@
         poll = response
     }, 2000) )
 </script>
-<div class="bg-white min-h-screen p-8 text-2xl">
+<div class="min-h-screen p-8 text-2xl text-white">
     <header class="text-start mb-8">
         <h1 class="font-bold text-3xl mb-6">{poll.title}</h1>
         {@html poll.description}
@@ -29,7 +29,7 @@
                     <div
                         class={classNames(
                             'relative h-full',
-                            'bg-progress bg-[length:300px] bg-center',
+                            'bg-progress-white bg-[length:300px] bg-center',
                         )}
                         style="width: {(option.votes.length / uniqueVotesCount * 100).toFixed(2)}%;"
                         data-percentage={`${(option.votes.length / uniqueVotesCount * 100).toFixed(2)}%`}
@@ -38,5 +38,6 @@
                 </div>
             </div>
         {/each}
+        <span class="block mt-8 mb-2 font-bold text-lg">{uniqueVotesCount} votes</span>
     </section>
 </div>
