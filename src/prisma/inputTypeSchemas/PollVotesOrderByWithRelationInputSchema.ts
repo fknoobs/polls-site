@@ -8,6 +8,7 @@ import { PollOptionsOrderByWithRelationInputSchema } from './PollOptionsOrderByW
 export const PollVotesOrderByWithRelationInputSchema: z.ZodType<Prisma.PollVotesOrderByWithRelationInput> = z.object({
   id: z.lazy(() => SortOrderSchema).optional(),
   fingerprint: z.lazy(() => SortOrderSchema).optional(),
+  ipaddress: z.lazy(() => SortOrderSchema).optional(),
   pollId: z.lazy(() => SortOrderSchema).optional(),
   optionId: z.lazy(() => SortOrderSchema).optional(),
   poll: z.lazy(() => PollsOrderByWithRelationInputSchema).optional(),

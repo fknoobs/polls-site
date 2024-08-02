@@ -1,24 +1,40 @@
-import slugify from 'slugify'
-import fs from 'fs';
+import { validate } from '$lib/utils';
+import { error, fail } from '@sveltejs/kit';
+import TourneysCreateInputSchema from '$prisma/inputTypeSchemas/TourneysCreateInputSchema';
 
 export const actions = {
 	default: async ({ locals, request }) => {
-		const data = await request.formData()
-        // const name = data.get('name') as string
-        // const date = new Date(data.get('date') as string)
-        // const description = data.get('description') as string
+		const formData = await request.formData()
+        const session = await locals.auth()
+        const { errors, data } = validate(TourneysCreateInputSchema, formData)
 
-        // const tourney = await locals.prisma.tourneys.create({
-        //     data: {
-        //         name,
-        //         slug: slugify(name, { lower: true }),
-        //         startDate: date,
-        //         description
-        //     }
-        // })
+        if (errors) {
+            return fail(400, errors)
+        }
 
-        // return {
-        //     ...tourney
-        // }
+        if(!session || !session.user || !session.user.email) {
+            return error(403, { message: 'You are not authorized to do this.' })
+        }
+
+        const tournament = await locals.prisma.tourneys.create({
+            data: {
+                name: data.name,
+                startDate: data.startDate,
+                endDate: data.endDate,
+                registrationsOpen: data.registrationsOpen,
+                description: data.description,
+                rules: data.rules,
+                type: data.type,
+                createdBy: {
+                    connect: {
+                        email: session.user.email
+                    }
+                }
+            }
+        })
+
+        return {
+            ...tournament
+        }
 	},
 }

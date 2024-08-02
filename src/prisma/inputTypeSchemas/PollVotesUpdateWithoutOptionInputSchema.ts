@@ -6,6 +6,7 @@ import { PollsUpdateOneRequiredWithoutVotesNestedInputSchema } from './PollsUpda
 
 export const PollVotesUpdateWithoutOptionInputSchema: z.ZodType<Prisma.PollVotesUpdateWithoutOptionInput> = z.object({
   fingerprint: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  ipaddress: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   poll: z.lazy(() => PollsUpdateOneRequiredWithoutVotesNestedInputSchema).optional()
 }).strict();
 

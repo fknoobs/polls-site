@@ -5,6 +5,7 @@ import { PollsCreateNestedOneWithoutVotesInputSchema } from './PollsCreateNested
 
 export const PollVotesCreateWithoutOptionInputSchema: z.ZodType<Prisma.PollVotesCreateWithoutOptionInput> = z.object({
   fingerprint: z.string(),
+  ipaddress: z.string().optional(),
   poll: z.lazy(() => PollsCreateNestedOneWithoutVotesInputSchema)
 }).strict();
 

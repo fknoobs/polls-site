@@ -5,7 +5,7 @@ import { UserCreateNestedOneWithoutTourneysInputSchema } from './UserCreateNeste
 
 export const TourneysCreateWithoutTeamsInputSchema: z.ZodType<Prisma.TourneysCreateWithoutTeamsInput> = z.object({
   name: z.string(),
-  slug: z.string(),
+  slug: z.string().optional().nullable(),
   type: z.number().int().optional(),
   description: z.string().optional().nullable(),
   rules: z.string().optional().nullable(),

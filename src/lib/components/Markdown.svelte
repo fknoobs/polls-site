@@ -41,7 +41,7 @@
 </script>
 <div class="flex items-center mb-4">
     <label for={name} class="inline-block font-medium">{label}</label>
-    <button class="ms-auto bg-stone-100 px-4 py-2" onclick={() => showPreview = !showPreview}>{showPreview ? 'Hide preview' : 'Show preview'}</button>
+    <button type="button" class="ms-auto bg-stone-100 px-4 py-2" onclick={() => showPreview = !showPreview}>{showPreview ? 'Hide preview' : 'Show preview'}</button>
 </div>
 <div class:hidden={showPreview} class="relative block w-full min-h-[250px] [&_.hljs-section]:font-bold [&_.hljs-section]:text-primary-900 not-prose">
     <pre 

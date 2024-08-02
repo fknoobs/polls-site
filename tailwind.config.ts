@@ -1,8 +1,8 @@
 import type { Config } from "tailwindcss";
 
 export default {
-    content: ["./src/**/*.{html,js,svelte,ts}"],
-
+    darkMode: 'selector',
+    content: ["./src/**/*.{html,js,svelte,ts}", "./node_modules/@pyrodata/**/*.{html,js,svelte,ts}"],
     theme: {
         extend: {
             container: {
@@ -12,7 +12,7 @@ export default {
                 'progress': 'url(/handdrawn-line-4.svg)'
             },
             boxShadow: {
-                'drop': '20px 20px 0 0 rgba(0, 0, 0, 1)',
+                'drop': '20px 20px 0 0 #272527',
             },
             colors: {
                 'primary': {
@@ -41,9 +41,17 @@ export default {
                     '900': '#3c3c3d',
                     '950': '#272527',
                 },
-            }
+            },
+            typography: ({ theme }) => ({
+                DEFAULT: {
+                    css: {
+                        '--tw-prose-bullets': theme('colors.black'),
+                    }
+                }
+            })
         }
     },
-
-    plugins: []
+    plugins: [
+        require('@tailwindcss/typography'),
+    ]
 } as Config;

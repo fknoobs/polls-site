@@ -11,6 +11,7 @@ import { PollVotesSumOrderByAggregateInputSchema } from './PollVotesSumOrderByAg
 export const PollVotesOrderByWithAggregationInputSchema: z.ZodType<Prisma.PollVotesOrderByWithAggregationInput> = z.object({
   id: z.lazy(() => SortOrderSchema).optional(),
   fingerprint: z.lazy(() => SortOrderSchema).optional(),
+  ipaddress: z.lazy(() => SortOrderSchema).optional(),
   pollId: z.lazy(() => SortOrderSchema).optional(),
   optionId: z.lazy(() => SortOrderSchema).optional(),
   _count: z.lazy(() => PollVotesCountOrderByAggregateInputSchema).optional(),

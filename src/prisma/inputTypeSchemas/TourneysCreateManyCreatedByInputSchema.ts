@@ -5,7 +5,7 @@ import { z } from 'zod';
 export const TourneysCreateManyCreatedByInputSchema: z.ZodType<Prisma.TourneysCreateManyCreatedByInput> = z.object({
   id: z.number().int().optional(),
   name: z.string(),
-  slug: z.string(),
+  slug: z.string().optional().nullable(),
   type: z.number().int().optional(),
   description: z.string().optional().nullable(),
   rules: z.string().optional().nullable(),

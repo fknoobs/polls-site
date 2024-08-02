@@ -8,7 +8,7 @@ import { DateTimeFilterSchema } from './DateTimeFilterSchema';
 import { DateTimeNullableFilterSchema } from './DateTimeNullableFilterSchema';
 import { BoolFilterSchema } from './BoolFilterSchema';
 import { TourneyTeamsListRelationFilterSchema } from './TourneyTeamsListRelationFilterSchema';
-import { UserRelationFilterSchema } from './UserRelationFilterSchema';
+import { UserNullableRelationFilterSchema } from './UserNullableRelationFilterSchema';
 import { UserWhereInputSchema } from './UserWhereInputSchema';
 
 export const TourneysWhereInputSchema: z.ZodType<Prisma.TourneysWhereInput> = z.object({
@@ -17,7 +17,7 @@ export const TourneysWhereInputSchema: z.ZodType<Prisma.TourneysWhereInput> = z.
   NOT: z.union([ z.lazy(() => TourneysWhereInputSchema),z.lazy(() => TourneysWhereInputSchema).array() ]).optional(),
   id: z.union([ z.lazy(() => IntFilterSchema),z.number() ]).optional(),
   name: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
-  slug: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
+  slug: z.union([ z.lazy(() => StringNullableFilterSchema),z.string() ]).optional().nullable(),
   type: z.union([ z.lazy(() => IntFilterSchema),z.number() ]).optional(),
   description: z.union([ z.lazy(() => StringNullableFilterSchema),z.string() ]).optional().nullable(),
   rules: z.union([ z.lazy(() => StringNullableFilterSchema),z.string() ]).optional().nullable(),
@@ -28,7 +28,7 @@ export const TourneysWhereInputSchema: z.ZodType<Prisma.TourneysWhereInput> = z.
   updatedAt: z.union([ z.lazy(() => DateTimeFilterSchema),z.coerce.date() ]).optional(),
   userId: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
   teams: z.lazy(() => TourneyTeamsListRelationFilterSchema).optional(),
-  createdBy: z.union([ z.lazy(() => UserRelationFilterSchema),z.lazy(() => UserWhereInputSchema) ]).optional(),
+  createdBy: z.union([ z.lazy(() => UserNullableRelationFilterSchema),z.lazy(() => UserWhereInputSchema) ]).optional().nullable(),
 }).strict();
 
 export default TourneysWhereInputSchema;

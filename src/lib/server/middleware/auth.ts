@@ -18,7 +18,7 @@ export const { handle: auth, signIn, signOut } = SvelteKitAuth(async (event) => 
             })
         ],
         secret: AUTH_SECRET,
-        trustHost: true
+        trustHost: true,
     }
     return authOptions
 })

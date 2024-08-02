@@ -6,8 +6,8 @@
     type Props = {
         label: string
         name: string
-        group?: string
-        value?: string
+        group?: string | number
+        value?: string | number
     } & HTMLInputAttributes
 
     let {

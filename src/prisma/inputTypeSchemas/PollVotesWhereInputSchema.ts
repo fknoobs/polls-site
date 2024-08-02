@@ -14,6 +14,7 @@ export const PollVotesWhereInputSchema: z.ZodType<Prisma.PollVotesWhereInput> = 
   NOT: z.union([ z.lazy(() => PollVotesWhereInputSchema),z.lazy(() => PollVotesWhereInputSchema).array() ]).optional(),
   id: z.union([ z.lazy(() => IntFilterSchema),z.number() ]).optional(),
   fingerprint: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
+  ipaddress: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
   pollId: z.union([ z.lazy(() => IntFilterSchema),z.number() ]).optional(),
   optionId: z.union([ z.lazy(() => IntFilterSchema),z.number() ]).optional(),
   poll: z.union([ z.lazy(() => PollsRelationFilterSchema),z.lazy(() => PollsWhereInputSchema) ]).optional(),

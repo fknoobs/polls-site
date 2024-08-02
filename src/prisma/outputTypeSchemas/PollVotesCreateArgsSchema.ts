@@ -11,6 +11,7 @@ import { PollOptionsArgsSchema } from "../outputTypeSchemas/PollOptionsArgsSchem
 export const PollVotesSelectSchema: z.ZodType<Prisma.PollVotesSelect> = z.object({
   id: z.boolean().optional(),
   fingerprint: z.boolean().optional(),
+  ipaddress: z.boolean().optional(),
   pollId: z.boolean().optional(),
   optionId: z.boolean().optional(),
   poll: z.union([z.boolean(),z.lazy(() => PollsArgsSchema)]).optional(),

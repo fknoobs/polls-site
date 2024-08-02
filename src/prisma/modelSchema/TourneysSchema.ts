@@ -7,7 +7,7 @@ import { z } from 'zod';
 export const TourneysSchema = z.object({
   id: z.number().int(),
   name: z.string(),
-  slug: z.string(),
+  slug: z.string().nullable(),
   type: z.number().int(),
   description: z.string().nullable(),
   rules: z.string().nullable(),

@@ -14,7 +14,7 @@ export const TourneysScalarWhereInputSchema: z.ZodType<Prisma.TourneysScalarWher
   NOT: z.union([ z.lazy(() => TourneysScalarWhereInputSchema),z.lazy(() => TourneysScalarWhereInputSchema).array() ]).optional(),
   id: z.union([ z.lazy(() => IntFilterSchema),z.number() ]).optional(),
   name: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
-  slug: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
+  slug: z.union([ z.lazy(() => StringNullableFilterSchema),z.string() ]).optional().nullable(),
   type: z.union([ z.lazy(() => IntFilterSchema),z.number() ]).optional(),
   description: z.union([ z.lazy(() => StringNullableFilterSchema),z.string() ]).optional().nullable(),
   rules: z.union([ z.lazy(() => StringNullableFilterSchema),z.string() ]).optional().nullable(),

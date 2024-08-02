@@ -8,7 +8,7 @@ import { TourneysUncheckedCreateNestedManyWithoutCreatedByInputSchema } from './
 export const UserUncheckedCreateWithoutSessionsInputSchema: z.ZodType<Prisma.UserUncheckedCreateWithoutSessionsInput> = z.object({
   id: z.string().cuid().optional(),
   name: z.string().optional().nullable(),
-  email: z.string().optional().nullable(),
+  email: z.string(),
   emailVerified: z.coerce.date().optional().nullable(),
   image: z.string().optional().nullable(),
   createdAt: z.coerce.date().optional(),

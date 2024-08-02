@@ -58,6 +58,8 @@ export const actions = {
                 return redirect(e.status, e.location)
             }
 
+            console.log(e)
+
             return error(400, {
                 message: 'Sorry, something went wrong.'
             })

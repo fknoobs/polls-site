@@ -7,6 +7,7 @@ import { z } from 'zod';
 export const PollVotesSchema = z.object({
   id: z.number().int(),
   fingerprint: z.string(),
+  ipaddress: z.string(),
   pollId: z.number().int(),
   optionId: z.number().int(),
 })

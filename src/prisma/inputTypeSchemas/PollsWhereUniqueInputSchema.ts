@@ -4,6 +4,8 @@ import { z } from 'zod';
 import { PollsWhereInputSchema } from './PollsWhereInputSchema';
 import { StringFilterSchema } from './StringFilterSchema';
 import { StringNullableFilterSchema } from './StringNullableFilterSchema';
+import { BoolFilterSchema } from './BoolFilterSchema';
+import { IntFilterSchema } from './IntFilterSchema';
 import { PollOptionsListRelationFilterSchema } from './PollOptionsListRelationFilterSchema';
 import { PollVotesListRelationFilterSchema } from './PollVotesListRelationFilterSchema';
 
@@ -27,6 +29,9 @@ export const PollsWhereUniqueInputSchema: z.ZodType<Prisma.PollsWhereUniqueInput
   NOT: z.union([ z.lazy(() => PollsWhereInputSchema),z.lazy(() => PollsWhereInputSchema).array() ]).optional(),
   title: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
   description: z.union([ z.lazy(() => StringNullableFilterSchema),z.string() ]).optional().nullable(),
+  multiple: z.union([ z.lazy(() => BoolFilterSchema),z.boolean() ]).optional(),
+  minChoices: z.union([ z.lazy(() => IntFilterSchema),z.number().int() ]).optional(),
+  maxChoices: z.union([ z.lazy(() => IntFilterSchema),z.number().int() ]).optional(),
   options: z.lazy(() => PollOptionsListRelationFilterSchema).optional(),
   votes: z.lazy(() => PollVotesListRelationFilterSchema).optional()
 }).strict());

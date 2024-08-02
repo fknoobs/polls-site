@@ -157,6 +157,7 @@ export { AuthenticatorUncheckedUpdateManyInputSchema } from './AuthenticatorUnch
 export { IntFilterSchema } from './IntFilterSchema';
 export { StringFilterSchema } from './StringFilterSchema';
 export { StringNullableFilterSchema } from './StringNullableFilterSchema';
+export { BoolFilterSchema } from './BoolFilterSchema';
 export { PollOptionsListRelationFilterSchema } from './PollOptionsListRelationFilterSchema';
 export { PollVotesListRelationFilterSchema } from './PollVotesListRelationFilterSchema';
 export { SortOrderInputSchema } from './SortOrderInputSchema';
@@ -170,6 +171,7 @@ export { PollsSumOrderByAggregateInputSchema } from './PollsSumOrderByAggregateI
 export { IntWithAggregatesFilterSchema } from './IntWithAggregatesFilterSchema';
 export { StringWithAggregatesFilterSchema } from './StringWithAggregatesFilterSchema';
 export { StringNullableWithAggregatesFilterSchema } from './StringNullableWithAggregatesFilterSchema';
+export { BoolWithAggregatesFilterSchema } from './BoolWithAggregatesFilterSchema';
 export { PollsRelationFilterSchema } from './PollsRelationFilterSchema';
 export { PollOptionsCountOrderByAggregateInputSchema } from './PollOptionsCountOrderByAggregateInputSchema';
 export { PollOptionsAvgOrderByAggregateInputSchema } from './PollOptionsAvgOrderByAggregateInputSchema';
@@ -197,9 +199,8 @@ export { TtsQueueMinOrderByAggregateInputSchema } from './TtsQueueMinOrderByAggr
 export { TtsQueueSumOrderByAggregateInputSchema } from './TtsQueueSumOrderByAggregateInputSchema';
 export { DateTimeFilterSchema } from './DateTimeFilterSchema';
 export { DateTimeNullableFilterSchema } from './DateTimeNullableFilterSchema';
-export { BoolFilterSchema } from './BoolFilterSchema';
 export { TourneyTeamsListRelationFilterSchema } from './TourneyTeamsListRelationFilterSchema';
-export { UserRelationFilterSchema } from './UserRelationFilterSchema';
+export { UserNullableRelationFilterSchema } from './UserNullableRelationFilterSchema';
 export { TourneyTeamsOrderByRelationAggregateInputSchema } from './TourneyTeamsOrderByRelationAggregateInputSchema';
 export { TourneysCountOrderByAggregateInputSchema } from './TourneysCountOrderByAggregateInputSchema';
 export { TourneysAvgOrderByAggregateInputSchema } from './TourneysAvgOrderByAggregateInputSchema';
@@ -208,7 +209,6 @@ export { TourneysMinOrderByAggregateInputSchema } from './TourneysMinOrderByAggr
 export { TourneysSumOrderByAggregateInputSchema } from './TourneysSumOrderByAggregateInputSchema';
 export { DateTimeWithAggregatesFilterSchema } from './DateTimeWithAggregatesFilterSchema';
 export { DateTimeNullableWithAggregatesFilterSchema } from './DateTimeNullableWithAggregatesFilterSchema';
-export { BoolWithAggregatesFilterSchema } from './BoolWithAggregatesFilterSchema';
 export { TourneyPlayersListRelationFilterSchema } from './TourneyPlayersListRelationFilterSchema';
 export { TourneysRelationFilterSchema } from './TourneysRelationFilterSchema';
 export { TourneyPlayersOrderByRelationAggregateInputSchema } from './TourneyPlayersOrderByRelationAggregateInputSchema';
@@ -235,6 +235,7 @@ export { UserCountOrderByAggregateInputSchema } from './UserCountOrderByAggregat
 export { UserMaxOrderByAggregateInputSchema } from './UserMaxOrderByAggregateInputSchema';
 export { UserMinOrderByAggregateInputSchema } from './UserMinOrderByAggregateInputSchema';
 export { IntNullableFilterSchema } from './IntNullableFilterSchema';
+export { UserRelationFilterSchema } from './UserRelationFilterSchema';
 export { AccountProviderProviderAccountIdCompoundUniqueInputSchema } from './AccountProviderProviderAccountIdCompoundUniqueInputSchema';
 export { AccountCountOrderByAggregateInputSchema } from './AccountCountOrderByAggregateInputSchema';
 export { AccountAvgOrderByAggregateInputSchema } from './AccountAvgOrderByAggregateInputSchema';
@@ -261,9 +262,10 @@ export { PollOptionsUncheckedCreateNestedManyWithoutPollInputSchema } from './Po
 export { PollVotesUncheckedCreateNestedManyWithoutPollInputSchema } from './PollVotesUncheckedCreateNestedManyWithoutPollInputSchema';
 export { StringFieldUpdateOperationsInputSchema } from './StringFieldUpdateOperationsInputSchema';
 export { NullableStringFieldUpdateOperationsInputSchema } from './NullableStringFieldUpdateOperationsInputSchema';
+export { BoolFieldUpdateOperationsInputSchema } from './BoolFieldUpdateOperationsInputSchema';
+export { IntFieldUpdateOperationsInputSchema } from './IntFieldUpdateOperationsInputSchema';
 export { PollOptionsUpdateManyWithoutPollNestedInputSchema } from './PollOptionsUpdateManyWithoutPollNestedInputSchema';
 export { PollVotesUpdateManyWithoutPollNestedInputSchema } from './PollVotesUpdateManyWithoutPollNestedInputSchema';
-export { IntFieldUpdateOperationsInputSchema } from './IntFieldUpdateOperationsInputSchema';
 export { PollOptionsUncheckedUpdateManyWithoutPollNestedInputSchema } from './PollOptionsUncheckedUpdateManyWithoutPollNestedInputSchema';
 export { PollVotesUncheckedUpdateManyWithoutPollNestedInputSchema } from './PollVotesUncheckedUpdateManyWithoutPollNestedInputSchema';
 export { PollsCreateNestedOneWithoutOptionsInputSchema } from './PollsCreateNestedOneWithoutOptionsInputSchema';
@@ -287,9 +289,8 @@ export { UserCreateNestedOneWithoutTourneysInputSchema } from './UserCreateNeste
 export { TourneyTeamsUncheckedCreateNestedManyWithoutTourneyInputSchema } from './TourneyTeamsUncheckedCreateNestedManyWithoutTourneyInputSchema';
 export { DateTimeFieldUpdateOperationsInputSchema } from './DateTimeFieldUpdateOperationsInputSchema';
 export { NullableDateTimeFieldUpdateOperationsInputSchema } from './NullableDateTimeFieldUpdateOperationsInputSchema';
-export { BoolFieldUpdateOperationsInputSchema } from './BoolFieldUpdateOperationsInputSchema';
 export { TourneyTeamsUpdateManyWithoutTourneyNestedInputSchema } from './TourneyTeamsUpdateManyWithoutTourneyNestedInputSchema';
-export { UserUpdateOneRequiredWithoutTourneysNestedInputSchema } from './UserUpdateOneRequiredWithoutTourneysNestedInputSchema';
+export { UserUpdateOneWithoutTourneysNestedInputSchema } from './UserUpdateOneWithoutTourneysNestedInputSchema';
 export { TourneyTeamsUncheckedUpdateManyWithoutTourneyNestedInputSchema } from './TourneyTeamsUncheckedUpdateManyWithoutTourneyNestedInputSchema';
 export { TourneyPlayersCreateNestedManyWithoutTeamInputSchema } from './TourneyPlayersCreateNestedManyWithoutTeamInputSchema';
 export { TourneysCreateNestedOneWithoutTeamsInputSchema } from './TourneysCreateNestedOneWithoutTeamsInputSchema';
@@ -325,17 +326,17 @@ export { UserUpdateOneRequiredWithoutAuthenticatorNestedInputSchema } from './Us
 export { NestedIntFilterSchema } from './NestedIntFilterSchema';
 export { NestedStringFilterSchema } from './NestedStringFilterSchema';
 export { NestedStringNullableFilterSchema } from './NestedStringNullableFilterSchema';
+export { NestedBoolFilterSchema } from './NestedBoolFilterSchema';
 export { NestedIntWithAggregatesFilterSchema } from './NestedIntWithAggregatesFilterSchema';
 export { NestedFloatFilterSchema } from './NestedFloatFilterSchema';
 export { NestedStringWithAggregatesFilterSchema } from './NestedStringWithAggregatesFilterSchema';
 export { NestedStringNullableWithAggregatesFilterSchema } from './NestedStringNullableWithAggregatesFilterSchema';
 export { NestedIntNullableFilterSchema } from './NestedIntNullableFilterSchema';
+export { NestedBoolWithAggregatesFilterSchema } from './NestedBoolWithAggregatesFilterSchema';
 export { NestedDateTimeFilterSchema } from './NestedDateTimeFilterSchema';
 export { NestedDateTimeNullableFilterSchema } from './NestedDateTimeNullableFilterSchema';
-export { NestedBoolFilterSchema } from './NestedBoolFilterSchema';
 export { NestedDateTimeWithAggregatesFilterSchema } from './NestedDateTimeWithAggregatesFilterSchema';
 export { NestedDateTimeNullableWithAggregatesFilterSchema } from './NestedDateTimeNullableWithAggregatesFilterSchema';
-export { NestedBoolWithAggregatesFilterSchema } from './NestedBoolWithAggregatesFilterSchema';
 export { NestedIntNullableWithAggregatesFilterSchema } from './NestedIntNullableWithAggregatesFilterSchema';
 export { NestedFloatNullableFilterSchema } from './NestedFloatNullableFilterSchema';
 export { PollOptionsCreateWithoutPollInputSchema } from './PollOptionsCreateWithoutPollInputSchema';

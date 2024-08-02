@@ -7,7 +7,10 @@ export const PollsMinOrderByAggregateInputSchema: z.ZodType<Prisma.PollsMinOrder
   id: z.lazy(() => SortOrderSchema).optional(),
   title: z.lazy(() => SortOrderSchema).optional(),
   slug: z.lazy(() => SortOrderSchema).optional(),
-  description: z.lazy(() => SortOrderSchema).optional()
+  description: z.lazy(() => SortOrderSchema).optional(),
+  multiple: z.lazy(() => SortOrderSchema).optional(),
+  minChoices: z.lazy(() => SortOrderSchema).optional(),
+  maxChoices: z.lazy(() => SortOrderSchema).optional()
 }).strict();
 
 export default PollsMinOrderByAggregateInputSchema;

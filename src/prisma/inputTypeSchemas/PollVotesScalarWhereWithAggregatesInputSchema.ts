@@ -10,6 +10,7 @@ export const PollVotesScalarWhereWithAggregatesInputSchema: z.ZodType<Prisma.Pol
   NOT: z.union([ z.lazy(() => PollVotesScalarWhereWithAggregatesInputSchema),z.lazy(() => PollVotesScalarWhereWithAggregatesInputSchema).array() ]).optional(),
   id: z.union([ z.lazy(() => IntWithAggregatesFilterSchema),z.number() ]).optional(),
   fingerprint: z.union([ z.lazy(() => StringWithAggregatesFilterSchema),z.string() ]).optional(),
+  ipaddress: z.union([ z.lazy(() => StringWithAggregatesFilterSchema),z.string() ]).optional(),
   pollId: z.union([ z.lazy(() => IntWithAggregatesFilterSchema),z.number() ]).optional(),
   optionId: z.union([ z.lazy(() => IntWithAggregatesFilterSchema),z.number() ]).optional(),
 }).strict();
