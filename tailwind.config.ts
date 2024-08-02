@@ -1,18 +1,20 @@
 import type { Config } from "tailwindcss";
 
 export default {
-    content: ["./src/**/*.{html,js,svelte,ts}"],
-
+    darkMode: 'selector',
+    content: ["./src/**/*.{html,js,svelte,ts}", "./node_modules/@pyrodata/**/*.{html,js,svelte,ts}"],
     theme: {
         extend: {
             container: {
                 center: true
             },
             backgroundImage: {
-                'progress': 'url(/handdrawn-line-4.svg)'
+                'progress': 'url(/handdrawn-line-4.svg)',
+                'progress-white': 'url(/handdrawn-line-4-white.svg)',
+                'border-dashed': "url(\"data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23333' stroke-width='3' stroke-dasharray='5, 8' stroke-dashoffset='2' stroke-linecap='butt'/%3e%3c/svg%3e\")"
             },
             boxShadow: {
-                'drop': '20px 20px 0 0 rgba(0, 0, 0, 1)',
+                'drop': '20px 20px 0 0 #272527',
             },
             colors: {
                 'primary': {
@@ -41,9 +43,17 @@ export default {
                     '900': '#3c3c3d',
                     '950': '#272527',
                 },
-            }
+            },
+            typography: ({ theme }) => ({
+                DEFAULT: {
+                    css: {
+                        '--tw-prose-bullets': theme('colors.black'),
+                    }
+                }
+            })
         }
     },
-
-    plugins: []
+    plugins: [
+        require('@tailwindcss/typography'),
+    ]
 } as Config;

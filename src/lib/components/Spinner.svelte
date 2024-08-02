@@ -2,4 +2,4 @@
     import LoaderCircle from 'lucide-svelte/icons/loader-circle'
 </script>
 
-<LoaderCircle class="animate-spin" />
+<LoaderCircle class="animate-spin" strokeWidth="1" />
