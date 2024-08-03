@@ -12,9 +12,9 @@
 
     const getType = (type: number) => {
         if (1) return '1v1'
-        if (2) return '1v1'
-        if (3) return '1v1'
-        if (4) return '1v1'
+        if (2) return '2v2'
+        if (3) return '3v3'
+        if (4) return '4v4'
 
         return '1v1'
     }
