@@ -9,7 +9,7 @@
 <Box title={data.tourney.name} size="md">
     {#snippet beforeTitle()}
         <div class="mb-8">
-            <Link before={MoveLeft} href={`/tourneys`} variant="black">Go back</Link>
+            <Link before={MoveLeft} href={`/tourneys/${data.tourney.slug}`} variant="black">Go back</Link>
         </div>
     {/snippet}
     <TournamentForm tournament={data.tourney} />

@@ -49,10 +49,12 @@
             }
 
             if (result.type === 'success') {
-                successMessage = 'Tournament details have been updated'
-            }
+                setTimeout(() => {
+                    isSubmitting = false
 
-            isSubmitting = false
+                    successMessage = 'Tournament details have been updated'
+                }, 500)
+            }
         }
     }}
 >

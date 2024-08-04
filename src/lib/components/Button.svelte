@@ -1,11 +1,15 @@
 <script lang="ts">
-    import { classNames } from "$lib/utils";
+    import { classNames as classes } from "$lib/utils";
     import type { Snippet } from "svelte";
     import type { HTMLButtonAttributes } from "svelte/elements";
     import Spinner from "./Spinner.svelte";
+    import { goto } from "$app/navigation";
 
     type Props = {
-        variant?: 'primary' | 'secondary' | 'tetriary'
+        variant?: 'primary' | 'secondary' | 'tetriary' | 'light'
+        size?: 'sm' | 'md' | 'lg'
+        classNames?: string
+        href?: string
         loading?: boolean
         stretch?: boolean
         children: Snippet
@@ -13,6 +17,9 @@
 
     let {
         variant = 'primary',
+        size = 'md',
+        classNames,
+        href,
         loading = $bindable(false),
         stretch = $bindable(false),
         children,
@@ -20,15 +27,26 @@
     }: Props = $props()
 </script>
 <button
-    class={classNames(
+    class={classes(
         'flex justify-center items-center gap-2',
-        'p-3 font-bold transition-colors',
+        'font-bold transition-colors',
         variant === 'primary' ? 
             'border-2 border-dashed border-black hover:bg-black hover:bg-opacity-20' : '',
         variant === 'tetriary' ? 
-            'px-8 bg-stone-950 text-white hover:bg-opacity-80' : '',
-        stretch ? 'w-full' : ''
+            'bg-stone-950 text-white hover:bg-opacity-80' : '',
+        variant === 'light' ? 
+            'bg-slate-300 hover:bg-opacity-80' : '',
+        stretch ? 'w-full' : '',
+        (size === 'sm') ? 'py-1 px-4' : '',
+        (size === 'md') ? 'py-4 px-8' : '',
+        (size === 'lg') ? 'py-4 px-8 text-xl' : '',
+        ' ' + classNames
     )}
+    onclick={() => {
+        if (href) {
+            goto(href)
+        }
+    }}
     {...rest}
 >
     {#if loading}
