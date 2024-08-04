@@ -1,5 +1,7 @@
 // See https://kit.svelte.dev/docs/types#app
 // for information about these interfaces
+import type { Logger, LoggerOptions } from 'pino';
+
 declare global {
 	namespace App {
 		// interface Error {}
@@ -83,7 +85,12 @@ declare global {
         id: string
         image: string
         name: string
+        role: 'ADMIN' | 'MODERATOR' | 'USER'
         updatedAt: string
+        steam: {
+            id: string
+            steamId: string
+        }
     }
 
     type Session = {
@@ -94,8 +101,16 @@ declare global {
         updatedAt: string
         user: User
         userId: string
-        profile: any
     }
+    
+    enum ServerEnvironment {
+        DEV,
+        PREV,
+        STG,
+        PROD 
+    }
+
+    type PinoLogger = Logger
 }
 
 export {}

@@ -5,7 +5,7 @@ import { UserWhereInputSchema } from '../inputTypeSchemas/UserWhereInputSchema'
 import { UserOrderByWithRelationInputSchema } from '../inputTypeSchemas/UserOrderByWithRelationInputSchema'
 import { UserWhereUniqueInputSchema } from '../inputTypeSchemas/UserWhereUniqueInputSchema'
 import { UserScalarFieldEnumSchema } from '../inputTypeSchemas/UserScalarFieldEnumSchema'
-import { ProfileArgsSchema } from "../outputTypeSchemas/ProfileArgsSchema"
+import { SteamProfileArgsSchema } from "../outputTypeSchemas/SteamProfileArgsSchema"
 import { AccountFindManyArgsSchema } from "../outputTypeSchemas/AccountFindManyArgsSchema"
 import { SessionFindManyArgsSchema } from "../outputTypeSchemas/SessionFindManyArgsSchema"
 import { AuthenticatorFindManyArgsSchema } from "../outputTypeSchemas/AuthenticatorFindManyArgsSchema"
@@ -20,9 +20,10 @@ export const UserSelectSchema: z.ZodType<Prisma.UserSelect> = z.object({
   email: z.boolean().optional(),
   emailVerified: z.boolean().optional(),
   image: z.boolean().optional(),
+  role: z.boolean().optional(),
   createdAt: z.boolean().optional(),
   updatedAt: z.boolean().optional(),
-  profile: z.union([z.boolean(),z.lazy(() => ProfileArgsSchema)]).optional(),
+  steam: z.union([z.boolean(),z.lazy(() => SteamProfileArgsSchema)]).optional(),
   accounts: z.union([z.boolean(),z.lazy(() => AccountFindManyArgsSchema)]).optional(),
   sessions: z.union([z.boolean(),z.lazy(() => SessionFindManyArgsSchema)]).optional(),
   Authenticator: z.union([z.boolean(),z.lazy(() => AuthenticatorFindManyArgsSchema)]).optional(),

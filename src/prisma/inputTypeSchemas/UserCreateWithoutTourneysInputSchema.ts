@@ -1,7 +1,7 @@
 import type { Prisma } from '@prisma/client';
 
 import { z } from 'zod';
-import { ProfileCreateNestedOneWithoutUserInputSchema } from './ProfileCreateNestedOneWithoutUserInputSchema';
+import { SteamProfileCreateNestedOneWithoutUserInputSchema } from './SteamProfileCreateNestedOneWithoutUserInputSchema';
 import { AccountCreateNestedManyWithoutUserInputSchema } from './AccountCreateNestedManyWithoutUserInputSchema';
 import { SessionCreateNestedManyWithoutUserInputSchema } from './SessionCreateNestedManyWithoutUserInputSchema';
 import { AuthenticatorCreateNestedManyWithoutUserInputSchema } from './AuthenticatorCreateNestedManyWithoutUserInputSchema';
@@ -12,9 +12,10 @@ export const UserCreateWithoutTourneysInputSchema: z.ZodType<Prisma.UserCreateWi
   email: z.string(),
   emailVerified: z.coerce.date().optional().nullable(),
   image: z.string().optional().nullable(),
+  role: z.string().optional(),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional(),
-  profile: z.lazy(() => ProfileCreateNestedOneWithoutUserInputSchema).optional(),
+  steam: z.lazy(() => SteamProfileCreateNestedOneWithoutUserInputSchema).optional(),
   accounts: z.lazy(() => AccountCreateNestedManyWithoutUserInputSchema).optional(),
   sessions: z.lazy(() => SessionCreateNestedManyWithoutUserInputSchema).optional(),
   Authenticator: z.lazy(() => AuthenticatorCreateNestedManyWithoutUserInputSchema).optional()

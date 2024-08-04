@@ -8,42 +8,52 @@
     import Tab from "../tabs/Tab.svelte";
     import Markdown from "../Markdown.svelte";
     import Button from "../Button.svelte";
-    import type { Prisma } from "@prisma/client";
+    import type { Tourneys } from "@prisma/client";
+    import Alert from "../Alert.svelte";
+    import dayjs from "dayjs";
 
     type Props = {
-        tournament?: Partial<Prisma.TourneysCreateInput>
+        tournament?: Partial<Tourneys>
     }
 
     let {
         tournament = $bindable({ type: 1 })
     }: Props = $props()
-    
+
     let isSubmitting = $state(false)
     let inputErrors = $state<Record<string, ZodIssue>>()
     let errorMessage = $state<string | null>(null)
+    let successMessage = $state<string | null>(null)
 </script>
 {#if errorMessage}
-    <div class="px-4 py-3 mb-8 bg-red-300">
-        {errorMessage}
-    </div>
+    <Alert variant="danger" classNames="mb-8">{errorMessage}</Alert>
+{/if}
+{#if successMessage}
+    <Alert variant="success" classNames="mb-8">{successMessage}</Alert>
 {/if}
 <form
     method="post"
     use:enhance={() => {
         return async ({ result }) => {
             isSubmitting = true
+            errorMessage = null
+            successMessage = null
 
             if (result.type === "failure") {
                 // @ts-ignore
-                inputErrors = result.data;
+                inputErrors = result.data
 
                 if (result.data?.statusText) {
                     errorMessage = result.data.statusText as string
                 }
             }
 
+            if (result.type === 'success') {
+                successMessage = 'Tournament details have been updated'
+            }
+
             isSubmitting = false
-        };
+        }
     }}
 >
     <div class="mb-4">
@@ -62,7 +72,7 @@
                 name="startDate"
                 label="Start date"
                 error={inputErrors?.startDate}
-                value={tournament?.startDate}
+                value={tournament?.startDate && dayjs(tournament.startDate).format('YYYY-MM-DD')}
             />
         </div>
         <div>
@@ -71,12 +81,17 @@
                 name="endDate"
                 label="End date"
                 error={inputErrors?.endDate}
-                value={tournament?.endDate}
+                value={tournament?.endDate && dayjs(tournament.endDate).format('YYYY-MM-DD')}
             />
         </div>
     </div>
     <div class="mb-8">
-        <Checkbox name="registrationsOpen" label="Open registrations" />
+        <Checkbox 
+            name="registrationsOpen" 
+            label="Open registrations"
+            error={inputErrors?.registrationsOpen}
+            checked={tournament?.registrationsOpen}
+        />
     </div>
     <div class="mb-4">
         <label for="type" class="inline-block font-medium mb-2"
@@ -116,7 +131,7 @@
                     <Markdown
                         name="description"
                         label="Description (Supports markdown)"
-                        value={tournament?.description}
+                        value={tournament?.description ?? ''}
                     />
                 </div>
             </Tab>
@@ -125,13 +140,13 @@
                     <Markdown
                         name="rules"
                         label="Rules (Supports markdown)"
-                        value={tournament?.rules}
+                        value={tournament?.rules ?? ''}
                     />
                 </div>
             </Tab>
         </Tabs>
     </div>
     <div class="flex justify-end">
-        <Button variant="tetriary" loading={isSubmitting}>Create</Button>
+        <Button variant="tetriary" loading={isSubmitting}>{tournament ? 'Update' : 'Create'}</Button>
     </div>
 </form>

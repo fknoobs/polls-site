@@ -4,32 +4,36 @@
     import { enhance } from '$app/forms'
     import Input from '../Input.svelte'
     import Button from '../Button.svelte'
+    import Alert from '../Alert.svelte';
+    import { page } from '$app/stores';
+    import { goto } from '$app/navigation';
 
     type Props = {
-        profile?: Partial<Prisma.ProfileCreateInput> | null
+        profile?: Partial<Prisma.SteamProfileCreateInput> | null
     }
 
     let {
-        profile = $bindable({
-            displayName: 'fknoobs',
-            steamId: '76561198036527204'
-        })
+        profile = $bindable()
     }: Props = $props()
     
     let isSubmitting = $state(false)
     let inputErrors = $state<Record<string, ZodIssue>>()
-    let errorMessage = $state<string | null>(null)
+    let errorMessage = $state<string>()
+    let successMessage = $state<string>()
 </script>
 {#if errorMessage}
-    <div class="px-4 py-3 mb-8 bg-red-300">
-        {errorMessage}
-    </div>
+    <Alert variant="danger" classNames="mb-8">{errorMessage}</Alert>
+{/if}
+{#if successMessage}
+    <Alert variant="success" classNames="mb-8">{successMessage}</Alert>
 {/if}
 <form
     method="post"
     use:enhance={() => {
-        return async ({ result }) => {
+        return ({ result }) => {
             isSubmitting = true
+            inputErrors = undefined
+            errorMessage = undefined
 
             if (result.type === "failure") {
                 // @ts-ignore
@@ -40,19 +44,20 @@
                 }
             }
 
-            isSubmitting = false
+            if (result.type === 'success') {
+                successMessage = 'Steam profile linked.'
+            }
+
+            setTimeout(() => {
+                isSubmitting = false
+
+                if ($page.url.searchParams.has('redirect')) {
+                    goto('/')
+                }
+            }, 500)
         }
     }}
 >
-    <div class="mb-4">
-        <Input
-            name="displayName"
-            label="Nickname"
-            placeholder="Choose a nickname"
-            error={inputErrors?.displayName}
-            value={profile?.displayName}
-        />
-    </div>
     <div class="mb-4">
         <Input
             name="steamId"

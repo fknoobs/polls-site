@@ -24,7 +24,6 @@
     <Modal title='Login' bind:this={modal}>
         <div class='flex flex-col gap-2'>
             <SignInWithSteam />
-            <SignInWithGoogle />
         </div>
     </Modal>
 {:else}

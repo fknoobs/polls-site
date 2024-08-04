@@ -7,6 +7,7 @@ export const actions = {
         const parsedData = decode<typeof TourneysCreateInputSchema['_output']>(formData, {
             dates: ['startDate', 'endDate'],
             numbers: ['type'],
+            booleans: ['registrationsOpen']
         })
 
         return await locals.services.tourneys().create(parsedData)

@@ -15,7 +15,7 @@
     let {
         label,
         name,
-        value = $bindable(``),
+        value = $bindable(''),
         showPreview = $bindable(false),
         ...rest
     }: Props = $props()
@@ -25,13 +25,17 @@
     hljs.registerLanguage('markdown', markdown)
         
     $effect(() => {
+        if (!value) {
+            value = ''
+        }
+
         let text = value
         
-        if (text![text!.length - 1] === '\n') {
+        if (text[text!.length - 1] === '\n') {
             text += ' '
         }
         
-        text!
+        text
             .replace(/&/g, '&amp')
             .replace(/</g, '&lt')
             

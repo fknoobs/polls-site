@@ -1,14 +1,17 @@
 <script lang="ts">
     import { onMount } from 'svelte';
-    import { fingerprint } from '$lib/stores/user';
+    import { fingerprint, session } from '$lib/stores/user.svelte';
     
     import '../style.css'
     import 'highlight.js/styles/base16/github.min.css'
 
+    const { data, children } = $props()
+
     onMount( async () => {
         const { getFingerprint } = await import('@thumbmarkjs/thumbmarkjs')
 
-        $fingerprint = await getFingerprint() as string
+        fingerprint.value = await getFingerprint() as string
+        session.value = data.session
     })
 </script>
 <svelte:head>
@@ -17,4 +20,4 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
 </svelte:head>
-<slot />
+{@render children()}

@@ -1,6 +1,8 @@
+import { NODE_ENV } from '$env/static/private';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
-import { fail } from '@sveltejs/kit';
+import { fail, type ActionFailure } from '@sveltejs/kit';
 import type { ZodIssue, ZodSchema } from 'zod'
+import { logger } from './stores/logger.svelte';
 
 /**
  * Marks empty values as undefined
@@ -18,7 +20,7 @@ export const normalizeData = <T extends Record<string, any>>(data: T): T => {
     const normalizedData: Partial<T> = {};
 
     for (const [key, value] of Object.entries(data)) {
-        normalizedData[key as keyof T] = value === '' ? undefined : value;
+        normalizedData[key as keyof T] = value === '' || value === null ? undefined : value;
     }
 
     return normalizedData as T;
@@ -27,7 +29,7 @@ export const normalizeData = <T extends Record<string, any>>(data: T): T => {
 export const validate = <T extends Record<string, any>>(schema: ZodSchema, dataToValidate: T) => {
     let errors: Partial<{[key in keyof T]: ZodIssue}> | undefined = undefined
     let { success, data, error } = schema.safeParse(normalizeData(dataToValidate))
-   
+    
     if (error) {
         errors = {}
         
@@ -83,4 +85,22 @@ export const error = <T extends Record<string, any>>(error: unknown | PrismaClie
     }
 
     return fail(400, errors)
+}
+
+/**
+ * Attempt to execute a callable
+ * 
+ * It catches the error and instead of throwing it, 
+ * return a sveltekit `ActionFailure`
+ * 
+ * @param callable 
+ * @param args
+ */
+export const attempt = async <T extends (...args: any[]) => any>(callable: T, ...args: Parameters<T>): Promise<ReturnType<T> | ActionFailure<any>> => {
+    try {
+        return await callable(...args)
+    } catch(_) {
+        logger.error(_)
+        return error(_, args)
+    }
 }

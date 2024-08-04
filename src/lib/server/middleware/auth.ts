@@ -9,19 +9,34 @@ export const { handle: auth, signIn, signOut } = SvelteKitAuth(async (event) => 
         adapter: PrismaAdapter(event.locals.prisma),
     
         providers: [
-            Google({
-                clientId: GOOGLE_CLIENT_ID,
-                clientSecret: GOOGLE_CLIENT_SECRET
-            }),
             Twitch({
                 clientId: TWITCH_CLIENT_ID,
                 clientSecret: TWITCH_CLIENT_SECRET,
+                async profile(profile) {
+                    return {
+                        id: profile.aud,
+                        role: profile.role ?? "USER",
+                        email: profile.email,
+                        image: profile.picture,
+                        name: profile.preferred_username,
+                    }
+                },
+                allowDangerousEmailAccountLinking: true
             })
         ],
         secret: AUTH_SECRET,
         trustHost: true,
         callbacks: {
             async session({ session, token, user }) {
+                const steam = await event.locals.prisma.steamProfile.findFirst({
+                    where: {
+                        userId: user.id
+                    }
+                })
+
+                // @ts-ignore
+                session.user.steam = steam
+
                 return session
             }
         }

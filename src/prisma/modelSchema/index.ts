@@ -8,7 +8,7 @@ export * from './TourneyTeamsSchema';
 export * from './TourneyPlayersSchema';
 export * from './UserSchema';
 export * from './AccountSchema';
-export * from './ProfileSchema';
+export * from './SteamProfileSchema';
 export * from './SessionSchema';
 export * from './VerificationTokenSchema';
 export * from './AuthenticatorSchema';

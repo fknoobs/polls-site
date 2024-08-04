@@ -10,6 +10,7 @@ export const UserSchema = z.object({
   email: z.string(),
   emailVerified: z.coerce.date().nullable(),
   image: z.string().nullable(),
+  role: z.string(),
   createdAt: z.coerce.date(),
   updatedAt: z.coerce.date(),
 })

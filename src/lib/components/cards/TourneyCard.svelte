@@ -2,7 +2,9 @@
     import { classNames } from '$lib/utils'
     import type { Prisma } from '@prisma/client'
     import dayjs from 'dayjs'
-    import MoveRight from 'lucide-svelte/icons/move-right'
+    import UsersIcon from 'lucide-svelte/icons/users'
+    import CalenderIcon from 'lucide-svelte/icons/calendar'
+    import { canEdit } from '$lib/stores/user.svelte';
 
     type Props = {
         tournament: Prisma.TourneysGetPayload<{ include: { teams: true, createdBy: true } }>
@@ -19,39 +21,44 @@
         return '1v1'
     }
 </script>
-<a 
+<div
     class={classNames(
         'p-4 transition-colors',
         'bg-gray-200',
-        'bg-border-dashed',
-        'hover:bg-primary-100'
+        'bg-border-dashed'
     )}
-    href={`/tourneys/${tournament.slug}`}
+    
 >
-    <h4 class="text-lg font-bold mb-2">{tournament.name}</h4>
-    <span class="flex items-center gap-3">
-        {dayjs(tournament.startDate).format('DD MMMM')} 
-        {#if tournament.endDate}
-            <MoveRight strokeWidth="1" /> 
-            {dayjs(tournament.endDate).format('DD MMMM')}
+    <h4 class="flex items-center text-lg font-bold mb-2">
+        <a href={`/tourneys/${tournament.slug}`} class="border-b hover:border-black">{tournament.name}</a>
+        {#if canEdit(tournament.userId)}
+            <a
+                role="button"
+                href={`/tourneys/${tournament.slug}/edit`}
+                class={classNames(
+                    'py-1 px-2',
+                    'ms-auto block transition-colors',
+                    'text-sm font-normal',
+                    'hover:bg-gray-300'
+                )}
+            >Edit</a>
         {/if}
-    </span>
-    <div class="mt-6 flex flex-col gap-1">
-        <div class="flex">
-            <span class="w-1/2">Type</span>
-            <span>{getType(tournament.type)}</span>
-        </div>
-        <div class="flex">
-            <span class="w-1/2">Organized by</span>
-            <span>{tournament.createdBy?.name}</span>
-        </div>
-        <div class="flex items-center">
-            <span class="w-1/2">Registrations</span>
+    </h4>
+    <div class="flex items-center gap-4 text-slate-500">
+        <div class="flex items-center gap-2">
             {#if tournament.registrationsOpen}
-                <span class="p-1 px-3 text-xs bg-green-300 shadow-[3px_3px_0] shadow-green-200">open</span>
+                <span class="p-1 px-2 text-xs bg-green-200">open</span>
             {:else}
-                <span class="p-1 px-3 text-xs bg-red-300 shadow-[3px_3px_0] shadow-red-200">closed</span>
+                <span class="p-1 px-2 text-xs bg-red-200">closed</span>
             {/if}
         </div>
+        <div class="flex items-center gap-2">
+            <UsersIcon size="18" />
+            {getType(tournament.type)}
+        </div>
+        <div class="flex items-center gap-2">
+            <CalenderIcon size="18" />
+            {dayjs(tournament.startDate).format('DD MMM YYYY')} 
+        </div>
     </div>
-</a>
+</div>

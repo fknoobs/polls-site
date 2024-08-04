@@ -10,10 +10,10 @@ export const session = (async ({ event, resolve }) => {
      * Make sure we force the user to fill his profile
      */
     if (session) {
-        const profile = await event.locals.services.user().getProfile(session.user!.id!)
         const redirectPath = `/user/profile`
 
-        if (!profile && redirectPath !== event.url.pathname) {
+        // @ts-ignore
+        if (!session.user!.steam && redirectPath !== event.url.pathname) {
             redirect(302, redirectPath)
         }
     }

@@ -3,7 +3,7 @@
     import { classNames } from "$lib/utils.js";
     import CircleCheck from "lucide-svelte/icons/circle-check";
     import CircleDashed from "lucide-svelte/icons/circle-dashed";
-    import { fingerprint } from "$lib/stores/user.js";
+    import { fingerprint } from "$lib/stores/user.svelte.js";
     import { goto } from "$app/navigation";
     import Button from "$lib/components/Button.svelte";
     import Box from "$lib/components/Box.svelte";
@@ -22,7 +22,7 @@
     let isSubmitting = $state(false)
     let errorMessage = $state<string | null>(null)
     
-    const userVotes = $derived(votes.filter(vote => vote.fingerprint === $fingerprint))
+    const userVotes = $derived(votes.filter(vote => vote.fingerprint === fingerprint))
     const didVote = $derived(!!userVotes.length)
 </script>
 <Box {title} {description}>
@@ -79,7 +79,7 @@
             </div>
         {/if}
         <section class="flex flex-col gap-1">
-            {#if !$fingerprint}
+            {#if !fingerprint}
                 {#each [0, 1, 2, 3, 4] as _}
                     <div class="py-2 px-4 flex items-center bg-slate-300 animate-pulse">
                         <CircleDashed class="ms-auto text-gray-500" />
@@ -87,7 +87,7 @@
                 {/each}
             {:else}
                 <input type="hidden" name="pollId" value={data.poll.id} />
-                <input type="hidden" name="fingerprint" value={$fingerprint} />
+                <input type="hidden" name="fingerprint" value={fingerprint} />
 
                 {#each options as option}
                     <label 

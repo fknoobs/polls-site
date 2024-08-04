@@ -1,4 +1,4 @@
-import type { ProfileCreateInputSchema } from '$prisma/index.js'
+import type { SteamProfileCreateInputSchema } from '$prisma/index.js'
 import { fail, redirect } from '@sveltejs/kit'
 import { decode } from 'decode-formdata'
 
@@ -25,7 +25,7 @@ export const actions = {
         }
 
         const formData = await request.formData()
-        const parsedData = decode<typeof ProfileCreateInputSchema['_output']>(formData)
+        const parsedData = decode<typeof SteamProfileCreateInputSchema['_output']>(formData)
 
         return await locals.services.user().updateProfile(parsedData, session?.user?.id!)
 	},

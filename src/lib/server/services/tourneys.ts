@@ -1,7 +1,6 @@
 import type { Prisma } from "@prisma/client";
-import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 import { Service } from "./service";
-import { error, validate } from "$lib/request";
+import { attempt, error, validate } from "$lib/request";
 import TourneysCreateInputSchema from "$prisma/inputTypeSchemas/TourneysCreateInputSchema";
 import { fail } from "@sveltejs/kit";
 import slugify from "slugify";
@@ -56,9 +55,7 @@ export class Tourneys extends Service {
         const { data, errors } = await validate(TourneysCreateInputSchema, tourneyData)
 
         if (!this.session) {
-            return fail(403, {
-                statusText: 'You are not authorized.'
-            })
+            return fail(403, { statusText: 'You are not authorized.' })
         }
 
         if (errors) {
@@ -76,5 +73,37 @@ export class Tourneys extends Service {
         } catch(e) {
             return error(e, tourneyData)
         }
+    }
+
+    async update(
+        slug: string,
+        tourneyData: Pick<
+            Prisma.TourneysCreateInput, 
+                'name' | 
+                'startDate' | 
+                'endDate' | 
+                'description' | 
+                'rules' |
+                'type' |
+                'registrationsOpen'
+            >
+    ) {
+        const { data, errors } = await validate(TourneysCreateInputSchema, tourneyData)
+
+        if (!this.session) {
+            return fail(403, { statusText: 'You are not authorized.' })
+        }
+
+        if (errors) {
+            return fail(400, errors)
+        }
+
+        return attempt(
+            this.prisma.tourneys.update,
+            {
+                data: data,
+                where: { slug }
+            }
+        )
     }
 }

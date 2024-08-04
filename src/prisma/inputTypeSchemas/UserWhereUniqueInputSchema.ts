@@ -4,9 +4,10 @@ import { z } from 'zod';
 import { UserWhereInputSchema } from './UserWhereInputSchema';
 import { StringNullableFilterSchema } from './StringNullableFilterSchema';
 import { DateTimeNullableFilterSchema } from './DateTimeNullableFilterSchema';
+import { StringFilterSchema } from './StringFilterSchema';
 import { DateTimeFilterSchema } from './DateTimeFilterSchema';
-import { ProfileNullableRelationFilterSchema } from './ProfileNullableRelationFilterSchema';
-import { ProfileWhereInputSchema } from './ProfileWhereInputSchema';
+import { SteamProfileNullableRelationFilterSchema } from './SteamProfileNullableRelationFilterSchema';
+import { SteamProfileWhereInputSchema } from './SteamProfileWhereInputSchema';
 import { AccountListRelationFilterSchema } from './AccountListRelationFilterSchema';
 import { SessionListRelationFilterSchema } from './SessionListRelationFilterSchema';
 import { AuthenticatorListRelationFilterSchema } from './AuthenticatorListRelationFilterSchema';
@@ -33,9 +34,10 @@ export const UserWhereUniqueInputSchema: z.ZodType<Prisma.UserWhereUniqueInput> 
   name: z.union([ z.lazy(() => StringNullableFilterSchema),z.string() ]).optional().nullable(),
   emailVerified: z.union([ z.lazy(() => DateTimeNullableFilterSchema),z.coerce.date() ]).optional().nullable(),
   image: z.union([ z.lazy(() => StringNullableFilterSchema),z.string() ]).optional().nullable(),
+  role: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
   createdAt: z.union([ z.lazy(() => DateTimeFilterSchema),z.coerce.date() ]).optional(),
   updatedAt: z.union([ z.lazy(() => DateTimeFilterSchema),z.coerce.date() ]).optional(),
-  profile: z.union([ z.lazy(() => ProfileNullableRelationFilterSchema),z.lazy(() => ProfileWhereInputSchema) ]).optional().nullable(),
+  steam: z.union([ z.lazy(() => SteamProfileNullableRelationFilterSchema),z.lazy(() => SteamProfileWhereInputSchema) ]).optional().nullable(),
   accounts: z.lazy(() => AccountListRelationFilterSchema).optional(),
   sessions: z.lazy(() => SessionListRelationFilterSchema).optional(),
   Authenticator: z.lazy(() => AuthenticatorListRelationFilterSchema).optional(),
