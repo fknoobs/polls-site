@@ -1,4 +1,5 @@
 import type TourneysCreateInputSchema from '$prisma/inputTypeSchemas/TourneysCreateInputSchema';
+import { redirect } from '@sveltejs/kit';
 import { decode } from 'decode-formdata'
 
 export const actions = {
@@ -10,6 +11,16 @@ export const actions = {
             booleans: ['registrationsOpen']
         })
 
-        return await locals.services.tourneys().create(parsedData)
+        const response = await locals.services.tourneys().create(parsedData)
+
+        if ('status' in response) {
+            if (response.status > 400) {
+                return response
+            }
+
+            return response
+        }
+
+        return redirect(301, `/tourneys/${response.slug}`)
 	},
 }

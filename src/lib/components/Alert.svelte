@@ -14,7 +14,7 @@
         classNames,
         variant,
         children,
-        autoHide = true,
+        autoHide = false,
         reference = $bindable()
     }: Props = $props()
 

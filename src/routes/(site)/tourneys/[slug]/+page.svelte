@@ -6,9 +6,11 @@
     import Tab from "$lib/components/tabs/Tab.svelte";
     import Tabs from "$lib/components/tabs/Tabs.svelte";
     import { canEdit } from "$lib/stores/user.svelte.js";
+    import { classNames } from "$lib/utils.js";
     import LogIn from "lucide-svelte/icons/log-in";
     import MoveLeft from "lucide-svelte/icons/move-left";
-
+    import markdown from "markdown-it";	
+    
     const { data } = $props()
 </script>
 <Box title={data.tourney.name} size="lg">
@@ -29,7 +31,19 @@
     {/snippet}
     <Tabs>
         <Tab id="details" title="Details">
-            <div class="p-4 whitespace-pre-line">{@html data.tourney.description}</div>
+            {#if data.tourney.description}
+                <div
+                    class={classNames(
+                        'prose',
+                        'prose-h1:text-3xl',
+                        'prose-h2:text-2xl',
+                        'prose-h3:text-xl prose-h3:mb-1',
+                        'prose-h2:mb-4 prose-h2:mt-6',
+                        'prose-ul:my-0 prose-li:mt-0 prose-li:mb-0',
+                        'mt-4'
+                    )}
+                >{@html markdown().render(data.tourney.description)}</div>
+            {/if}
         </Tab>
         <Tab id="teams" title="Teams">
             <div class="py-4">

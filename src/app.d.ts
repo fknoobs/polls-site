@@ -111,6 +111,10 @@ declare global {
     }
 
     type PinoLogger = Logger
+
+    type ValidationErrors<T extends Record<string, any>> = Partial<{
+        [K in keyof T]: T[K] extends any[] ? ZodIssue[] : ZodIssue
+    }> | undefined
 }
 
 export {}

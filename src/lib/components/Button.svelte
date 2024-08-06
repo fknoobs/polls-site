@@ -30,6 +30,7 @@
     class={classes(
         'flex justify-center items-center gap-2',
         'font-bold transition-colors',
+        'disabled:bg-opacity-30 disabled:cursor-not-allowed',
         variant === 'primary' ? 
             'border-2 border-dashed border-black hover:bg-black hover:bg-opacity-20' : '',
         variant === 'tetriary' ? 

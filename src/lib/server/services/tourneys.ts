@@ -4,6 +4,7 @@ import { attempt, error, validate } from "$lib/request";
 import TourneysCreateInputSchema from "$prisma/inputTypeSchemas/TourneysCreateInputSchema";
 import { fail } from "@sveltejs/kit";
 import slugify from "slugify";
+import { z } from "zod";
 
 export class Tourneys extends Service {
     async upcomming() {
@@ -62,19 +63,25 @@ export class Tourneys extends Service {
             return fail(400, errors)
         }
 
-        try {
-            return await this.prisma.tourneys.create({
+        return attempt(
+            await this.prisma.tourneys.create,
+            {
                 data: {
                     createdBy: { connect: { id: this.session.userId } },
                     slug: slugify(data.name, { lower: true, strict: true, remove: /[*+~.()'"!:@]/g }),
                     ...data
                 }
-            })
-        } catch(e) {
-            return error(e, tourneyData)
-        }
+            }
+        )
     }
 
+    /**
+     * Update tournament details
+     * 
+     * @param slug 
+     * @param tourneyData 
+     * @returns 
+     */
     async update(
         slug: string,
         tourneyData: Pick<
@@ -103,6 +110,51 @@ export class Tourneys extends Service {
             {
                 data: data,
                 where: { slug }
+            }
+        )
+    }
+
+    /**
+     * Adds new team to tournament
+     * 
+     * @param slug 
+     * @param teamName 
+     * @param players 
+     */
+    async enter(slug: string, teamName: string, players: Omit<Prisma.TourneyPlayersCreateInput, 'team'>[]) {
+        const schema = z.object({
+            name: z.string().min(1),
+            players: z.object({
+                steamId: z.string().min(16, { message: 'This is not a valid steam id' }),
+                timezone: z.string().regex(/[A-z]\/[A-z](\/[A-z])?/),
+                profile: z.string().min(1)
+            }).array()
+        })
+        
+        const { data, errors } = await validate(schema, { name: teamName, players })
+        console.log(players)
+        if (!this.session) {
+            return fail(403, { statusText: 'You are not authorized.' })
+        }
+
+        if (errors) {
+            return fail(400, errors)
+        }
+
+        return attempt(
+            this.prisma.tourneyTeams.create,
+            {
+                data: {
+                    name: data.name,
+                    players: {
+                        createMany: {
+                            data: data.players
+                        }
+                    },
+                    tourney: {
+                        connect: { slug }
+                    }
+                }
             }
         )
     }

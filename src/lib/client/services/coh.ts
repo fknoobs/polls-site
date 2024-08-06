@@ -1,18 +1,13 @@
 export const getRelicProfileBySteamId = async (steamId: string): Promise<CoHPlayer & SteamPlayer | null> => {
     try {
-        const requestRelic = await fetch(`/api/relic/profile/${steamId}`)
-        const responseRelic = await requestRelic.json() as CoHPlayer | null
+        const fetchRelicProfile = await fetch(`/api/relic/profile/${steamId}`)
+        const fetchSteamProifle = await fetch(`/api/steam/profile/${steamId}`)
 
-        const requestSteam = await fetch(`/api/steam/profile/${steamId}`)
-        const responseSteam = await requestSteam.json() as SteamPlayer | null
-
-        if (!responseRelic || !responseSteam) {
-            return null
-        }
+        const [relicResponse, steamResponse] = await Promise.all([fetchRelicProfile, fetchSteamProifle])
 
         return {
-            ...responseRelic,
-            ...responseSteam
+            ...await relicResponse.json(),
+            ...await steamResponse.json()
         }
     } catch(_) {
         return null

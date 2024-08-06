@@ -94,8 +94,11 @@ model TourneyTeams {
 }
 
 model TourneyPlayers {
-    id     Int    @id @default(autoincrement())
-    player String @default("{}") // A JSON string
+    id              Int     @id @default(autoincrement())
+    steamId         String  @default("")
+    player          String  @default("{}") // TODO: Remove in favor of steamProfile
+    profile         String  @default("{}") // A JSON string
+    timezone        String  @default("")
 
     team   TourneyTeams @relation(fields: [teamId], references: [id], onDelete: Cascade, onUpdate: Cascade)
     teamId String

@@ -14,7 +14,10 @@ export const TourneyPlayersWhereUniqueInputSchema: z.ZodType<Prisma.TourneyPlaye
   AND: z.union([ z.lazy(() => TourneyPlayersWhereInputSchema),z.lazy(() => TourneyPlayersWhereInputSchema).array() ]).optional(),
   OR: z.lazy(() => TourneyPlayersWhereInputSchema).array().optional(),
   NOT: z.union([ z.lazy(() => TourneyPlayersWhereInputSchema),z.lazy(() => TourneyPlayersWhereInputSchema).array() ]).optional(),
+  steamId: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
   player: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
+  profile: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
+  timezone: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
   teamId: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
   team: z.union([ z.lazy(() => TourneyTeamsRelationFilterSchema),z.lazy(() => TourneyTeamsWhereInputSchema) ]).optional(),
 }).strict());

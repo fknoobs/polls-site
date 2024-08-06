@@ -1,21 +1,25 @@
 <script lang="ts">
     import type { HTMLInputAttributes, HTMLSelectAttributes } from "svelte/elements";
+    import type { ZodIssue } from "zod";
     import { classNames } from "$lib/utils";
     import Input from "./Input.svelte";
     import ChevronDown from "lucide-svelte/icons/chevron-down";
     import ChevronUp from "lucide-svelte/icons/chevron-up";
     import { onMount } from "svelte";
+    import Dropdown from "./Dropdown.svelte";
 
     type Props = {
         value?: string
         label: string
         options: string[]
         name: string
+        error?: ZodIssue | null
     } & HTMLInputAttributes
 
     let {
         value = $bindable('&nbsp;'),
         options = $bindable([]),
+        error = $bindable(null),
         label,
         name,
         ...rest
@@ -62,6 +66,8 @@
             'px-4 py-3 block w-full outline-none transition-colors',
             'border border-dashed border-black flex cursor-pointer',
         )}
+        class:border-red-500={error}
+        class:border-black={!error}
         onclick={() => showDropdown = !showDropdown}
     >
         {@html value}
@@ -89,16 +95,15 @@
             />
         {/if}
     </div>
-    <div 
-        class="bg-white absolute w-full flex flex-col shadow-lg shadow-[rgba(0,0,0,.2)] z-50"
-        class:hidden={!showDropdown}
-        class:block={showDropdown}
-    >
+    {#if error}
+        <span class="mt-2 block font-bold text-red-400 text-sm uppercase">{error.message}</span>
+    {/if}
+    <Dropdown {reference} show={showDropdown} classNames="w-full z-10">
         <input
             bind:value={searchString}
             type="text" 
             placeholder="Search.." 
-            class="p-4 border-b border-slate-300 outline-none"
+            class="p-4 border-b border-slate-300 outline-none w-full"
             oninput={() => {
                 options = optionsFallback
                 options = options.filter(option => option.toLowerCase().includes(searchString.toLowerCase()))
@@ -117,5 +122,5 @@
                 >{option}</button>
             {/each}
         </div>
-    </div>
+    </Dropdown>
 </div>

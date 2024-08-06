@@ -10,6 +10,8 @@
         players,
     }: Props = $props()
 
+    console.log(players)
+
     const getPlayer = (player: string): Player => {
         return JSON.parse(player)
     }
@@ -25,7 +27,7 @@
     <section class="p-4">
         <div class="flex flex-col gap-2">
             {#each players as player}
-                <PlayerCard player={getPlayer(player.player)} variant="tetriary" />
+                <PlayerCard player={getPlayer(player.profile)} variant="tetriary" />
             {/each}
         </div>
     </section>

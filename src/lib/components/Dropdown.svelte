@@ -1,6 +1,6 @@
 <script lang="ts">
-    import { classNames } from "$lib/utils";
-    import { autoUpdate, computePosition, type Placement } from "@floating-ui/dom";
+    import { classNames as classes } from "$lib/utils";
+    import { autoPlacement, autoUpdate, computePosition, type Placement } from "@floating-ui/dom";
     import { onMount, type Snippet } from "svelte";
 
     type Props = {
@@ -8,13 +8,15 @@
         reference: HTMLElement
         placement?: Placement
         children: Snippet
+        classNames?: string
     }
 
     let {
         show = $bindable(false),
         reference,
         placement = 'bottom-start',
-        children
+        children,
+        classNames
     }: Props = $props()
 
     let dropdown = $state<HTMLDivElement>()
@@ -45,7 +47,7 @@
         const cleanup = autoUpdate(
             reference,
             dropdown!,
-            updatePosition  
+            updatePosition
         );
 
         return () => cleanup()
@@ -58,9 +60,10 @@
 <svelte:document onclick={onClickOutside} />
 <div 
     bind:this={dropdown} 
-    class={classNames(
+    class={classes(
         'absolute top-0 left-0',
-        'bg-white shadow-[5px_5px_0px_3px] shadow-stone-900'
+        'bg-white shadow-[10px_10px_0px] shadow-stone-900',
+        ' ' + classNames
     )}
     class:hidden={!show}
     class:block={show}

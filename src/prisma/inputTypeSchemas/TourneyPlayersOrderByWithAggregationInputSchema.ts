@@ -10,7 +10,10 @@ import { TourneyPlayersSumOrderByAggregateInputSchema } from './TourneyPlayersSu
 
 export const TourneyPlayersOrderByWithAggregationInputSchema: z.ZodType<Prisma.TourneyPlayersOrderByWithAggregationInput> = z.object({
   id: z.lazy(() => SortOrderSchema).optional(),
+  steamId: z.lazy(() => SortOrderSchema).optional(),
   player: z.lazy(() => SortOrderSchema).optional(),
+  profile: z.lazy(() => SortOrderSchema).optional(),
+  timezone: z.lazy(() => SortOrderSchema).optional(),
   teamId: z.lazy(() => SortOrderSchema).optional(),
   _count: z.lazy(() => TourneyPlayersCountOrderByAggregateInputSchema).optional(),
   _avg: z.lazy(() => TourneyPlayersAvgOrderByAggregateInputSchema).optional(),

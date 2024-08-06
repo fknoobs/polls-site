@@ -6,7 +6,10 @@ import { z } from 'zod';
 
 export const TourneyPlayersSchema = z.object({
   id: z.number().int(),
+  steamId: z.string(),
   player: z.string(),
+  profile: z.string(),
+  timezone: z.string(),
   teamId: z.string(),
 })
 

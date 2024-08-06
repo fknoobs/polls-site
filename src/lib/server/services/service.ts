@@ -9,18 +9,18 @@ export class Service {
          * 
          * @protected
         */
-        protected prisma: PrismaClient,
+        readonly prisma: PrismaClient,
         /**
          * Active user session
          * 
          * @protected
          */
-        protected session: Session | null,
+        readonly session: Session | null,
         /**
          * Available services
          * 
          * @protected
          */
-        protected services: Services
+        readonly services: Services
     ) {}
 }

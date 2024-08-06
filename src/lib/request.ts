@@ -3,6 +3,7 @@ import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 import { fail, type ActionFailure } from '@sveltejs/kit';
 import type { ZodIssue, ZodSchema } from 'zod'
 import { logger } from './stores/logger.svelte';
+import { set } from 'lodash-es';
 
 /**
  * Marks empty values as undefined
@@ -16,7 +17,7 @@ import { logger } from './stores/logger.svelte';
  * 
  * @param data 
  */
-export const normalizeData = <T extends Record<string, any>>(data: T): T => {
+export const normalizeData = <T extends Record<string, any>|T[]>(data: T): T => {
     const normalizedData: Partial<T> = {};
 
     for (const [key, value] of Object.entries(data)) {
@@ -26,25 +27,70 @@ export const normalizeData = <T extends Record<string, any>>(data: T): T => {
     return normalizedData as T;
 }
 
+/**
+ * Validate data against a *zod schema*
+ * 
+ * @param schema 
+ * @param dataToValidate 
+ */
 export const validate = <T extends Record<string, any>>(schema: ZodSchema, dataToValidate: T) => {
-    let errors: Partial<{[key in keyof T]: ZodIssue}> | undefined = undefined
-    let { success, data, error } = schema.safeParse(normalizeData(dataToValidate))
+    const normalizedData = normalizeData(dataToValidate);
+    const { success, data, error } = schema.safeParse(normalizedData);
     
+    let errors: ValidationErrors<T>
+
     if (error) {
         errors = {}
-        
+
         for (const err of error.errors) {
-            errors[err.path[0] as keyof T] = err
+            set(errors, err.path, err)
         }
     }
-    
+
     return {
         success,
-        data: (data as typeof dataToValidate),
+        data: data as typeof dataToValidate,
         errors
     }
 }
 
+
+/**
+ * Parse formData object into JavaScript object
+ * 
+ * @param formData 
+ * @returns 
+ */
+export const formData = <T>(formData: FormData): T => {
+    const root = {};
+
+    for (let [path, value] of formData) {
+        /**
+         * Account for path that represents array
+         * Eg: badges[]
+         * 
+         * Update path with an index
+         * Eg: badges[0]
+         */
+        if (path.endsWith('[]')) {
+            path = path.replace('[]', `[${formData.getAll(path).findIndex(i => i === value)}]`)
+        }
+        
+        set(root, path, value);
+    }
+    
+    return root as T;
+}
+
+/**
+ * Wrapper around fail
+ * 
+ * Will throw human readable errors to frontend
+ * 
+ * @param error 
+ * @param data 
+ * @returns 
+ */
 export const error = <T extends Record<string, any>>(error: unknown | PrismaClientKnownRequestError, data: T) => {
     /**
      * This can be any type of error
@@ -74,11 +120,11 @@ export const error = <T extends Record<string, any>>(error: unknown | PrismaClie
                 }
                 // @ts-ignore
                 errors['name'] = {
-                    message: 'Already exists, choose another title'
+                    message: 'Already exists, choose another name'
                 }
             } else {
                 errors[field] = {
-                    message: 'Already exists, choose another title'
+                    message: `Already exists, choose another ${field.toString()}`
                 }
             }
         })
@@ -91,7 +137,7 @@ export const error = <T extends Record<string, any>>(error: unknown | PrismaClie
  * Attempt to execute a callable
  * 
  * It catches the error and instead of throwing it, 
- * return a sveltekit `ActionFailure`
+ * returns a sveltekit `ActionFailure`
  * 
  * @param callable 
  * @param args
@@ -100,7 +146,7 @@ export const attempt = async <T extends (...args: any[]) => any>(callable: T, ..
     try {
         return await callable(...args)
     } catch(_) {
-        logger.error(_)
+        console.log(_)
         return error(_, args)
     }
 }

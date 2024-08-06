@@ -41,7 +41,7 @@ export class Relic {
             return null
         }
 
-        return response.statGroups.at(0)!.members.at(0)!
+        return response.statGroups.at(0)!.members.find(member => member.name === `/steam/${steamId}`)
     }
 
     protected async request<T>(): Promise<[T | null, unknown | null]> {

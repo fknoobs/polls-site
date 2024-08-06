@@ -9,7 +9,10 @@ export const TourneyPlayersScalarWhereInputSchema: z.ZodType<Prisma.TourneyPlaye
   OR: z.lazy(() => TourneyPlayersScalarWhereInputSchema).array().optional(),
   NOT: z.union([ z.lazy(() => TourneyPlayersScalarWhereInputSchema),z.lazy(() => TourneyPlayersScalarWhereInputSchema).array() ]).optional(),
   id: z.union([ z.lazy(() => IntFilterSchema),z.number() ]).optional(),
+  steamId: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
   player: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
+  profile: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
+  timezone: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
   teamId: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
 }).strict();
 

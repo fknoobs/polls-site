@@ -11,6 +11,7 @@
     import type { Tourneys } from "@prisma/client";
     import Alert from "../Alert.svelte";
     import dayjs from "dayjs";
+    import Form from "./Form.svelte";
 
     type Props = {
         tournament?: Partial<Tourneys>
@@ -22,41 +23,10 @@
 
     let isSubmitting = $state(false)
     let inputErrors = $state<Record<string, ZodIssue>>()
-    let errorMessage = $state<string | null>(null)
-    let successMessage = $state<string | null>(null)
 </script>
-{#if errorMessage}
-    <Alert variant="danger" classNames="mb-8">{errorMessage}</Alert>
-{/if}
-{#if successMessage}
-    <Alert variant="success" classNames="mb-8">{successMessage}</Alert>
-{/if}
-<form
-    method="post"
-    use:enhance={() => {
-        return async ({ result }) => {
-            isSubmitting = true
-            errorMessage = null
-            successMessage = null
-
-            if (result.type === "failure") {
-                // @ts-ignore
-                inputErrors = result.data
-
-                if (result.data?.statusText) {
-                    errorMessage = result.data.statusText as string
-                }
-            }
-
-            if (result.type === 'success') {
-                setTimeout(() => {
-                    isSubmitting = false
-
-                    successMessage = 'Tournament details have been updated'
-                }, 500)
-            }
-        }
-    }}
+<Form
+    bind:isSubmitting
+    bind:inputErrors
 >
     <div class="mb-4">
         <Input
@@ -149,6 +119,6 @@
         </Tabs>
     </div>
     <div class="flex justify-end">
-        <Button variant="tetriary" loading={isSubmitting}>{tournament ? 'Update' : 'Create'}</Button>
+        <Button variant="tetriary" loading={isSubmitting}>{tournament.name ? 'Update' : 'Create'}</Button>
     </div>
-</form>
+</Form>

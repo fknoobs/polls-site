@@ -1,6 +1,6 @@
 import { fail } from "@sveltejs/kit";
 import { Service } from "./service";
-import { validate } from "$lib/request";
+import { attempt, validate } from "$lib/request";
 import type { Prisma } from "@prisma/client";
 import { SteamProfileCreateWithoutUserInputSchema } from "$prisma/inputTypeSchemas";
 
@@ -20,8 +20,8 @@ export class User extends Service {
     }
 
     async updateProfile(profileData: Pick<Prisma.SteamProfileCreateWithoutUserInput, 'steamId'>, userId: string) {
-        const { data, errors } = await validate(SteamProfileCreateWithoutUserInputSchema, profileData)
-
+        const { data, errors } = await validate(SteamProfileCreateWithoutUserInputSchema, { steamId: profileData.steamId })
+        
         if (errors) {
             return fail(400, errors)
         }
@@ -31,18 +31,21 @@ export class User extends Service {
         if (!profile) {
             return fail(404, { statusText: `No profile found for ${data.steamId}` })
         }
-
-        return this.prisma.steamProfile.upsert({
-            create: {
-                steamId: data.steamId,
-                user: { connect: { id: userId } },
-            },
-            update: {
-                steamId: data.steamId
-            },
-            where: {
-                userId
+        
+        return attempt(
+            this.prisma.steamProfile.upsert,
+            {
+                create: {
+                    steamId: data.steamId,
+                    user: { connect: { id: userId } },
+                },
+                update: {
+                    steamId: data.steamId
+                },
+                where: {
+                    userId
+                }
             }
-        })
+        )
     }
 }

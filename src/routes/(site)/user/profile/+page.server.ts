@@ -1,5 +1,5 @@
 import type { SteamProfileCreateInputSchema } from '$prisma/index.js'
-import { fail, redirect } from '@sveltejs/kit'
+import { error, fail, redirect } from '@sveltejs/kit'
 import { decode } from 'decode-formdata'
 
 export const load = async ({ locals }) => {
@@ -27,6 +27,16 @@ export const actions = {
         const formData = await request.formData()
         const parsedData = decode<typeof SteamProfileCreateInputSchema['_output']>(formData)
 
-        return await locals.services.user().updateProfile(parsedData, session?.user?.id!)
+        const response = await locals.services.user().updateProfile(parsedData, session?.user?.id!)
+
+        if ('status' in response) {
+            if (response.status > 400) {
+                return response
+            }
+
+            return response
+        }
+
+        return redirect(301, '/')
 	},
 }

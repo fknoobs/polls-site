@@ -13,8 +13,8 @@ export const session = (async ({ event, resolve }) => {
         const redirectPath = `/user/profile`
 
         // @ts-ignore
-        if (!session.user!.steam && redirectPath !== event.url.pathname) {
-            redirect(302, redirectPath)
+        if (!session.user!.steam && redirectPath !== event.url.pathname && !event.url.pathname.startsWith('/api')) {
+            redirect(301, redirectPath)
         }
     }
     
