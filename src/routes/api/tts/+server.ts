@@ -27,7 +27,7 @@ export const GET = async ({ locals, url }) => {
             voice_settings: {
                 stability: 0.6,
                 similarity_boost: 0.8,
-                style: 0.15
+                style: 0.05
             }
         }) as unknown as ReadableStream
         
