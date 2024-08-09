@@ -3,6 +3,7 @@ import { json } from "@sveltejs/kit"
 
 export const GET = async ({ locals }) => {
     const data = await locals.elevenlabs.voices.getAll()
+
     const sopaVoices = Array.from(Array(14).keys()).map(i => {
         const file = `static/tts-audio-voices/sopa/voice_of_sopa - isolated_out_${(i + 1)}.wav`
         return new Blob([readFileSync(file)])
@@ -49,6 +50,30 @@ export const GET = async ({ locals }) => {
     }
 
     /**
+     * Add Simply's voice
+     */
+    if (!data.voices.find(voice => voice.name === 'Simply')) {
+        await locals.elevenlabs.voices.add({
+            files: [new Blob([readFileSync('static/tts-audio-voices/simply/voice_of_simply.mp3')])],
+            name: 'Simply'
+        })
+
+        console.log('Simply has been added')
+    }
+
+    /**
+     * Add D3exn's voice
+     */
+    if (!data.voices.find(voice => voice.name === 'Ika')) {
+        await locals.elevenlabs.voices.add({
+            files: [new Blob([readFileSync('static/tts-audio-voices/d3exn/voice_of_d3exn.mp3')])],
+            name: 'Ika'
+        })
+
+        console.log('D3exn has been added')
+    }
+
+    /**
      * Add Annoying voice
      */
     if (!data.voices.find(voice => voice.name === 'Annoying')) {
@@ -62,9 +87,6 @@ export const GET = async ({ locals }) => {
     return json({
         status: 200,
         statusText: 'READY',
-        data: await locals.elevenlabs.voices.getShared({
-            gender: 'male',
-            search: 'A male American comic and cartoon character.'
-        })
+        data
     })
 }

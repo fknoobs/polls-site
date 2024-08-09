@@ -25,9 +25,9 @@ export const GET = async ({ locals, url }) => {
             enable_logging: false,
             output_format: 'mp3_44100_96',
             voice_settings: {
-                stability: 0.2,
-                similarity_boost: 0.6,
-                style: 0.1
+                stability: 0.6,
+                similarity_boost: 0.8,
+                style: 0.15
             }
         }) as unknown as ReadableStream
         
