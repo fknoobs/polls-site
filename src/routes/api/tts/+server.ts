@@ -2,6 +2,7 @@ import { dev } from '$app/environment'
 import { play } from 'elevenlabs'
 import { createWriteStream } from 'fs'
 import { createId } from '@paralleldrive/cuid2'
+import type { VoiceSettings } from 'elevenlabs/api'
 
 export const GET = async ({ locals, url }) => {
     const userName = url.searchParams.get('username') as string
@@ -17,6 +18,21 @@ export const GET = async ({ locals, url }) => {
     }
 
     try {
+        let voice_settings: VoiceSettings = {
+            stability: 0.6,
+            similarity_boost: 0.8,
+            style: 0.05
+        }
+
+        // Ika = D3exn
+        if (voiceName === 'Ika') {
+            voice_settings = {
+                stability: .37,
+                similarity_boost: .5,
+                style: .77
+            }
+        }
+
         const audioStream = await locals.elevenlabs.generate({
             voice: voiceName,
             stream: true,
@@ -24,11 +40,7 @@ export const GET = async ({ locals, url }) => {
             model_id: 'eleven_multilingual_v2',
             enable_logging: false,
             output_format: 'mp3_44100_96',
-            voice_settings: {
-                stability: 0.6,
-                similarity_boost: 0.8,
-                style: 0.05
-            }
+            voice_settings
         }) as unknown as ReadableStream
         
         if (dev) {
