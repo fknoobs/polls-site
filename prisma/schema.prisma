@@ -118,10 +118,22 @@ model User {
     // Optional for WebAuthn support
     Authenticator Authenticator[]
 
+    // Optional for steam support
+    steamUser     SteamUser?
+
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 
     Tourneys Tourneys[] @relation(name: "TourneysToUser")
+}
+
+// Temp users are users that authenticate through steam 
+// Since steam doesn't return an email we have to let
+// users fill out their user data manually
+model SteamUser {
+    steamId     String          @id @unique
+    user        User?           @relation(fields: [userId], references: [id], onDelete: Cascade)
+    userId      String          @unique
 }
 
 model Account {

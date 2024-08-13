@@ -59,3 +59,10 @@ if in later mins
 the team with the highest vp score wins
 
 ## https://www.youtube.com/watch?v=kkFUgVXo5xc
+
+
+###### Twitch titel
+CoH1 2v2 tournament, Victory at all Costs, registrations open | !enter| !tourney | !donate | https://fknoobs.com/tourneys
+
+###### Twitch notification
+Enter with your team in the Victory at all costs tournament now!

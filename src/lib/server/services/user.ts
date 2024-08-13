@@ -19,6 +19,10 @@ export class User extends Service {
         //return this.prisma.profile.findFirst({ where: { userId } })
     }
 
+    async create(user: Prisma.UserCreateInput) {
+        
+    }
+
     async updateProfile(profileData: Pick<Prisma.SteamProfileCreateWithoutUserInput, 'steamId'>, userId: string) {
         const { data, errors } = await validate(SteamProfileCreateWithoutUserInputSchema, { steamId: profileData.steamId })
         

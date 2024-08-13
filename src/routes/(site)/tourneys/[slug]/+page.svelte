@@ -34,11 +34,11 @@
             {#if data.tourney.description}
                 <div
                     class={classNames(
-                        'prose',
+                        'px-4 prose',
                         'prose-h1:text-3xl',
                         'prose-h2:text-2xl',
                         'prose-h3:text-xl prose-h3:mb-1',
-                        'prose-h2:mb-4 prose-h2:mt-6',
+                        'prose-h2:mb-2 prose-h2:mt-8',
                         'prose-ul:my-0 prose-li:mt-0 prose-li:mb-0',
                         'mt-4'
                     )}
