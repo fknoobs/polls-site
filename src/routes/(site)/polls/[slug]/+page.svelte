@@ -22,7 +22,7 @@
     let isSubmitting = $state(false)
     let errorMessage = $state<string | null>(null)
     
-    const userVotes = $derived(votes.filter(vote => vote.fingerprint === fingerprint))
+    const userVotes = $derived(votes.filter(vote => vote.fingerprint === fingerprint.value))
     const didVote = $derived(!!userVotes.length)
 </script>
 <Box {title} {description}>
@@ -87,7 +87,7 @@
                 {/each}
             {:else}
                 <input type="hidden" name="pollId" value={data.poll.id} />
-                <input type="hidden" name="fingerprint" value={fingerprint} />
+                <input type="hidden" name="fingerprint" value={fingerprint.value} />
 
                 {#each options as option}
                     <label 

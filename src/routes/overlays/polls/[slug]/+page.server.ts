@@ -7,10 +7,13 @@ export const load = async ({ locals, params }) => {
             options: {
                 include: {
                     votes: true
-                }
+                },
+                take: 500
             },
-            votes: true
-        }
+            votes: {
+                take: 500
+            }
+        },
     })
 
     return {

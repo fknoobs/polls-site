@@ -17,7 +17,7 @@
         </div>
         <div class="flex items-center gap-3">
             <Twitch /> 
-            <a href="https://twitch.ts/fknoobscoh" target="_blank" class="text-primary-700">https://twitch.ts/fknoobscoh</a>
+            <a href="https://twitch.tv/fknoobscoh" target="_blank" class="text-primary-700">https://twitch.tv/fknoobscoh</a>
         </div>
     </section>
 </Box>
