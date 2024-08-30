@@ -86,6 +86,18 @@ export const GET = async ({ locals }) => {
         console.log('Annoying has been added')
     }
 
+    /**
+     * Add Xcom voice
+     */
+    if (!data.voices.find(voice => voice.name === 'Xcom')) {
+        await locals.elevenlabs.voices.add({
+            files: [new Blob([readFileSync('static/tts-audio-voices/xcom/voice_of_xcom.mp3')])],
+            name: 'Xcom'
+        })
+
+        console.log('Xcom has been added')
+    }
+
     return json({
         status: 200,
         statusText: 'READY',
