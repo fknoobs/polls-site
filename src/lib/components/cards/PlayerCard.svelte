@@ -30,7 +30,7 @@ import { hasFlag } from "country-flag-icons";
         <img src={player.avatarmedium} alt={player.name} width="55" />
     </div>
     <div class="flex flex-col gap-1 items-baseline">
-        <a href={`https://playercard.cohstats.com/?steamid=${player.steamid}`} target="_blank" class="font-bold text-xl border-b border-transparent hover:border-black text-ellipsis text-nowrap w-44">{player.personaname}</a>
+        <a href={`https://playercard.cohstats.com/?steamid=${player.steamid}`} target="_blank" class="font-bold text-xl border-b border-transparent hover:border-black text-ellipsis text-nowrap w-44 overflow-hidden">{player.personaname}</a>
         <span>{player.steamid}</span>
     </div>
     <div class="ms-auto self-start">
