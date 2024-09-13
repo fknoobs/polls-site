@@ -132,10 +132,6 @@ export class Tourneys extends Service {
         })
         
         const { data, errors } = await validate(schema, { name: teamName, players })
-        console.log(players)
-        if (!this.session) {
-            return fail(403, { statusText: 'You are not authorized.' })
-        }
 
         if (errors) {
             return fail(400, errors)
