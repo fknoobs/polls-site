@@ -18,7 +18,7 @@
         {#each options as option}
             <div class="flex flex-col">
                 <span class="font-bold">{option.name}</span>
-                <div class="flex items-center relative gap-4 h-6">
+                <div class="flex items-center relative gap-4 h-6ðß">
                     <div
                         class={classNames(
                             'relative h-full',
