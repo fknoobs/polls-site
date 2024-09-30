@@ -4,6 +4,7 @@ import { z } from 'zod';
 import { SteamProfileCreateNestedOneWithoutUserInputSchema } from './SteamProfileCreateNestedOneWithoutUserInputSchema';
 import { SessionCreateNestedManyWithoutUserInputSchema } from './SessionCreateNestedManyWithoutUserInputSchema';
 import { AuthenticatorCreateNestedManyWithoutUserInputSchema } from './AuthenticatorCreateNestedManyWithoutUserInputSchema';
+import { SteamUserCreateNestedOneWithoutUserInputSchema } from './SteamUserCreateNestedOneWithoutUserInputSchema';
 import { TourneysCreateNestedManyWithoutCreatedByInputSchema } from './TourneysCreateNestedManyWithoutCreatedByInputSchema';
 
 export const UserCreateWithoutAccountsInputSchema: z.ZodType<Prisma.UserCreateWithoutAccountsInput> = z.object({
@@ -18,6 +19,7 @@ export const UserCreateWithoutAccountsInputSchema: z.ZodType<Prisma.UserCreateWi
   steam: z.lazy(() => SteamProfileCreateNestedOneWithoutUserInputSchema).optional(),
   sessions: z.lazy(() => SessionCreateNestedManyWithoutUserInputSchema).optional(),
   Authenticator: z.lazy(() => AuthenticatorCreateNestedManyWithoutUserInputSchema).optional(),
+  steamUser: z.lazy(() => SteamUserCreateNestedOneWithoutUserInputSchema).optional(),
   Tourneys: z.lazy(() => TourneysCreateNestedManyWithoutCreatedByInputSchema).optional()
 }).strict();
 

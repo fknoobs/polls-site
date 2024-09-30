@@ -11,6 +11,8 @@ import { SteamProfileWhereInputSchema } from './SteamProfileWhereInputSchema';
 import { AccountListRelationFilterSchema } from './AccountListRelationFilterSchema';
 import { SessionListRelationFilterSchema } from './SessionListRelationFilterSchema';
 import { AuthenticatorListRelationFilterSchema } from './AuthenticatorListRelationFilterSchema';
+import { SteamUserNullableRelationFilterSchema } from './SteamUserNullableRelationFilterSchema';
+import { SteamUserWhereInputSchema } from './SteamUserWhereInputSchema';
 import { TourneysListRelationFilterSchema } from './TourneysListRelationFilterSchema';
 
 export const UserWhereUniqueInputSchema: z.ZodType<Prisma.UserWhereUniqueInput> = z.union([
@@ -41,6 +43,7 @@ export const UserWhereUniqueInputSchema: z.ZodType<Prisma.UserWhereUniqueInput> 
   accounts: z.lazy(() => AccountListRelationFilterSchema).optional(),
   sessions: z.lazy(() => SessionListRelationFilterSchema).optional(),
   Authenticator: z.lazy(() => AuthenticatorListRelationFilterSchema).optional(),
+  steamUser: z.union([ z.lazy(() => SteamUserNullableRelationFilterSchema),z.lazy(() => SteamUserWhereInputSchema) ]).optional().nullable(),
   Tourneys: z.lazy(() => TourneysListRelationFilterSchema).optional()
 }).strict());
 

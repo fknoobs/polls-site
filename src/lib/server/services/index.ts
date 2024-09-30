@@ -5,6 +5,7 @@ import { Relic } from "./relic";
 import { Steam } from "./steam";
 import { Tourneys } from "./tourneys";
 import { User } from "./user";
+import { Challonge } from "./challonge";
 
 export class Services {
     constructor( protected prisma: PrismaClient, protected session: Session | null ) {}
@@ -31,5 +32,9 @@ export class Services {
 
     user() {
         return new User(this.prisma, this.session, this)
+    }
+
+    toornament() {
+        return new Challonge(this.prisma, this.session, this)
     }
 }

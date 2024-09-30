@@ -7,6 +7,7 @@ import { SteamProfileOrderByWithRelationInputSchema } from './SteamProfileOrderB
 import { AccountOrderByRelationAggregateInputSchema } from './AccountOrderByRelationAggregateInputSchema';
 import { SessionOrderByRelationAggregateInputSchema } from './SessionOrderByRelationAggregateInputSchema';
 import { AuthenticatorOrderByRelationAggregateInputSchema } from './AuthenticatorOrderByRelationAggregateInputSchema';
+import { SteamUserOrderByWithRelationInputSchema } from './SteamUserOrderByWithRelationInputSchema';
 import { TourneysOrderByRelationAggregateInputSchema } from './TourneysOrderByRelationAggregateInputSchema';
 
 export const UserOrderByWithRelationInputSchema: z.ZodType<Prisma.UserOrderByWithRelationInput> = z.object({
@@ -22,6 +23,7 @@ export const UserOrderByWithRelationInputSchema: z.ZodType<Prisma.UserOrderByWit
   accounts: z.lazy(() => AccountOrderByRelationAggregateInputSchema).optional(),
   sessions: z.lazy(() => SessionOrderByRelationAggregateInputSchema).optional(),
   Authenticator: z.lazy(() => AuthenticatorOrderByRelationAggregateInputSchema).optional(),
+  steamUser: z.lazy(() => SteamUserOrderByWithRelationInputSchema).optional(),
   Tourneys: z.lazy(() => TourneysOrderByRelationAggregateInputSchema).optional()
 }).strict();
 

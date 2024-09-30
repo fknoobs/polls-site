@@ -7,6 +7,7 @@ export * from './TourneysSchema';
 export * from './TourneyTeamsSchema';
 export * from './TourneyPlayersSchema';
 export * from './UserSchema';
+export * from './SteamUserSchema';
 export * from './AccountSchema';
 export * from './SteamProfileSchema';
 export * from './SessionSchema';

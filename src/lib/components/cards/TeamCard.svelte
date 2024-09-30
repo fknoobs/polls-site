@@ -10,8 +10,6 @@
         players,
     }: Props = $props()
 
-    console.log(players)
-
     const getPlayer = (player: string): Player => {
         return JSON.parse(player)
     }

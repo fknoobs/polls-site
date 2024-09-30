@@ -9,6 +9,7 @@ import { SteamProfileUpdateOneWithoutUserNestedInputSchema } from './SteamProfil
 import { AccountUpdateManyWithoutUserNestedInputSchema } from './AccountUpdateManyWithoutUserNestedInputSchema';
 import { SessionUpdateManyWithoutUserNestedInputSchema } from './SessionUpdateManyWithoutUserNestedInputSchema';
 import { AuthenticatorUpdateManyWithoutUserNestedInputSchema } from './AuthenticatorUpdateManyWithoutUserNestedInputSchema';
+import { SteamUserUpdateOneWithoutUserNestedInputSchema } from './SteamUserUpdateOneWithoutUserNestedInputSchema';
 
 export const UserUpdateWithoutTourneysInputSchema: z.ZodType<Prisma.UserUpdateWithoutTourneysInput> = z.object({
   id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
@@ -22,7 +23,8 @@ export const UserUpdateWithoutTourneysInputSchema: z.ZodType<Prisma.UserUpdateWi
   steam: z.lazy(() => SteamProfileUpdateOneWithoutUserNestedInputSchema).optional(),
   accounts: z.lazy(() => AccountUpdateManyWithoutUserNestedInputSchema).optional(),
   sessions: z.lazy(() => SessionUpdateManyWithoutUserNestedInputSchema).optional(),
-  Authenticator: z.lazy(() => AuthenticatorUpdateManyWithoutUserNestedInputSchema).optional()
+  Authenticator: z.lazy(() => AuthenticatorUpdateManyWithoutUserNestedInputSchema).optional(),
+  steamUser: z.lazy(() => SteamUserUpdateOneWithoutUserNestedInputSchema).optional()
 }).strict();
 
 export default UserUpdateWithoutTourneysInputSchema;

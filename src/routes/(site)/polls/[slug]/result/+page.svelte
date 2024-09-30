@@ -18,7 +18,7 @@
         {#each options as option}
             <div class="flex flex-col">
                 <span class="font-bold">{option.name}</span>
-                <div class="flex items-center relative gap-4 h-6ðß">
+                <div class="flex items-center relative gap-4 h-6 ">
                     <div
                         class={classNames(
                             'relative h-full',
@@ -31,6 +31,6 @@
                 </div>
             </div>
         {/each}
-        <span class="block mt-8 mb-2 font-bold text-lg">{uniqueVotesCount} votes</span>
+        <span class="block mt-8  mb-2 font-bold text-lg">{uniqueVotesCount} votes</span>
     </section>
 </Box>

@@ -8,6 +8,7 @@ import { DateTimeFieldUpdateOperationsInputSchema } from './DateTimeFieldUpdateO
 import { SteamProfileUpdateOneWithoutUserNestedInputSchema } from './SteamProfileUpdateOneWithoutUserNestedInputSchema';
 import { SessionUpdateManyWithoutUserNestedInputSchema } from './SessionUpdateManyWithoutUserNestedInputSchema';
 import { AuthenticatorUpdateManyWithoutUserNestedInputSchema } from './AuthenticatorUpdateManyWithoutUserNestedInputSchema';
+import { SteamUserUpdateOneWithoutUserNestedInputSchema } from './SteamUserUpdateOneWithoutUserNestedInputSchema';
 import { TourneysUpdateManyWithoutCreatedByNestedInputSchema } from './TourneysUpdateManyWithoutCreatedByNestedInputSchema';
 
 export const UserUpdateWithoutAccountsInputSchema: z.ZodType<Prisma.UserUpdateWithoutAccountsInput> = z.object({
@@ -22,6 +23,7 @@ export const UserUpdateWithoutAccountsInputSchema: z.ZodType<Prisma.UserUpdateWi
   steam: z.lazy(() => SteamProfileUpdateOneWithoutUserNestedInputSchema).optional(),
   sessions: z.lazy(() => SessionUpdateManyWithoutUserNestedInputSchema).optional(),
   Authenticator: z.lazy(() => AuthenticatorUpdateManyWithoutUserNestedInputSchema).optional(),
+  steamUser: z.lazy(() => SteamUserUpdateOneWithoutUserNestedInputSchema).optional(),
   Tourneys: z.lazy(() => TourneysUpdateManyWithoutCreatedByNestedInputSchema).optional()
 }).strict();
 

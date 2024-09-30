@@ -29,7 +29,7 @@ export const GET = async ({ locals, url }) => {
             voice_settings = {
                 stability: .37,
                 similarity_boost: .5,
-                style: .77
+                style: .1
             }
         }
 

@@ -68,7 +68,7 @@ export const actions = {
                     })
                 }
             }
-            console.log(e)
+            
             return error(400, {
                 message: 'Sorry, something went wrong.'
             })

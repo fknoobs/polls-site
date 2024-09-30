@@ -4,6 +4,7 @@ import { SteamProfileArgsSchema } from "../outputTypeSchemas/SteamProfileArgsSch
 import { AccountFindManyArgsSchema } from "../outputTypeSchemas/AccountFindManyArgsSchema"
 import { SessionFindManyArgsSchema } from "../outputTypeSchemas/SessionFindManyArgsSchema"
 import { AuthenticatorFindManyArgsSchema } from "../outputTypeSchemas/AuthenticatorFindManyArgsSchema"
+import { SteamUserArgsSchema } from "../outputTypeSchemas/SteamUserArgsSchema"
 import { TourneysFindManyArgsSchema } from "../outputTypeSchemas/TourneysFindManyArgsSchema"
 import { UserCountOutputTypeArgsSchema } from "../outputTypeSchemas/UserCountOutputTypeArgsSchema"
 
@@ -20,6 +21,7 @@ export const UserSelectSchema: z.ZodType<Prisma.UserSelect> = z.object({
   accounts: z.union([z.boolean(),z.lazy(() => AccountFindManyArgsSchema)]).optional(),
   sessions: z.union([z.boolean(),z.lazy(() => SessionFindManyArgsSchema)]).optional(),
   Authenticator: z.union([z.boolean(),z.lazy(() => AuthenticatorFindManyArgsSchema)]).optional(),
+  steamUser: z.union([z.boolean(),z.lazy(() => SteamUserArgsSchema)]).optional(),
   Tourneys: z.union([z.boolean(),z.lazy(() => TourneysFindManyArgsSchema)]).optional(),
   _count: z.union([z.boolean(),z.lazy(() => UserCountOutputTypeArgsSchema)]).optional(),
 }).strict()

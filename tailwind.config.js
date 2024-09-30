@@ -1,6 +1,5 @@
-import type { Config } from "tailwindcss";
-
 export default {
+    mode: 'jit',
     darkMode: 'selector',
     content: ["./src/**/*.{html,js,svelte,ts}", "./node_modules/@pyrodata/**/*.{html,js,svelte,ts}"],
     theme: {
@@ -56,4 +55,4 @@ export default {
     plugins: [
         require('@tailwindcss/typography'),
     ]
-} as Config;
+}
