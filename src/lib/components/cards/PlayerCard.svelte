@@ -10,11 +10,11 @@ import { hasFlag } from "country-flag-icons";
     const { player, variant = 'primary' }: Props = $props()
     
     const getCountryCode = (player: Player) => {
-        if (player.country) {
-            return player.country.toUpperCase()
+        if (player.loccountrycode) {
+            return player.loccountrycode!.toUpperCase()
         }
-
-        return player.loccountrycode!.toUpperCase()
+        
+        return player.country.toUpperCase()
     }
 </script>
 <div 

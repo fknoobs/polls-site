@@ -1,7 +1,12 @@
+import { canEdit } from "$lib/stores/user.svelte.js"
 import { Prisma } from "@prisma/client"
-import { error } from "@sveltejs/kit"
+import { error, redirect } from "@sveltejs/kit"
 
-export const load = async ({ locals, params }) => {
+export const load = async ({ locals, params }) => {    
+    if (!locals.services.user().canEdit()) {
+        redirect(300, '/')
+    }
+
     const team = await locals.prisma.tourneyTeams.findFirstOrThrow({
         where: { id: params.id },
         include: { players: true }
@@ -13,9 +18,9 @@ export const load = async ({ locals, params }) => {
 }
 
 export const actions = {
-	default: async ({ locals, request, getClientAddress, params }) => {
+	default: async ({ locals, request, params }) => {
 		const data = await request.formData()
-
+        console.log(data)
         const teamName = data.get('team-name') as string
         const profiles: Player[] = (data.getAll('profile') as string[]).map(profile => JSON.parse(profile))
         const timezones = data.getAll('timezone') as string[]

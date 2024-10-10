@@ -10,8 +10,16 @@
         players,
     }: Props = $props()
 
-    const getPlayer = (player: string): Player => {
-        return JSON.parse(player)
+    const getPlayer = (player: Prisma.TourneyPlayersGetPayload<{ include: { team: false } }>): Player & { timezone: string } => {
+        let profile: Player & { timezone: string }
+        profile = JSON.parse(player.player)
+
+        if (!profile.steamid) {
+            profile = JSON.parse(player.profile)
+            profile.timezone = player.timezone
+        }
+
+        return profile
     }
 </script>
 <div 
@@ -25,7 +33,7 @@
     <section class="p-4">
         <div class="flex flex-col gap-2">
             {#each players as player}
-                <PlayerCard player={getPlayer(player.profile)} variant="tetriary" />
+                <PlayerCard player={getPlayer(player)} variant="tetriary" />
             {/each}
         </div>
     </section>

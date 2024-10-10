@@ -2,16 +2,19 @@
     import { getRelicProfileBySteamId } from "$lib/client/services/coh.js";
     import Input from "$lib/components/Input.svelte";
     import PlayerCard from "$lib/components/cards/PlayerCard.svelte";
+    import Select from "../Select.svelte"
 
     type Props = {
         player?: Player | null
         steamId?: string
+        timezone?: string
         fetchingProfile?: boolean
     }
 
     let {
         player = $bindable(null),
         steamId = $bindable(''),
+        timezone = $bindable(''),
         fetchingProfile = $bindable(false)
     }: Props = $props()
 
@@ -44,5 +47,15 @@
         oninput={fetchProfile}
         processing={fetchingProfile}
         required
+    />
+</div>
+<div class="mb-3">
+    <Select
+        bind:value={timezone}
+        label="Timezone" 
+        name="timezone"
+        options={Intl.supportedValuesOf('timeZone')}
+        required
+        pattern="[A-z]/[A-z]"
     />
 </div>

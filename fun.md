@@ -7,7 +7,23 @@ https://www.youtube.com/watch?v=mP0Vqpz6F9k                                 // t
 https://www.youtube.com/watch?v=JIqumXLOz0o                                 // Simple raging
 https://www.youtube.com/watch?v=T-D3gWAz18s                                 // Sopa nice ass
 
-(path:*.xml OR path:*.json OR path:*.properties OR path:*.sql OR path:*.txt OR path:*.log OR path:*.tmp OR path:*.backup OR path:*.bak OR path:*.enc OR path:*.yml OR path:*.yaml OR path:*.toml OR path:*.ini OR path:*.config OR path:*.conf OR path:*.cfg OR path:*.env OR path:*.envrc OR path:*.prod OR path:*.secret OR path:*.private OR path:*.key) AND ("ELEVENLABS_API_KEY=sk_")
+(path:*.xml OR path:*.json OR path:*.properties OR path:*.sql OR path:*.txt OR path:*.log OR path:*.tmp OR path:*.backup OR path:*.bak OR path:*.enc OR path:*.yml OR path:*.yaml OR path:*.toml OR path:*.ini OR path:*.config OR path:*.conf OR path:*.cfg OR path:*.env OR path:*.envrc OR path:*.prod OR path:*.secret OR path:*.private OR path:*.key) AND ("xi-api-ke")
+
+ELEVEN_LABS_API_KEY
+ELABS_API_KEY
+ELEVEN_API_KEY
+ELEVENLAB_KEY
+ELEVENLABS_KEY
+ELEVEN_LABS_KEY
+elevenlab_api_key
+elevenlabs_api_key
+xiapi
+ELEVEN_LABS_TOKEN
+xi-api-key
+XI_API_KEY
+
+(path:*.py) AND (/sk_[a-z0-9]{48,48}/ AND elevenlabs)
+(path:*.py) AND (/[a-z0-9]{32,32}/ AND elevenlabs) AND (api_key OR api-key)
 
 # Game Rules and Guidelines
 

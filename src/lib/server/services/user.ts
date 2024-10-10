@@ -52,4 +52,19 @@ export class User extends Service {
             }
         )
     }
+
+    /**
+     * Check if current user can perform a `edit` on a resource
+     * 
+     * Only admins currently perform a `edit` action
+     * 
+     * @returns 
+     */
+    canEdit() {
+        if (this.session === null) {
+            return false
+        }
+
+        return this.session.user.role === 'ADMIN'
+    }
 }

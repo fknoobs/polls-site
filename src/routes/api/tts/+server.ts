@@ -25,13 +25,13 @@ export const GET = async ({ locals, url }) => {
         }
 
         // Ika = D3exn
-        if (voiceName === 'Ika') {
-            voice_settings = {
-                stability: .37,
-                similarity_boost: .5,
-                style: .1
-            }
-        }
+        // if (voiceName === 'Ika') {
+        //     voice_settings = {
+        //         stability: .37,
+        //         similarity_boost: .5,
+        //         style: .1
+        //     }
+        // }
 
         const audioStream = await locals.elevenlabs.generate({
             voice: voiceName,

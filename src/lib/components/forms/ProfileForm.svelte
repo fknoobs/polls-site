@@ -1,13 +1,11 @@
 <script lang="ts">
     import type { ZodIssue } from 'zod'
     import type { Prisma } from '@prisma/client'
-    import Input from '../Input.svelte'
     import Button from '../Button.svelte'
     import Form from './Form.svelte';
     import Player from './Player.svelte';
     import type { ActionResult } from '@sveltejs/kit';
     import Alert from '../Alert.svelte';
-    import Link from '../Link.svelte';
 
     type Props = {
         profile?: Partial<Prisma.SteamProfileCreateInput> | null

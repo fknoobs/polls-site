@@ -7,7 +7,17 @@
     import Input from "$lib/components/Input.svelte";
 
     const { data } = $props()
-    const players = data.team.players.map(player => JSON.parse(player.player) as Player & { timezone: string })
+    const players = data.team.players.map(player => {
+        let profile: Player & { timezone: string }
+        profile = JSON.parse(player.player)
+
+        if (!profile.steamid) {
+            profile = JSON.parse(player.profile)
+            profile.timezone = player.timezone
+        }
+
+        return profile
+    })
 
     let isUpdated = $state(false)
     let isSubmitting = $state(false)
@@ -66,7 +76,7 @@
         </div>
         {#each players as player, i}
             <h3 class="font-bold text-lg mb-3 mt-8">Player {i + 1}</h3>
-            <PlayerForm timezone={player.timezone} timezones={data.timezones} {player} steamId={player.steamid} />
+            <PlayerForm timezone={player.timezone} {player} steamId={player.steamid} />
         {/each}
         <div class="mt-6">
             <Button loading={isSubmitting}>
