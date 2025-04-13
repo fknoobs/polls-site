@@ -30,7 +30,7 @@ export const AccountSelectSchema: z.ZodType<Prisma.AccountSelect> = z.object({
 
 export const AccountUpsertArgsSchema: z.ZodType<Prisma.AccountUpsertArgs> = z.object({
   select: AccountSelectSchema.optional(),
-  include: AccountIncludeSchema.optional(),
+  include: z.lazy(() => AccountIncludeSchema).optional(),
   where: AccountWhereUniqueInputSchema,
   create: z.union([ AccountCreateInputSchema,AccountUncheckedCreateInputSchema ]),
   update: z.union([ AccountUpdateInputSchema,AccountUncheckedUpdateInputSchema ]),

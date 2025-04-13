@@ -28,7 +28,7 @@ export const AccountSelectSchema: z.ZodType<Prisma.AccountSelect> = z.object({
 
 export const AccountUpdateArgsSchema: z.ZodType<Prisma.AccountUpdateArgs> = z.object({
   select: AccountSelectSchema.optional(),
-  include: AccountIncludeSchema.optional(),
+  include: z.lazy(() => AccountIncludeSchema).optional(),
   data: z.union([ AccountUpdateInputSchema,AccountUncheckedUpdateInputSchema ]),
   where: AccountWhereUniqueInputSchema,
 }).strict() ;

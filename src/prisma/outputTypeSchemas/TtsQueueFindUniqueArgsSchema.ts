@@ -14,7 +14,7 @@ export const TtsQueueSelectSchema: z.ZodType<Prisma.TtsQueueSelect> = z.object({
 
 export const TtsQueueFindUniqueArgsSchema: z.ZodType<Prisma.TtsQueueFindUniqueArgs> = z.object({
   select: TtsQueueSelectSchema.optional(),
-  include: TtsQueueIncludeSchema.optional(),
+  include: z.lazy(() => TtsQueueIncludeSchema).optional(),
   where: TtsQueueWhereUniqueInputSchema,
 }).strict() ;
 

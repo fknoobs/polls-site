@@ -22,7 +22,7 @@ export const SessionSelectSchema: z.ZodType<Prisma.SessionSelect> = z.object({
 
 export const SessionUpsertArgsSchema: z.ZodType<Prisma.SessionUpsertArgs> = z.object({
   select: SessionSelectSchema.optional(),
-  include: SessionIncludeSchema.optional(),
+  include: z.lazy(() => SessionIncludeSchema).optional(),
   where: SessionWhereUniqueInputSchema,
   create: z.union([ SessionCreateInputSchema,SessionUncheckedCreateInputSchema ]),
   update: z.union([ SessionUpdateInputSchema,SessionUncheckedUpdateInputSchema ]),

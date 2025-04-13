@@ -15,7 +15,7 @@ export const TtsQueueSelectSchema: z.ZodType<Prisma.TtsQueueSelect> = z.object({
 
 export const TtsQueueCreateArgsSchema: z.ZodType<Prisma.TtsQueueCreateArgs> = z.object({
   select: TtsQueueSelectSchema.optional(),
-  include: TtsQueueIncludeSchema.optional(),
+  include: z.lazy(() => TtsQueueIncludeSchema).optional(),
   data: z.union([ TtsQueueCreateInputSchema,TtsQueueUncheckedCreateInputSchema ]),
 }).strict() ;
 

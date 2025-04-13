@@ -24,7 +24,7 @@ export const AuthenticatorSelectSchema: z.ZodType<Prisma.AuthenticatorSelect> = 
 
 export const AuthenticatorUpsertArgsSchema: z.ZodType<Prisma.AuthenticatorUpsertArgs> = z.object({
   select: AuthenticatorSelectSchema.optional(),
-  include: AuthenticatorIncludeSchema.optional(),
+  include: z.lazy(() => AuthenticatorIncludeSchema).optional(),
   where: AuthenticatorWhereUniqueInputSchema,
   create: z.union([ AuthenticatorCreateInputSchema,AuthenticatorUncheckedCreateInputSchema ]),
   update: z.union([ AuthenticatorUpdateInputSchema,AuthenticatorUncheckedUpdateInputSchema ]),

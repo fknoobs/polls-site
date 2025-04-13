@@ -20,7 +20,7 @@ export const SteamProfileSelectSchema: z.ZodType<Prisma.SteamProfileSelect> = z.
 
 export const SteamProfileFindFirstOrThrowArgsSchema: z.ZodType<Prisma.SteamProfileFindFirstOrThrowArgs> = z.object({
   select: SteamProfileSelectSchema.optional(),
-  include: SteamProfileIncludeSchema.optional(),
+  include: z.lazy(() => SteamProfileIncludeSchema).optional(),
   where: SteamProfileWhereInputSchema.optional(),
   orderBy: z.union([ SteamProfileOrderByWithRelationInputSchema.array(),SteamProfileOrderByWithRelationInputSchema ]).optional(),
   cursor: SteamProfileWhereUniqueInputSchema.optional(),

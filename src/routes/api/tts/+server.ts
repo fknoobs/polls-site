@@ -17,6 +17,8 @@ export const GET = async ({ locals, url }) => {
         return new Response('OK')
     }
 
+    console.log('TTS', userName, voiceName, rewardName, message)
+
     try {
         let voice_settings: VoiceSettings = {
             stability: 0.6,

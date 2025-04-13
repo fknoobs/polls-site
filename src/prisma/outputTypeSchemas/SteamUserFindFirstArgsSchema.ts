@@ -17,7 +17,7 @@ export const SteamUserSelectSchema: z.ZodType<Prisma.SteamUserSelect> = z.object
 
 export const SteamUserFindFirstArgsSchema: z.ZodType<Prisma.SteamUserFindFirstArgs> = z.object({
   select: SteamUserSelectSchema.optional(),
-  include: SteamUserIncludeSchema.optional(),
+  include: z.lazy(() => SteamUserIncludeSchema).optional(),
   where: SteamUserWhereInputSchema.optional(),
   orderBy: z.union([ SteamUserOrderByWithRelationInputSchema.array(),SteamUserOrderByWithRelationInputSchema ]).optional(),
   cursor: SteamUserWhereUniqueInputSchema.optional(),

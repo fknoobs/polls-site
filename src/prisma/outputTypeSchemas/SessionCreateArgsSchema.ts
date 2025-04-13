@@ -19,7 +19,7 @@ export const SessionSelectSchema: z.ZodType<Prisma.SessionSelect> = z.object({
 
 export const SessionCreateArgsSchema: z.ZodType<Prisma.SessionCreateArgs> = z.object({
   select: SessionSelectSchema.optional(),
-  include: SessionIncludeSchema.optional(),
+  include: z.lazy(() => SessionIncludeSchema).optional(),
   data: z.union([ SessionCreateInputSchema,SessionUncheckedCreateInputSchema ]),
 }).strict() ;
 

@@ -1,8 +1,6 @@
-import { NODE_ENV } from '$env/static/private';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 import { fail, type ActionFailure } from '@sveltejs/kit';
-import type { ZodIssue, ZodSchema } from 'zod'
-import { logger } from './stores/logger.svelte';
+import type { ZodSchema } from 'zod'
 import { set } from 'lodash-es';
 
 /**

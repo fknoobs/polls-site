@@ -1,4 +1,4 @@
-import { PUBLIC_RELIC_API_LINK, PUBLIC_STEAM_API_KEY, PUBLIC_STEAM_API_LINK } from "$env/static/public"
+import { env } from "$env/dynamic/public"
 import type { PrismaClient } from "@prisma/client";
 import { Agent, setGlobalDispatcher } from "undici";
 
@@ -11,7 +11,7 @@ export class Steam {
 
     async getProfileBySteamId(steamId: string) {
         this.paths = ['ISteamUser', 'GetPlayerSummaries', 'v0002']
-        this.query = { key: PUBLIC_STEAM_API_KEY, steamids: steamId }
+        this.query = { key: env.PUBLIC_STEAM_API_KEY!, steamids: steamId }
 
         const [response, error] = await this.request<{ response: { players: SteamPlayer[] } }>()
 
@@ -28,7 +28,7 @@ export class Steam {
 
     protected async request<T>(): Promise<[T | null, unknown | null]> {
         try {
-            const request = await fetch(`${PUBLIC_STEAM_API_LINK}/${this.path}?${this.querystring}`)
+            const request = await fetch(`${env.PUBLIC_STEAM_API_LINK}/${this.path}?${this.querystring}`)
             const response = await request.json() as T
             
             return [response, null]

@@ -27,7 +27,7 @@ export const PollsSelectSchema: z.ZodType<Prisma.PollsSelect> = z.object({
 
 export const PollsUpsertArgsSchema: z.ZodType<Prisma.PollsUpsertArgs> = z.object({
   select: PollsSelectSchema.optional(),
-  include: PollsIncludeSchema.optional(),
+  include: z.lazy(() => PollsIncludeSchema).optional(),
   where: PollsWhereUniqueInputSchema,
   create: z.union([ PollsCreateInputSchema,PollsUncheckedCreateInputSchema ]),
   update: z.union([ PollsUpdateInputSchema,PollsUncheckedUpdateInputSchema ]),

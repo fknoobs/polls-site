@@ -21,7 +21,7 @@ export const TtsAudioFilesSelectSchema: z.ZodType<Prisma.TtsAudioFilesSelect> = 
 
 export const TtsAudioFilesUpdateArgsSchema: z.ZodType<Prisma.TtsAudioFilesUpdateArgs> = z.object({
   select: TtsAudioFilesSelectSchema.optional(),
-  include: TtsAudioFilesIncludeSchema.optional(),
+  include: z.lazy(() => TtsAudioFilesIncludeSchema).optional(),
   data: z.union([ TtsAudioFilesUpdateInputSchema,TtsAudioFilesUncheckedUpdateInputSchema ]),
   where: TtsAudioFilesWhereUniqueInputSchema,
 }).strict() ;

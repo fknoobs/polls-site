@@ -31,7 +31,7 @@ export const TourneysSelectSchema: z.ZodType<Prisma.TourneysSelect> = z.object({
 
 export const TourneysFindFirstOrThrowArgsSchema: z.ZodType<Prisma.TourneysFindFirstOrThrowArgs> = z.object({
   select: TourneysSelectSchema.optional(),
-  include: TourneysIncludeSchema.optional(),
+  include: z.lazy(() => TourneysIncludeSchema).optional(),
   where: TourneysWhereInputSchema.optional(),
   orderBy: z.union([ TourneysOrderByWithRelationInputSchema.array(),TourneysOrderByWithRelationInputSchema ]).optional(),
   cursor: TourneysWhereUniqueInputSchema.optional(),

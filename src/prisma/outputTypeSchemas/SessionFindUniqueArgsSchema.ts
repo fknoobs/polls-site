@@ -18,7 +18,7 @@ export const SessionSelectSchema: z.ZodType<Prisma.SessionSelect> = z.object({
 
 export const SessionFindUniqueArgsSchema: z.ZodType<Prisma.SessionFindUniqueArgs> = z.object({
   select: SessionSelectSchema.optional(),
-  include: SessionIncludeSchema.optional(),
+  include: z.lazy(() => SessionIncludeSchema).optional(),
   where: SessionWhereUniqueInputSchema,
 }).strict() ;
 

@@ -1,4 +1,4 @@
-import { PUBLIC_RELIC_API_LINK } from "$env/static/public"
+import { env } from "$env/dynamic/public"
 import type { PrismaClient } from "@prisma/client";
 import { Agent, setGlobalDispatcher } from "undici";
 
@@ -46,7 +46,7 @@ export class Relic {
 
     protected async request<T>(): Promise<[T | null, unknown | null]> {
         try {
-            const request = await fetch(`${PUBLIC_RELIC_API_LINK}/${this.path}?${this.querystring}`)
+            const request = await fetch(`${env.PUBLIC_RELIC_API_LINK}/${this.path}?${this.querystring}`)
             const response = await request.json() as T
             
             return [response, null]

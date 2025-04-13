@@ -22,7 +22,7 @@ export const PollOptionsSelectSchema: z.ZodType<Prisma.PollOptionsSelect> = z.ob
 
 export const PollOptionsFindManyArgsSchema: z.ZodType<Prisma.PollOptionsFindManyArgs> = z.object({
   select: PollOptionsSelectSchema.optional(),
-  include: PollOptionsIncludeSchema.optional(),
+  include: z.lazy(() => PollOptionsIncludeSchema).optional(),
   where: PollOptionsWhereInputSchema.optional(),
   orderBy: z.union([ PollOptionsOrderByWithRelationInputSchema.array(),PollOptionsOrderByWithRelationInputSchema ]).optional(),
   cursor: PollOptionsWhereUniqueInputSchema.optional(),

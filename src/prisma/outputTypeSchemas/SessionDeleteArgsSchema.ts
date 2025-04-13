@@ -18,7 +18,7 @@ export const SessionSelectSchema: z.ZodType<Prisma.SessionSelect> = z.object({
 
 export const SessionDeleteArgsSchema: z.ZodType<Prisma.SessionDeleteArgs> = z.object({
   select: SessionSelectSchema.optional(),
-  include: SessionIncludeSchema.optional(),
+  include: z.lazy(() => SessionIncludeSchema).optional(),
   where: SessionWhereUniqueInputSchema,
 }).strict() ;
 

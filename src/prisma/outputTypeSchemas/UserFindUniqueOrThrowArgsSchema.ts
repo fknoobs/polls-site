@@ -32,7 +32,7 @@ export const UserSelectSchema: z.ZodType<Prisma.UserSelect> = z.object({
 
 export const UserFindUniqueOrThrowArgsSchema: z.ZodType<Prisma.UserFindUniqueOrThrowArgs> = z.object({
   select: UserSelectSchema.optional(),
-  include: UserIncludeSchema.optional(),
+  include: z.lazy(() => UserIncludeSchema).optional(),
   where: UserWhereUniqueInputSchema,
 }).strict() ;
 

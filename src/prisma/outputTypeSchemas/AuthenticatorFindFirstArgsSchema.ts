@@ -23,7 +23,7 @@ export const AuthenticatorSelectSchema: z.ZodType<Prisma.AuthenticatorSelect> = 
 
 export const AuthenticatorFindFirstArgsSchema: z.ZodType<Prisma.AuthenticatorFindFirstArgs> = z.object({
   select: AuthenticatorSelectSchema.optional(),
-  include: AuthenticatorIncludeSchema.optional(),
+  include: z.lazy(() => AuthenticatorIncludeSchema).optional(),
   where: AuthenticatorWhereInputSchema.optional(),
   orderBy: z.union([ AuthenticatorOrderByWithRelationInputSchema.array(),AuthenticatorOrderByWithRelationInputSchema ]).optional(),
   cursor: AuthenticatorWhereUniqueInputSchema.optional(),

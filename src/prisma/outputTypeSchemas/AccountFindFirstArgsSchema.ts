@@ -29,7 +29,7 @@ export const AccountSelectSchema: z.ZodType<Prisma.AccountSelect> = z.object({
 
 export const AccountFindFirstArgsSchema: z.ZodType<Prisma.AccountFindFirstArgs> = z.object({
   select: AccountSelectSchema.optional(),
-  include: AccountIncludeSchema.optional(),
+  include: z.lazy(() => AccountIncludeSchema).optional(),
   where: AccountWhereInputSchema.optional(),
   orderBy: z.union([ AccountOrderByWithRelationInputSchema.array(),AccountOrderByWithRelationInputSchema ]).optional(),
   cursor: AccountWhereUniqueInputSchema.optional(),

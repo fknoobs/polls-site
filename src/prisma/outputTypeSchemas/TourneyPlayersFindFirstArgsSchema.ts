@@ -21,7 +21,7 @@ export const TourneyPlayersSelectSchema: z.ZodType<Prisma.TourneyPlayersSelect> 
 
 export const TourneyPlayersFindFirstArgsSchema: z.ZodType<Prisma.TourneyPlayersFindFirstArgs> = z.object({
   select: TourneyPlayersSelectSchema.optional(),
-  include: TourneyPlayersIncludeSchema.optional(),
+  include: z.lazy(() => TourneyPlayersIncludeSchema).optional(),
   where: TourneyPlayersWhereInputSchema.optional(),
   orderBy: z.union([ TourneyPlayersOrderByWithRelationInputSchema.array(),TourneyPlayersOrderByWithRelationInputSchema ]).optional(),
   cursor: TourneyPlayersWhereUniqueInputSchema.optional(),

@@ -26,7 +26,7 @@ export const AccountSelectSchema: z.ZodType<Prisma.AccountSelect> = z.object({
 
 export const AccountDeleteArgsSchema: z.ZodType<Prisma.AccountDeleteArgs> = z.object({
   select: AccountSelectSchema.optional(),
-  include: AccountIncludeSchema.optional(),
+  include: z.lazy(() => AccountIncludeSchema).optional(),
   where: AccountWhereUniqueInputSchema,
 }).strict() ;
 

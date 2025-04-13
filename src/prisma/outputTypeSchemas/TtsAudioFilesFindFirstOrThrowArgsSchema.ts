@@ -22,7 +22,7 @@ export const TtsAudioFilesSelectSchema: z.ZodType<Prisma.TtsAudioFilesSelect> = 
 
 export const TtsAudioFilesFindFirstOrThrowArgsSchema: z.ZodType<Prisma.TtsAudioFilesFindFirstOrThrowArgs> = z.object({
   select: TtsAudioFilesSelectSchema.optional(),
-  include: TtsAudioFilesIncludeSchema.optional(),
+  include: z.lazy(() => TtsAudioFilesIncludeSchema).optional(),
   where: TtsAudioFilesWhereInputSchema.optional(),
   orderBy: z.union([ TtsAudioFilesOrderByWithRelationInputSchema.array(),TtsAudioFilesOrderByWithRelationInputSchema ]).optional(),
   cursor: TtsAudioFilesWhereUniqueInputSchema.optional(),

@@ -21,7 +21,7 @@ export const SteamProfileSelectSchema: z.ZodType<Prisma.SteamProfileSelect> = z.
 
 export const SteamProfileUpsertArgsSchema: z.ZodType<Prisma.SteamProfileUpsertArgs> = z.object({
   select: SteamProfileSelectSchema.optional(),
-  include: SteamProfileIncludeSchema.optional(),
+  include: z.lazy(() => SteamProfileIncludeSchema).optional(),
   where: SteamProfileWhereUniqueInputSchema,
   create: z.union([ SteamProfileCreateInputSchema,SteamProfileUncheckedCreateInputSchema ]),
   update: z.union([ SteamProfileUpdateInputSchema,SteamProfileUncheckedUpdateInputSchema ]),

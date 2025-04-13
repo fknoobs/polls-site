@@ -23,7 +23,7 @@ export const PollsSelectSchema: z.ZodType<Prisma.PollsSelect> = z.object({
 
 export const PollsFindUniqueArgsSchema: z.ZodType<Prisma.PollsFindUniqueArgs> = z.object({
   select: PollsSelectSchema.optional(),
-  include: PollsIncludeSchema.optional(),
+  include: z.lazy(() => PollsIncludeSchema).optional(),
   where: PollsWhereUniqueInputSchema,
 }).strict() ;
 

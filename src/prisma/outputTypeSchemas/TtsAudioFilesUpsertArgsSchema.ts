@@ -23,7 +23,7 @@ export const TtsAudioFilesSelectSchema: z.ZodType<Prisma.TtsAudioFilesSelect> = 
 
 export const TtsAudioFilesUpsertArgsSchema: z.ZodType<Prisma.TtsAudioFilesUpsertArgs> = z.object({
   select: TtsAudioFilesSelectSchema.optional(),
-  include: TtsAudioFilesIncludeSchema.optional(),
+  include: z.lazy(() => TtsAudioFilesIncludeSchema).optional(),
   where: TtsAudioFilesWhereUniqueInputSchema,
   create: z.union([ TtsAudioFilesCreateInputSchema,TtsAudioFilesUncheckedCreateInputSchema ]),
   update: z.union([ TtsAudioFilesUpdateInputSchema,TtsAudioFilesUncheckedUpdateInputSchema ]),

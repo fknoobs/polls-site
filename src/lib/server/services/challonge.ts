@@ -1,4 +1,4 @@
-import { CHALLONGE_CLIENT_ID, CHALLONGE_CLIENT_SECRET } from '$env/static/private'
+import { env } from '$env/dynamic/private'
 import { Tournaments } from './challonge/tournaments'
 import { Service } from './service'
 import wretch from 'wretch'
@@ -23,8 +23,8 @@ export class Challonge extends Service {
             .url('oauth/token')
             .query({
                 'grant_type': 'client_credentials',
-                'client_id': CHALLONGE_CLIENT_ID,
-                'client_secret': CHALLONGE_CLIENT_SECRET
+                'client_id': env.CHALLONGE_CLIENT_ID,
+                'client_secret': env.CHALLONGE_CLIENT_SECRET
             })
             .post()
             .json<AccessToken>()

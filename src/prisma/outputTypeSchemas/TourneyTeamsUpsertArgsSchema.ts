@@ -23,7 +23,7 @@ export const TourneyTeamsSelectSchema: z.ZodType<Prisma.TourneyTeamsSelect> = z.
 
 export const TourneyTeamsUpsertArgsSchema: z.ZodType<Prisma.TourneyTeamsUpsertArgs> = z.object({
   select: TourneyTeamsSelectSchema.optional(),
-  include: TourneyTeamsIncludeSchema.optional(),
+  include: z.lazy(() => TourneyTeamsIncludeSchema).optional(),
   where: TourneyTeamsWhereUniqueInputSchema,
   create: z.union([ TourneyTeamsCreateInputSchema,TourneyTeamsUncheckedCreateInputSchema ]),
   update: z.union([ TourneyTeamsUpdateInputSchema,TourneyTeamsUncheckedUpdateInputSchema ]),

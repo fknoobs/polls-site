@@ -20,7 +20,7 @@ export const PollOptionsSelectSchema: z.ZodType<Prisma.PollOptionsSelect> = z.ob
 
 export const PollOptionsCreateArgsSchema: z.ZodType<Prisma.PollOptionsCreateArgs> = z.object({
   select: PollOptionsSelectSchema.optional(),
-  include: PollOptionsIncludeSchema.optional(),
+  include: z.lazy(() => PollOptionsIncludeSchema).optional(),
   data: z.union([ PollOptionsCreateInputSchema,PollOptionsUncheckedCreateInputSchema ]),
 }).strict() ;
 

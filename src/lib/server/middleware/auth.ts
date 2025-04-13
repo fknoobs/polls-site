@@ -1,4 +1,4 @@
-import { AUTH_SECRET, TWITCH_CLIENT_ID, TWITCH_CLIENT_SECRET, GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET } from '$env/static/private'
+import { env  } from '$env/dynamic/private'
 import { SvelteKitAuth, type SvelteKitAuthConfig } from '@auth/sveltekit'
 import { PrismaAdapter } from '@auth/prisma-adapter'
 import Twitch from '@auth/sveltekit/providers/twitch'
@@ -9,8 +9,8 @@ export const { handle: auth, signIn, signOut } = SvelteKitAuth(async (event) => 
     
         providers: [
             Twitch({
-                clientId: TWITCH_CLIENT_ID,
-                clientSecret: TWITCH_CLIENT_SECRET,
+                clientId: env.TWITCH_CLIENT_ID,
+                clientSecret: env.TWITCH_CLIENT_SECRET,
                 async profile(profile) {
                     return {
                         id: profile.aud,
@@ -23,7 +23,7 @@ export const { handle: auth, signIn, signOut } = SvelteKitAuth(async (event) => 
                 allowDangerousEmailAccountLinking: true
             })
         ],
-        secret: AUTH_SECRET,
+        secret: env.AUTH_SECRET,
         trustHost: true,
         callbacks: {
             async session({ session, token, user }) {

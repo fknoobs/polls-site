@@ -20,7 +20,7 @@ export const AuthenticatorSelectSchema: z.ZodType<Prisma.AuthenticatorSelect> = 
 
 export const AuthenticatorDeleteArgsSchema: z.ZodType<Prisma.AuthenticatorDeleteArgs> = z.object({
   select: AuthenticatorSelectSchema.optional(),
-  include: AuthenticatorIncludeSchema.optional(),
+  include: z.lazy(() => AuthenticatorIncludeSchema).optional(),
   where: AuthenticatorWhereUniqueInputSchema,
 }).strict() ;
 

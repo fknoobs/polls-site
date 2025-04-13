@@ -17,7 +17,7 @@ export const TtsQueueSelectSchema: z.ZodType<Prisma.TtsQueueSelect> = z.object({
 
 export const TtsQueueFindFirstArgsSchema: z.ZodType<Prisma.TtsQueueFindFirstArgs> = z.object({
   select: TtsQueueSelectSchema.optional(),
-  include: TtsQueueIncludeSchema.optional(),
+  include: z.lazy(() => TtsQueueIncludeSchema).optional(),
   where: TtsQueueWhereInputSchema.optional(),
   orderBy: z.union([ TtsQueueOrderByWithRelationInputSchema.array(),TtsQueueOrderByWithRelationInputSchema ]).optional(),
   cursor: TtsQueueWhereUniqueInputSchema.optional(),

@@ -14,7 +14,7 @@ export const SteamUserSelectSchema: z.ZodType<Prisma.SteamUserSelect> = z.object
 
 export const SteamUserDeleteArgsSchema: z.ZodType<Prisma.SteamUserDeleteArgs> = z.object({
   select: SteamUserSelectSchema.optional(),
-  include: SteamUserIncludeSchema.optional(),
+  include: z.lazy(() => SteamUserIncludeSchema).optional(),
   where: SteamUserWhereUniqueInputSchema,
 }).strict() ;
 

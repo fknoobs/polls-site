@@ -19,7 +19,7 @@ export const TourneyPlayersSelectSchema: z.ZodType<Prisma.TourneyPlayersSelect> 
 
 export const TourneyPlayersCreateArgsSchema: z.ZodType<Prisma.TourneyPlayersCreateArgs> = z.object({
   select: TourneyPlayersSelectSchema.optional(),
-  include: TourneyPlayersIncludeSchema.optional(),
+  include: z.lazy(() => TourneyPlayersIncludeSchema).optional(),
   data: z.union([ TourneyPlayersCreateInputSchema,TourneyPlayersUncheckedCreateInputSchema ]),
 }).strict() ;
 
