@@ -4,6 +4,7 @@ import { SteamUserWhereInputSchema } from '../inputTypeSchemas/SteamUserWhereInp
 
 export const SteamUserDeleteManyArgsSchema: z.ZodType<Prisma.SteamUserDeleteManyArgs> = z.object({
   where: SteamUserWhereInputSchema.optional(),
+  limit: z.number().optional(),
 }).strict() ;
 
 export default SteamUserDeleteManyArgsSchema;

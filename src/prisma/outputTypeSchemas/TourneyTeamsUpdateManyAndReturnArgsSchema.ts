@@ -4,10 +4,10 @@ import { TourneyTeamsUpdateManyMutationInputSchema } from '../inputTypeSchemas/T
 import { TourneyTeamsUncheckedUpdateManyInputSchema } from '../inputTypeSchemas/TourneyTeamsUncheckedUpdateManyInputSchema'
 import { TourneyTeamsWhereInputSchema } from '../inputTypeSchemas/TourneyTeamsWhereInputSchema'
 
-export const TourneyTeamsUpdateManyArgsSchema: z.ZodType<Prisma.TourneyTeamsUpdateManyArgs> = z.object({
+export const TourneyTeamsUpdateManyAndReturnArgsSchema: z.ZodType<Prisma.TourneyTeamsUpdateManyAndReturnArgs> = z.object({
   data: z.union([ TourneyTeamsUpdateManyMutationInputSchema,TourneyTeamsUncheckedUpdateManyInputSchema ]),
   where: TourneyTeamsWhereInputSchema.optional(),
   limit: z.number().optional(),
 }).strict() ;
 
-export default TourneyTeamsUpdateManyArgsSchema;
+export default TourneyTeamsUpdateManyAndReturnArgsSchema;

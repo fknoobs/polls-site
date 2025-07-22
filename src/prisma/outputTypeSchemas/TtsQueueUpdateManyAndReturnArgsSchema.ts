@@ -4,10 +4,10 @@ import { TtsQueueUpdateManyMutationInputSchema } from '../inputTypeSchemas/TtsQu
 import { TtsQueueUncheckedUpdateManyInputSchema } from '../inputTypeSchemas/TtsQueueUncheckedUpdateManyInputSchema'
 import { TtsQueueWhereInputSchema } from '../inputTypeSchemas/TtsQueueWhereInputSchema'
 
-export const TtsQueueUpdateManyArgsSchema: z.ZodType<Prisma.TtsQueueUpdateManyArgs> = z.object({
+export const TtsQueueUpdateManyAndReturnArgsSchema: z.ZodType<Prisma.TtsQueueUpdateManyAndReturnArgs> = z.object({
   data: z.union([ TtsQueueUpdateManyMutationInputSchema,TtsQueueUncheckedUpdateManyInputSchema ]),
   where: TtsQueueWhereInputSchema.optional(),
   limit: z.number().optional(),
 }).strict() ;
 
-export default TtsQueueUpdateManyArgsSchema;
+export default TtsQueueUpdateManyAndReturnArgsSchema;

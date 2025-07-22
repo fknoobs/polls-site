@@ -4,6 +4,7 @@ import { TtsQueueWhereInputSchema } from '../inputTypeSchemas/TtsQueueWhereInput
 
 export const TtsQueueDeleteManyArgsSchema: z.ZodType<Prisma.TtsQueueDeleteManyArgs> = z.object({
   where: TtsQueueWhereInputSchema.optional(),
+  limit: z.number().optional(),
 }).strict() ;
 
 export default TtsQueueDeleteManyArgsSchema;

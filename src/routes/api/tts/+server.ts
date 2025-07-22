@@ -27,13 +27,13 @@ export const GET = async ({ locals, url }) => {
         }
 
         // Ika = D3exn
-        // if (voiceName === 'Ika') {
-        //     voice_settings = {
-        //         stability: .37,
-        //         similarity_boost: .5,
-        //         style: .1
-        //     }
-        // }
+        if (voiceName === 'Ika') {
+            voice_settings = {
+                stability: .5,
+                similarity_boost: .5,
+                style: .3
+            }
+        }
 
         const audioStream = await locals.elevenlabs.generate({
             voice: voiceName,
@@ -45,14 +45,14 @@ export const GET = async ({ locals, url }) => {
             voice_settings
         }) as unknown as ReadableStream
         
-        if (dev) {
-            // @ts-ignore
-            await play(audioStream)
-            /**
-             * Ignore rest since we in development mode
-             */
-            return new Response('OK')
-        }
+        // if (dev) {
+        //     // @ts-ignore
+        //     await play(audioStream)
+        //     /**
+        //      * Ignore rest since we in development mode
+        //      */
+        //     return new Response('OK')
+        // }
 
         const filename = createId()
         const fileStream = createWriteStream(`static/tts-audio/${filename}.mp3`)

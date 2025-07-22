@@ -2,7 +2,7 @@ import type { Prisma } from '@prisma/client';
 
 import { z } from 'zod';
 import { SteamUserWhereInputSchema } from './SteamUserWhereInputSchema';
-import { UserNullableRelationFilterSchema } from './UserNullableRelationFilterSchema';
+import { UserNullableScalarRelationFilterSchema } from './UserNullableScalarRelationFilterSchema';
 import { UserWhereInputSchema } from './UserWhereInputSchema';
 
 export const SteamUserWhereUniqueInputSchema: z.ZodType<Prisma.SteamUserWhereUniqueInput> = z.union([
@@ -23,7 +23,7 @@ export const SteamUserWhereUniqueInputSchema: z.ZodType<Prisma.SteamUserWhereUni
   AND: z.union([ z.lazy(() => SteamUserWhereInputSchema),z.lazy(() => SteamUserWhereInputSchema).array() ]).optional(),
   OR: z.lazy(() => SteamUserWhereInputSchema).array().optional(),
   NOT: z.union([ z.lazy(() => SteamUserWhereInputSchema),z.lazy(() => SteamUserWhereInputSchema).array() ]).optional(),
-  user: z.union([ z.lazy(() => UserNullableRelationFilterSchema),z.lazy(() => UserWhereInputSchema) ]).optional().nullable(),
+  user: z.union([ z.lazy(() => UserNullableScalarRelationFilterSchema),z.lazy(() => UserWhereInputSchema) ]).optional().nullable(),
 }).strict());
 
 export default SteamUserWhereUniqueInputSchema;

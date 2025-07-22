@@ -4,6 +4,7 @@ import { SessionWhereInputSchema } from '../inputTypeSchemas/SessionWhereInputSc
 
 export const SessionDeleteManyArgsSchema: z.ZodType<Prisma.SessionDeleteManyArgs> = z.object({
   where: SessionWhereInputSchema.optional(),
+  limit: z.number().optional(),
 }).strict() ;
 
 export default SessionDeleteManyArgsSchema;

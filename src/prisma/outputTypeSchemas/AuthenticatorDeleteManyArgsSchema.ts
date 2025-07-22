@@ -4,6 +4,7 @@ import { AuthenticatorWhereInputSchema } from '../inputTypeSchemas/Authenticator
 
 export const AuthenticatorDeleteManyArgsSchema: z.ZodType<Prisma.AuthenticatorDeleteManyArgs> = z.object({
   where: AuthenticatorWhereInputSchema.optional(),
+  limit: z.number().optional(),
 }).strict() ;
 
 export default AuthenticatorDeleteManyArgsSchema;

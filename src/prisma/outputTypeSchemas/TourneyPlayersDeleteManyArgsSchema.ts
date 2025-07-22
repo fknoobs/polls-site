@@ -4,6 +4,7 @@ import { TourneyPlayersWhereInputSchema } from '../inputTypeSchemas/TourneyPlaye
 
 export const TourneyPlayersDeleteManyArgsSchema: z.ZodType<Prisma.TourneyPlayersDeleteManyArgs> = z.object({
   where: TourneyPlayersWhereInputSchema.optional(),
+  limit: z.number().optional(),
 }).strict() ;
 
 export default TourneyPlayersDeleteManyArgsSchema;

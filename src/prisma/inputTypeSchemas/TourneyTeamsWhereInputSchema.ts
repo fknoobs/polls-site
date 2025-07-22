@@ -4,7 +4,7 @@ import { z } from 'zod';
 import { StringFilterSchema } from './StringFilterSchema';
 import { IntFilterSchema } from './IntFilterSchema';
 import { TourneyPlayersListRelationFilterSchema } from './TourneyPlayersListRelationFilterSchema';
-import { TourneysRelationFilterSchema } from './TourneysRelationFilterSchema';
+import { TourneysScalarRelationFilterSchema } from './TourneysScalarRelationFilterSchema';
 import { TourneysWhereInputSchema } from './TourneysWhereInputSchema';
 
 export const TourneyTeamsWhereInputSchema: z.ZodType<Prisma.TourneyTeamsWhereInput> = z.object({
@@ -15,7 +15,7 @@ export const TourneyTeamsWhereInputSchema: z.ZodType<Prisma.TourneyTeamsWhereInp
   name: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
   tourneyId: z.union([ z.lazy(() => IntFilterSchema),z.number() ]).optional(),
   players: z.lazy(() => TourneyPlayersListRelationFilterSchema).optional(),
-  tourney: z.union([ z.lazy(() => TourneysRelationFilterSchema),z.lazy(() => TourneysWhereInputSchema) ]).optional(),
+  tourney: z.union([ z.lazy(() => TourneysScalarRelationFilterSchema),z.lazy(() => TourneysWhereInputSchema) ]).optional(),
 }).strict();
 
 export default TourneyTeamsWhereInputSchema;

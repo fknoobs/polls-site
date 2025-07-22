@@ -4,6 +4,7 @@ import { SteamProfileWhereInputSchema } from '../inputTypeSchemas/SteamProfileWh
 
 export const SteamProfileDeleteManyArgsSchema: z.ZodType<Prisma.SteamProfileDeleteManyArgs> = z.object({
   where: SteamProfileWhereInputSchema.optional(),
+  limit: z.number().optional(),
 }).strict() ;
 
 export default SteamProfileDeleteManyArgsSchema;

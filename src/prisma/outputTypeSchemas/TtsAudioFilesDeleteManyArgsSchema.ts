@@ -4,6 +4,7 @@ import { TtsAudioFilesWhereInputSchema } from '../inputTypeSchemas/TtsAudioFiles
 
 export const TtsAudioFilesDeleteManyArgsSchema: z.ZodType<Prisma.TtsAudioFilesDeleteManyArgs> = z.object({
   where: TtsAudioFilesWhereInputSchema.optional(),
+  limit: z.number().optional(),
 }).strict() ;
 
 export default TtsAudioFilesDeleteManyArgsSchema;

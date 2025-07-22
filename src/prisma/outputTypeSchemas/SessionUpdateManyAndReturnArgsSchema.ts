@@ -4,10 +4,10 @@ import { SessionUpdateManyMutationInputSchema } from '../inputTypeSchemas/Sessio
 import { SessionUncheckedUpdateManyInputSchema } from '../inputTypeSchemas/SessionUncheckedUpdateManyInputSchema'
 import { SessionWhereInputSchema } from '../inputTypeSchemas/SessionWhereInputSchema'
 
-export const SessionUpdateManyArgsSchema: z.ZodType<Prisma.SessionUpdateManyArgs> = z.object({
+export const SessionUpdateManyAndReturnArgsSchema: z.ZodType<Prisma.SessionUpdateManyAndReturnArgs> = z.object({
   data: z.union([ SessionUpdateManyMutationInputSchema,SessionUncheckedUpdateManyInputSchema ]),
   where: SessionWhereInputSchema.optional(),
   limit: z.number().optional(),
 }).strict() ;
 
-export default SessionUpdateManyArgsSchema;
+export default SessionUpdateManyAndReturnArgsSchema;

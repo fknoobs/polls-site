@@ -8,7 +8,7 @@ import { DateTimeFilterSchema } from './DateTimeFilterSchema';
 import { DateTimeNullableFilterSchema } from './DateTimeNullableFilterSchema';
 import { BoolFilterSchema } from './BoolFilterSchema';
 import { TourneyTeamsListRelationFilterSchema } from './TourneyTeamsListRelationFilterSchema';
-import { UserNullableRelationFilterSchema } from './UserNullableRelationFilterSchema';
+import { UserNullableScalarRelationFilterSchema } from './UserNullableScalarRelationFilterSchema';
 import { UserWhereInputSchema } from './UserWhereInputSchema';
 
 export const TourneysWhereInputSchema: z.ZodType<Prisma.TourneysWhereInput> = z.object({
@@ -28,7 +28,7 @@ export const TourneysWhereInputSchema: z.ZodType<Prisma.TourneysWhereInput> = z.
   updatedAt: z.union([ z.lazy(() => DateTimeFilterSchema),z.coerce.date() ]).optional(),
   userId: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
   teams: z.lazy(() => TourneyTeamsListRelationFilterSchema).optional(),
-  createdBy: z.union([ z.lazy(() => UserNullableRelationFilterSchema),z.lazy(() => UserWhereInputSchema) ]).optional().nullable(),
+  createdBy: z.union([ z.lazy(() => UserNullableScalarRelationFilterSchema),z.lazy(() => UserWhereInputSchema) ]).optional().nullable(),
 }).strict();
 
 export default TourneysWhereInputSchema;

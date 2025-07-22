@@ -4,10 +4,10 @@ import { TtsAudioFilesUpdateManyMutationInputSchema } from '../inputTypeSchemas/
 import { TtsAudioFilesUncheckedUpdateManyInputSchema } from '../inputTypeSchemas/TtsAudioFilesUncheckedUpdateManyInputSchema'
 import { TtsAudioFilesWhereInputSchema } from '../inputTypeSchemas/TtsAudioFilesWhereInputSchema'
 
-export const TtsAudioFilesUpdateManyArgsSchema: z.ZodType<Prisma.TtsAudioFilesUpdateManyArgs> = z.object({
+export const TtsAudioFilesUpdateManyAndReturnArgsSchema: z.ZodType<Prisma.TtsAudioFilesUpdateManyAndReturnArgs> = z.object({
   data: z.union([ TtsAudioFilesUpdateManyMutationInputSchema,TtsAudioFilesUncheckedUpdateManyInputSchema ]),
   where: TtsAudioFilesWhereInputSchema.optional(),
   limit: z.number().optional(),
 }).strict() ;
 
-export default TtsAudioFilesUpdateManyArgsSchema;
+export default TtsAudioFilesUpdateManyAndReturnArgsSchema;

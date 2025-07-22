@@ -4,10 +4,10 @@ import { SteamUserUpdateManyMutationInputSchema } from '../inputTypeSchemas/Stea
 import { SteamUserUncheckedUpdateManyInputSchema } from '../inputTypeSchemas/SteamUserUncheckedUpdateManyInputSchema'
 import { SteamUserWhereInputSchema } from '../inputTypeSchemas/SteamUserWhereInputSchema'
 
-export const SteamUserUpdateManyArgsSchema: z.ZodType<Prisma.SteamUserUpdateManyArgs> = z.object({
+export const SteamUserUpdateManyAndReturnArgsSchema: z.ZodType<Prisma.SteamUserUpdateManyAndReturnArgs> = z.object({
   data: z.union([ SteamUserUpdateManyMutationInputSchema,SteamUserUncheckedUpdateManyInputSchema ]),
   where: SteamUserWhereInputSchema.optional(),
   limit: z.number().optional(),
 }).strict() ;
 
-export default SteamUserUpdateManyArgsSchema;
+export default SteamUserUpdateManyAndReturnArgsSchema;

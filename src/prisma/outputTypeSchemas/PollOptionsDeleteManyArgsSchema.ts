@@ -4,6 +4,7 @@ import { PollOptionsWhereInputSchema } from '../inputTypeSchemas/PollOptionsWher
 
 export const PollOptionsDeleteManyArgsSchema: z.ZodType<Prisma.PollOptionsDeleteManyArgs> = z.object({
   where: PollOptionsWhereInputSchema.optional(),
+  limit: z.number().optional(),
 }).strict() ;
 
 export default PollOptionsDeleteManyArgsSchema;

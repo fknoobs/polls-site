@@ -4,6 +4,7 @@ import { TourneyTeamsWhereInputSchema } from '../inputTypeSchemas/TourneyTeamsWh
 
 export const TourneyTeamsDeleteManyArgsSchema: z.ZodType<Prisma.TourneyTeamsDeleteManyArgs> = z.object({
   where: TourneyTeamsWhereInputSchema.optional(),
+  limit: z.number().optional(),
 }).strict() ;
 
 export default TourneyTeamsDeleteManyArgsSchema;

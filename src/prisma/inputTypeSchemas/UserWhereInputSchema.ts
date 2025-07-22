@@ -5,12 +5,12 @@ import { StringFilterSchema } from './StringFilterSchema';
 import { StringNullableFilterSchema } from './StringNullableFilterSchema';
 import { DateTimeNullableFilterSchema } from './DateTimeNullableFilterSchema';
 import { DateTimeFilterSchema } from './DateTimeFilterSchema';
-import { SteamProfileNullableRelationFilterSchema } from './SteamProfileNullableRelationFilterSchema';
+import { SteamProfileNullableScalarRelationFilterSchema } from './SteamProfileNullableScalarRelationFilterSchema';
 import { SteamProfileWhereInputSchema } from './SteamProfileWhereInputSchema';
 import { AccountListRelationFilterSchema } from './AccountListRelationFilterSchema';
 import { SessionListRelationFilterSchema } from './SessionListRelationFilterSchema';
 import { AuthenticatorListRelationFilterSchema } from './AuthenticatorListRelationFilterSchema';
-import { SteamUserNullableRelationFilterSchema } from './SteamUserNullableRelationFilterSchema';
+import { SteamUserNullableScalarRelationFilterSchema } from './SteamUserNullableScalarRelationFilterSchema';
 import { SteamUserWhereInputSchema } from './SteamUserWhereInputSchema';
 import { TourneysListRelationFilterSchema } from './TourneysListRelationFilterSchema';
 
@@ -26,11 +26,11 @@ export const UserWhereInputSchema: z.ZodType<Prisma.UserWhereInput> = z.object({
   role: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
   createdAt: z.union([ z.lazy(() => DateTimeFilterSchema),z.coerce.date() ]).optional(),
   updatedAt: z.union([ z.lazy(() => DateTimeFilterSchema),z.coerce.date() ]).optional(),
-  steam: z.union([ z.lazy(() => SteamProfileNullableRelationFilterSchema),z.lazy(() => SteamProfileWhereInputSchema) ]).optional().nullable(),
+  steam: z.union([ z.lazy(() => SteamProfileNullableScalarRelationFilterSchema),z.lazy(() => SteamProfileWhereInputSchema) ]).optional().nullable(),
   accounts: z.lazy(() => AccountListRelationFilterSchema).optional(),
   sessions: z.lazy(() => SessionListRelationFilterSchema).optional(),
   Authenticator: z.lazy(() => AuthenticatorListRelationFilterSchema).optional(),
-  steamUser: z.union([ z.lazy(() => SteamUserNullableRelationFilterSchema),z.lazy(() => SteamUserWhereInputSchema) ]).optional().nullable(),
+  steamUser: z.union([ z.lazy(() => SteamUserNullableScalarRelationFilterSchema),z.lazy(() => SteamUserWhereInputSchema) ]).optional().nullable(),
   Tourneys: z.lazy(() => TourneysListRelationFilterSchema).optional()
 }).strict();
 

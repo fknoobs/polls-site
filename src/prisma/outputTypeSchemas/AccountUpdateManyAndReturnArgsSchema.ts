@@ -4,10 +4,10 @@ import { AccountUpdateManyMutationInputSchema } from '../inputTypeSchemas/Accoun
 import { AccountUncheckedUpdateManyInputSchema } from '../inputTypeSchemas/AccountUncheckedUpdateManyInputSchema'
 import { AccountWhereInputSchema } from '../inputTypeSchemas/AccountWhereInputSchema'
 
-export const AccountUpdateManyArgsSchema: z.ZodType<Prisma.AccountUpdateManyArgs> = z.object({
+export const AccountUpdateManyAndReturnArgsSchema: z.ZodType<Prisma.AccountUpdateManyAndReturnArgs> = z.object({
   data: z.union([ AccountUpdateManyMutationInputSchema,AccountUncheckedUpdateManyInputSchema ]),
   where: AccountWhereInputSchema.optional(),
   limit: z.number().optional(),
 }).strict() ;
 
-export default AccountUpdateManyArgsSchema;
+export default AccountUpdateManyAndReturnArgsSchema;

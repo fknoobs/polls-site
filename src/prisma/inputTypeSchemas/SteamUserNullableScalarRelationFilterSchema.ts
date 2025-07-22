@@ -3,9 +3,9 @@ import type { Prisma } from '@prisma/client';
 import { z } from 'zod';
 import { SteamUserWhereInputSchema } from './SteamUserWhereInputSchema';
 
-export const SteamUserNullableRelationFilterSchema: z.ZodType<Prisma.SteamUserNullableRelationFilter> = z.object({
+export const SteamUserNullableScalarRelationFilterSchema: z.ZodType<Prisma.SteamUserNullableScalarRelationFilter> = z.object({
   is: z.lazy(() => SteamUserWhereInputSchema).optional().nullable(),
   isNot: z.lazy(() => SteamUserWhereInputSchema).optional().nullable()
 }).strict();
 
-export default SteamUserNullableRelationFilterSchema;
+export default SteamUserNullableScalarRelationFilterSchema;

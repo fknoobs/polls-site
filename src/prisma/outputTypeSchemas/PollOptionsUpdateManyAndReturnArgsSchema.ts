@@ -4,10 +4,10 @@ import { PollOptionsUpdateManyMutationInputSchema } from '../inputTypeSchemas/Po
 import { PollOptionsUncheckedUpdateManyInputSchema } from '../inputTypeSchemas/PollOptionsUncheckedUpdateManyInputSchema'
 import { PollOptionsWhereInputSchema } from '../inputTypeSchemas/PollOptionsWhereInputSchema'
 
-export const PollOptionsUpdateManyArgsSchema: z.ZodType<Prisma.PollOptionsUpdateManyArgs> = z.object({
+export const PollOptionsUpdateManyAndReturnArgsSchema: z.ZodType<Prisma.PollOptionsUpdateManyAndReturnArgs> = z.object({
   data: z.union([ PollOptionsUpdateManyMutationInputSchema,PollOptionsUncheckedUpdateManyInputSchema ]),
   where: PollOptionsWhereInputSchema.optional(),
   limit: z.number().optional(),
 }).strict() ;
 
-export default PollOptionsUpdateManyArgsSchema;
+export default PollOptionsUpdateManyAndReturnArgsSchema;

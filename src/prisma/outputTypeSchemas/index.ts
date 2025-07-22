@@ -124,6 +124,7 @@ export { PollsCreateManyAndReturnArgsSchema } from './PollsCreateManyAndReturnAr
 export { PollsDeleteArgsSchema } from './PollsDeleteArgsSchema';
 export { PollsUpdateArgsSchema } from './PollsUpdateArgsSchema';
 export { PollsUpdateManyArgsSchema } from './PollsUpdateManyArgsSchema';
+export { PollsUpdateManyAndReturnArgsSchema } from './PollsUpdateManyAndReturnArgsSchema';
 export { PollsDeleteManyArgsSchema } from './PollsDeleteManyArgsSchema';
 export { PollOptionsCreateArgsSchema } from './PollOptionsCreateArgsSchema';
 export { PollOptionsUpsertArgsSchema } from './PollOptionsUpsertArgsSchema';
@@ -132,6 +133,7 @@ export { PollOptionsCreateManyAndReturnArgsSchema } from './PollOptionsCreateMan
 export { PollOptionsDeleteArgsSchema } from './PollOptionsDeleteArgsSchema';
 export { PollOptionsUpdateArgsSchema } from './PollOptionsUpdateArgsSchema';
 export { PollOptionsUpdateManyArgsSchema } from './PollOptionsUpdateManyArgsSchema';
+export { PollOptionsUpdateManyAndReturnArgsSchema } from './PollOptionsUpdateManyAndReturnArgsSchema';
 export { PollOptionsDeleteManyArgsSchema } from './PollOptionsDeleteManyArgsSchema';
 export { PollVotesCreateArgsSchema } from './PollVotesCreateArgsSchema';
 export { PollVotesUpsertArgsSchema } from './PollVotesUpsertArgsSchema';
@@ -140,6 +142,7 @@ export { PollVotesCreateManyAndReturnArgsSchema } from './PollVotesCreateManyAnd
 export { PollVotesDeleteArgsSchema } from './PollVotesDeleteArgsSchema';
 export { PollVotesUpdateArgsSchema } from './PollVotesUpdateArgsSchema';
 export { PollVotesUpdateManyArgsSchema } from './PollVotesUpdateManyArgsSchema';
+export { PollVotesUpdateManyAndReturnArgsSchema } from './PollVotesUpdateManyAndReturnArgsSchema';
 export { PollVotesDeleteManyArgsSchema } from './PollVotesDeleteManyArgsSchema';
 export { TtsAudioFilesCreateArgsSchema } from './TtsAudioFilesCreateArgsSchema';
 export { TtsAudioFilesUpsertArgsSchema } from './TtsAudioFilesUpsertArgsSchema';
@@ -148,6 +151,7 @@ export { TtsAudioFilesCreateManyAndReturnArgsSchema } from './TtsAudioFilesCreat
 export { TtsAudioFilesDeleteArgsSchema } from './TtsAudioFilesDeleteArgsSchema';
 export { TtsAudioFilesUpdateArgsSchema } from './TtsAudioFilesUpdateArgsSchema';
 export { TtsAudioFilesUpdateManyArgsSchema } from './TtsAudioFilesUpdateManyArgsSchema';
+export { TtsAudioFilesUpdateManyAndReturnArgsSchema } from './TtsAudioFilesUpdateManyAndReturnArgsSchema';
 export { TtsAudioFilesDeleteManyArgsSchema } from './TtsAudioFilesDeleteManyArgsSchema';
 export { TtsQueueCreateArgsSchema } from './TtsQueueCreateArgsSchema';
 export { TtsQueueUpsertArgsSchema } from './TtsQueueUpsertArgsSchema';
@@ -156,6 +160,7 @@ export { TtsQueueCreateManyAndReturnArgsSchema } from './TtsQueueCreateManyAndRe
 export { TtsQueueDeleteArgsSchema } from './TtsQueueDeleteArgsSchema';
 export { TtsQueueUpdateArgsSchema } from './TtsQueueUpdateArgsSchema';
 export { TtsQueueUpdateManyArgsSchema } from './TtsQueueUpdateManyArgsSchema';
+export { TtsQueueUpdateManyAndReturnArgsSchema } from './TtsQueueUpdateManyAndReturnArgsSchema';
 export { TtsQueueDeleteManyArgsSchema } from './TtsQueueDeleteManyArgsSchema';
 export { TourneysCreateArgsSchema } from './TourneysCreateArgsSchema';
 export { TourneysUpsertArgsSchema } from './TourneysUpsertArgsSchema';
@@ -164,6 +169,7 @@ export { TourneysCreateManyAndReturnArgsSchema } from './TourneysCreateManyAndRe
 export { TourneysDeleteArgsSchema } from './TourneysDeleteArgsSchema';
 export { TourneysUpdateArgsSchema } from './TourneysUpdateArgsSchema';
 export { TourneysUpdateManyArgsSchema } from './TourneysUpdateManyArgsSchema';
+export { TourneysUpdateManyAndReturnArgsSchema } from './TourneysUpdateManyAndReturnArgsSchema';
 export { TourneysDeleteManyArgsSchema } from './TourneysDeleteManyArgsSchema';
 export { TourneyTeamsCreateArgsSchema } from './TourneyTeamsCreateArgsSchema';
 export { TourneyTeamsUpsertArgsSchema } from './TourneyTeamsUpsertArgsSchema';
@@ -172,6 +178,7 @@ export { TourneyTeamsCreateManyAndReturnArgsSchema } from './TourneyTeamsCreateM
 export { TourneyTeamsDeleteArgsSchema } from './TourneyTeamsDeleteArgsSchema';
 export { TourneyTeamsUpdateArgsSchema } from './TourneyTeamsUpdateArgsSchema';
 export { TourneyTeamsUpdateManyArgsSchema } from './TourneyTeamsUpdateManyArgsSchema';
+export { TourneyTeamsUpdateManyAndReturnArgsSchema } from './TourneyTeamsUpdateManyAndReturnArgsSchema';
 export { TourneyTeamsDeleteManyArgsSchema } from './TourneyTeamsDeleteManyArgsSchema';
 export { TourneyPlayersCreateArgsSchema } from './TourneyPlayersCreateArgsSchema';
 export { TourneyPlayersUpsertArgsSchema } from './TourneyPlayersUpsertArgsSchema';
@@ -180,6 +187,7 @@ export { TourneyPlayersCreateManyAndReturnArgsSchema } from './TourneyPlayersCre
 export { TourneyPlayersDeleteArgsSchema } from './TourneyPlayersDeleteArgsSchema';
 export { TourneyPlayersUpdateArgsSchema } from './TourneyPlayersUpdateArgsSchema';
 export { TourneyPlayersUpdateManyArgsSchema } from './TourneyPlayersUpdateManyArgsSchema';
+export { TourneyPlayersUpdateManyAndReturnArgsSchema } from './TourneyPlayersUpdateManyAndReturnArgsSchema';
 export { TourneyPlayersDeleteManyArgsSchema } from './TourneyPlayersDeleteManyArgsSchema';
 export { UserCreateArgsSchema } from './UserCreateArgsSchema';
 export { UserUpsertArgsSchema } from './UserUpsertArgsSchema';
@@ -188,6 +196,7 @@ export { UserCreateManyAndReturnArgsSchema } from './UserCreateManyAndReturnArgs
 export { UserDeleteArgsSchema } from './UserDeleteArgsSchema';
 export { UserUpdateArgsSchema } from './UserUpdateArgsSchema';
 export { UserUpdateManyArgsSchema } from './UserUpdateManyArgsSchema';
+export { UserUpdateManyAndReturnArgsSchema } from './UserUpdateManyAndReturnArgsSchema';
 export { UserDeleteManyArgsSchema } from './UserDeleteManyArgsSchema';
 export { SteamUserCreateArgsSchema } from './SteamUserCreateArgsSchema';
 export { SteamUserUpsertArgsSchema } from './SteamUserUpsertArgsSchema';
@@ -196,6 +205,7 @@ export { SteamUserCreateManyAndReturnArgsSchema } from './SteamUserCreateManyAnd
 export { SteamUserDeleteArgsSchema } from './SteamUserDeleteArgsSchema';
 export { SteamUserUpdateArgsSchema } from './SteamUserUpdateArgsSchema';
 export { SteamUserUpdateManyArgsSchema } from './SteamUserUpdateManyArgsSchema';
+export { SteamUserUpdateManyAndReturnArgsSchema } from './SteamUserUpdateManyAndReturnArgsSchema';
 export { SteamUserDeleteManyArgsSchema } from './SteamUserDeleteManyArgsSchema';
 export { AccountCreateArgsSchema } from './AccountCreateArgsSchema';
 export { AccountUpsertArgsSchema } from './AccountUpsertArgsSchema';
@@ -204,6 +214,7 @@ export { AccountCreateManyAndReturnArgsSchema } from './AccountCreateManyAndRetu
 export { AccountDeleteArgsSchema } from './AccountDeleteArgsSchema';
 export { AccountUpdateArgsSchema } from './AccountUpdateArgsSchema';
 export { AccountUpdateManyArgsSchema } from './AccountUpdateManyArgsSchema';
+export { AccountUpdateManyAndReturnArgsSchema } from './AccountUpdateManyAndReturnArgsSchema';
 export { AccountDeleteManyArgsSchema } from './AccountDeleteManyArgsSchema';
 export { SteamProfileCreateArgsSchema } from './SteamProfileCreateArgsSchema';
 export { SteamProfileUpsertArgsSchema } from './SteamProfileUpsertArgsSchema';
@@ -212,6 +223,7 @@ export { SteamProfileCreateManyAndReturnArgsSchema } from './SteamProfileCreateM
 export { SteamProfileDeleteArgsSchema } from './SteamProfileDeleteArgsSchema';
 export { SteamProfileUpdateArgsSchema } from './SteamProfileUpdateArgsSchema';
 export { SteamProfileUpdateManyArgsSchema } from './SteamProfileUpdateManyArgsSchema';
+export { SteamProfileUpdateManyAndReturnArgsSchema } from './SteamProfileUpdateManyAndReturnArgsSchema';
 export { SteamProfileDeleteManyArgsSchema } from './SteamProfileDeleteManyArgsSchema';
 export { SessionCreateArgsSchema } from './SessionCreateArgsSchema';
 export { SessionUpsertArgsSchema } from './SessionUpsertArgsSchema';
@@ -220,6 +232,7 @@ export { SessionCreateManyAndReturnArgsSchema } from './SessionCreateManyAndRetu
 export { SessionDeleteArgsSchema } from './SessionDeleteArgsSchema';
 export { SessionUpdateArgsSchema } from './SessionUpdateArgsSchema';
 export { SessionUpdateManyArgsSchema } from './SessionUpdateManyArgsSchema';
+export { SessionUpdateManyAndReturnArgsSchema } from './SessionUpdateManyAndReturnArgsSchema';
 export { SessionDeleteManyArgsSchema } from './SessionDeleteManyArgsSchema';
 export { VerificationTokenCreateArgsSchema } from './VerificationTokenCreateArgsSchema';
 export { VerificationTokenUpsertArgsSchema } from './VerificationTokenUpsertArgsSchema';
@@ -228,6 +241,7 @@ export { VerificationTokenCreateManyAndReturnArgsSchema } from './VerificationTo
 export { VerificationTokenDeleteArgsSchema } from './VerificationTokenDeleteArgsSchema';
 export { VerificationTokenUpdateArgsSchema } from './VerificationTokenUpdateArgsSchema';
 export { VerificationTokenUpdateManyArgsSchema } from './VerificationTokenUpdateManyArgsSchema';
+export { VerificationTokenUpdateManyAndReturnArgsSchema } from './VerificationTokenUpdateManyAndReturnArgsSchema';
 export { VerificationTokenDeleteManyArgsSchema } from './VerificationTokenDeleteManyArgsSchema';
 export { AuthenticatorCreateArgsSchema } from './AuthenticatorCreateArgsSchema';
 export { AuthenticatorUpsertArgsSchema } from './AuthenticatorUpsertArgsSchema';
@@ -236,4 +250,5 @@ export { AuthenticatorCreateManyAndReturnArgsSchema } from './AuthenticatorCreat
 export { AuthenticatorDeleteArgsSchema } from './AuthenticatorDeleteArgsSchema';
 export { AuthenticatorUpdateArgsSchema } from './AuthenticatorUpdateArgsSchema';
 export { AuthenticatorUpdateManyArgsSchema } from './AuthenticatorUpdateManyArgsSchema';
+export { AuthenticatorUpdateManyAndReturnArgsSchema } from './AuthenticatorUpdateManyAndReturnArgsSchema';
 export { AuthenticatorDeleteManyArgsSchema } from './AuthenticatorDeleteManyArgsSchema';

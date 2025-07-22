@@ -4,10 +4,10 @@ import { VerificationTokenUpdateManyMutationInputSchema } from '../inputTypeSche
 import { VerificationTokenUncheckedUpdateManyInputSchema } from '../inputTypeSchemas/VerificationTokenUncheckedUpdateManyInputSchema'
 import { VerificationTokenWhereInputSchema } from '../inputTypeSchemas/VerificationTokenWhereInputSchema'
 
-export const VerificationTokenUpdateManyArgsSchema: z.ZodType<Prisma.VerificationTokenUpdateManyArgs> = z.object({
+export const VerificationTokenUpdateManyAndReturnArgsSchema: z.ZodType<Prisma.VerificationTokenUpdateManyAndReturnArgs> = z.object({
   data: z.union([ VerificationTokenUpdateManyMutationInputSchema,VerificationTokenUncheckedUpdateManyInputSchema ]),
   where: VerificationTokenWhereInputSchema.optional(),
   limit: z.number().optional(),
 }).strict() ;
 
-export default VerificationTokenUpdateManyArgsSchema;
+export default VerificationTokenUpdateManyAndReturnArgsSchema;

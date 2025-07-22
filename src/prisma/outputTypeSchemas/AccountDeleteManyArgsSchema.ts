@@ -4,6 +4,7 @@ import { AccountWhereInputSchema } from '../inputTypeSchemas/AccountWhereInputSc
 
 export const AccountDeleteManyArgsSchema: z.ZodType<Prisma.AccountDeleteManyArgs> = z.object({
   where: AccountWhereInputSchema.optional(),
+  limit: z.number().optional(),
 }).strict() ;
 
 export default AccountDeleteManyArgsSchema;

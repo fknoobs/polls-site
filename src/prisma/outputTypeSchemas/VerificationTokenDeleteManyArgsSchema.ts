@@ -4,6 +4,7 @@ import { VerificationTokenWhereInputSchema } from '../inputTypeSchemas/Verificat
 
 export const VerificationTokenDeleteManyArgsSchema: z.ZodType<Prisma.VerificationTokenDeleteManyArgs> = z.object({
   where: VerificationTokenWhereInputSchema.optional(),
+  limit: z.number().optional(),
 }).strict() ;
 
 export default VerificationTokenDeleteManyArgsSchema;

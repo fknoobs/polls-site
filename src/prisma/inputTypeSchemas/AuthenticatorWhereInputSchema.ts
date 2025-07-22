@@ -5,7 +5,7 @@ import { StringFilterSchema } from './StringFilterSchema';
 import { IntFilterSchema } from './IntFilterSchema';
 import { BoolFilterSchema } from './BoolFilterSchema';
 import { StringNullableFilterSchema } from './StringNullableFilterSchema';
-import { UserRelationFilterSchema } from './UserRelationFilterSchema';
+import { UserScalarRelationFilterSchema } from './UserScalarRelationFilterSchema';
 import { UserWhereInputSchema } from './UserWhereInputSchema';
 
 export const AuthenticatorWhereInputSchema: z.ZodType<Prisma.AuthenticatorWhereInput> = z.object({
@@ -20,7 +20,7 @@ export const AuthenticatorWhereInputSchema: z.ZodType<Prisma.AuthenticatorWhereI
   credentialDeviceType: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
   credentialBackedUp: z.union([ z.lazy(() => BoolFilterSchema),z.boolean() ]).optional(),
   transports: z.union([ z.lazy(() => StringNullableFilterSchema),z.string() ]).optional().nullable(),
-  user: z.union([ z.lazy(() => UserRelationFilterSchema),z.lazy(() => UserWhereInputSchema) ]).optional(),
+  user: z.union([ z.lazy(() => UserScalarRelationFilterSchema),z.lazy(() => UserWhereInputSchema) ]).optional(),
 }).strict();
 
 export default AuthenticatorWhereInputSchema;

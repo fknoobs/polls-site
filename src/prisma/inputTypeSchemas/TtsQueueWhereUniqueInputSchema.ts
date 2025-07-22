@@ -3,7 +3,7 @@ import type { Prisma } from '@prisma/client';
 import { z } from 'zod';
 import { TtsQueueWhereInputSchema } from './TtsQueueWhereInputSchema';
 import { IntFilterSchema } from './IntFilterSchema';
-import { TtsAudioFilesRelationFilterSchema } from './TtsAudioFilesRelationFilterSchema';
+import { TtsAudioFilesScalarRelationFilterSchema } from './TtsAudioFilesScalarRelationFilterSchema';
 import { TtsAudioFilesWhereInputSchema } from './TtsAudioFilesWhereInputSchema';
 
 export const TtsQueueWhereUniqueInputSchema: z.ZodType<Prisma.TtsQueueWhereUniqueInput> = z.object({
@@ -15,7 +15,7 @@ export const TtsQueueWhereUniqueInputSchema: z.ZodType<Prisma.TtsQueueWhereUniqu
   OR: z.lazy(() => TtsQueueWhereInputSchema).array().optional(),
   NOT: z.union([ z.lazy(() => TtsQueueWhereInputSchema),z.lazy(() => TtsQueueWhereInputSchema).array() ]).optional(),
   ttsFileId: z.union([ z.lazy(() => IntFilterSchema),z.number().int() ]).optional(),
-  ttsFile: z.union([ z.lazy(() => TtsAudioFilesRelationFilterSchema),z.lazy(() => TtsAudioFilesWhereInputSchema) ]).optional(),
+  ttsFile: z.union([ z.lazy(() => TtsAudioFilesScalarRelationFilterSchema),z.lazy(() => TtsAudioFilesWhereInputSchema) ]).optional(),
 }).strict());
 
 export default TtsQueueWhereUniqueInputSchema;

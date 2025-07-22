@@ -4,10 +4,10 @@ import { AuthenticatorUpdateManyMutationInputSchema } from '../inputTypeSchemas/
 import { AuthenticatorUncheckedUpdateManyInputSchema } from '../inputTypeSchemas/AuthenticatorUncheckedUpdateManyInputSchema'
 import { AuthenticatorWhereInputSchema } from '../inputTypeSchemas/AuthenticatorWhereInputSchema'
 
-export const AuthenticatorUpdateManyArgsSchema: z.ZodType<Prisma.AuthenticatorUpdateManyArgs> = z.object({
+export const AuthenticatorUpdateManyAndReturnArgsSchema: z.ZodType<Prisma.AuthenticatorUpdateManyAndReturnArgs> = z.object({
   data: z.union([ AuthenticatorUpdateManyMutationInputSchema,AuthenticatorUncheckedUpdateManyInputSchema ]),
   where: AuthenticatorWhereInputSchema.optional(),
   limit: z.number().optional(),
 }).strict() ;
 
-export default AuthenticatorUpdateManyArgsSchema;
+export default AuthenticatorUpdateManyAndReturnArgsSchema;

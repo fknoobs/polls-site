@@ -4,9 +4,9 @@ import { z } from 'zod';
 import { PollVotesWhereInputSchema } from './PollVotesWhereInputSchema';
 import { StringFilterSchema } from './StringFilterSchema';
 import { IntFilterSchema } from './IntFilterSchema';
-import { PollsRelationFilterSchema } from './PollsRelationFilterSchema';
+import { PollsScalarRelationFilterSchema } from './PollsScalarRelationFilterSchema';
 import { PollsWhereInputSchema } from './PollsWhereInputSchema';
-import { PollOptionsRelationFilterSchema } from './PollOptionsRelationFilterSchema';
+import { PollOptionsScalarRelationFilterSchema } from './PollOptionsScalarRelationFilterSchema';
 import { PollOptionsWhereInputSchema } from './PollOptionsWhereInputSchema';
 
 export const PollVotesWhereUniqueInputSchema: z.ZodType<Prisma.PollVotesWhereUniqueInput> = z.object({
@@ -21,8 +21,8 @@ export const PollVotesWhereUniqueInputSchema: z.ZodType<Prisma.PollVotesWhereUni
   ipaddress: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
   pollId: z.union([ z.lazy(() => IntFilterSchema),z.number().int() ]).optional(),
   optionId: z.union([ z.lazy(() => IntFilterSchema),z.number().int() ]).optional(),
-  poll: z.union([ z.lazy(() => PollsRelationFilterSchema),z.lazy(() => PollsWhereInputSchema) ]).optional(),
-  option: z.union([ z.lazy(() => PollOptionsRelationFilterSchema),z.lazy(() => PollOptionsWhereInputSchema) ]).optional(),
+  poll: z.union([ z.lazy(() => PollsScalarRelationFilterSchema),z.lazy(() => PollsWhereInputSchema) ]).optional(),
+  option: z.union([ z.lazy(() => PollOptionsScalarRelationFilterSchema),z.lazy(() => PollOptionsWhereInputSchema) ]).optional(),
 }).strict());
 
 export default PollVotesWhereUniqueInputSchema;

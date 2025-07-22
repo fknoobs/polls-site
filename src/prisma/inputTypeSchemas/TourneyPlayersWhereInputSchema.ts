@@ -3,7 +3,7 @@ import type { Prisma } from '@prisma/client';
 import { z } from 'zod';
 import { IntFilterSchema } from './IntFilterSchema';
 import { StringFilterSchema } from './StringFilterSchema';
-import { TourneyTeamsRelationFilterSchema } from './TourneyTeamsRelationFilterSchema';
+import { TourneyTeamsScalarRelationFilterSchema } from './TourneyTeamsScalarRelationFilterSchema';
 import { TourneyTeamsWhereInputSchema } from './TourneyTeamsWhereInputSchema';
 
 export const TourneyPlayersWhereInputSchema: z.ZodType<Prisma.TourneyPlayersWhereInput> = z.object({
@@ -16,7 +16,7 @@ export const TourneyPlayersWhereInputSchema: z.ZodType<Prisma.TourneyPlayersWher
   profile: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
   timezone: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
   teamId: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
-  team: z.union([ z.lazy(() => TourneyTeamsRelationFilterSchema),z.lazy(() => TourneyTeamsWhereInputSchema) ]).optional(),
+  team: z.union([ z.lazy(() => TourneyTeamsScalarRelationFilterSchema),z.lazy(() => TourneyTeamsWhereInputSchema) ]).optional(),
 }).strict();
 
 export default TourneyPlayersWhereInputSchema;
